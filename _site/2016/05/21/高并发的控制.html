@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Welcome to jekyll!</title>
+<title>高并发控制</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -94,24 +94,71 @@
       <div class="row">
         <div>
           <div class="block">
-            <h1>Welcome to jekyll!</h1>
+            <h1>高并发控制</h1>
             <div class="post-info-wrapper">
-              <p class="italic">By <span class="bold">jekyll</span> on <span class="bold">May 21, 2016</span></p>
+              <p class="italic">By <span class="bold">baily</span> on <span class="bold">May 21, 2016</span></p>
             </div>
             <hr />
-            <p><p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+            <p><h4 id="代码">代码</h4>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<ul>
+  <li>
+    <p>优化代码</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+    <ul>
+      <li>
+        <p>避免使用<code class="highlighter-rouge">new</code>对象，对整个应用尽量使用一个对象，可使用单利模式。</p>
+      </li>
+      <li>
+        <p>对<code class="highlighter-rouge">String</code>链接操作，使用<code class="highlighter-rouge">StringBuffer</code>或<code class="highlighter-rouge">StringBuildder</code></p>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<h4 id="html静态化">html静态化</h4>
 
-<p>Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].</p>
+<ul>
+  <li>高并发下服务器转化<code class="highlighter-rouge">jsp</code>为<code class="highlighter-rouge">html</code>会加重服务器负担,有可能的话，使用静态<code class="highlighter-rouge">html</code></li>
+</ul>
+
+<h4 id="图片服务器分离">图片服务器分离</h4>
+
+<ul>
+  <li>图片等静态资源放在独立服务器上，让服务器专注数据的处理</li>
+</ul>
+
+<h4 id="缓存">缓存</h4>
+
+<ul>
+  <li>使用<code class="highlighter-rouge">hibernate</code>的缓存机制，或使用缓存，如<code class="highlighter-rouge">redis</code>，以缓解服务器压力</li>
+</ul>
+
+<h4 id="分批传送">分批传送</h4>
+
+<ul>
+  <li>有时还传送数据过大，需将数据分批传送，防止一次大量数据传输，数据保存时失败，导致大量数据丢失</li>
+</ul>
+
+<h4 id="数据库集群">数据库集群</h4>
+
+<ul>
+  <li>面对大量的数据请求，一台服务器可能已经无法满足数据的交换，于是就需要数据库集群或数据表散列。</li>
+</ul>
+
+<h4 id="db优化">DB优化</h4>
+
+<ul>
+  <li>
+    <p>遵循数据库设计三范式</p>
+  </li>
+  <li>
+    <p>适当建立索引</p>
+  </li>
+  <li>
+    <p>慎用外键</p>
+  </li>
+</ul>
 </p>
           </div>
         </div><!-- .col-md-7 close -->

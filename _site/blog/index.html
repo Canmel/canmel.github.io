@@ -10,27 +10,27 @@
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 <!-- CSS -->
-<link rel="stylesheet" href="/css/owl.carousel.css" />
-<link rel="stylesheet" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/css/font-awesome.min.css" />
-<link rel="stylesheet" href="/css/airspace.css" />
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/ionicons.min.css" />
-<link rel="stylesheet" href="/css/animate.css" />
-<link rel="stylesheet" href="/css/responsive.css" />
-<link rel="stylesheet" href="/css/syntax.css" />
+<link rel="stylesheet" href="/blog/css/owl.carousel.css" />
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/blog/css/airspace.css" />
+<link rel="stylesheet" href="/blog/css/style.css" />
+<link rel="stylesheet" href="/blog/css/ionicons.min.css" />
+<link rel="stylesheet" href="/blog/css/animate.css" />
+<link rel="stylesheet" href="/blog/css/responsive.css" />
+<link rel="stylesheet" href="/blog/css/syntax.css" />
 
 <!-- Js -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
-<script src="/js/plugins.js"></script>
-<script src="/js/min/waypoints.min.js"></script>
-<script src="/js/jquery.counterup.js"></script>
+<script src="/blog/js/bootstrap.min.js"></script>
+<script src="/blog/js/owl.carousel.min.js"></script>
+<script src="/blog/js/plugins.js"></script>
+<script src="/blog/js/min/waypoints.min.js"></script>
+<script src="/blog/js/jquery.counterup.js"></script>
 
 
-<script src="//js/main.js"></script>
+<script src="/blog//js/main.js"></script>
 
 <!--
 /*
@@ -65,17 +65,17 @@
             <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="index.html">
-              <img src="/img/logo.png" alt="Logo">
+              <img src="/blog/img/logo.png" alt="Logo">
             </a>
           </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="//">Home</a></li>
-                <li><a href="/work">Work</a></li>
-                <li><a href="/blog">Blog</a></li>
+                <li><a href="/blog//">Home</a></li>
+                <li><a href="/blog/work">Work</a></li>
+                <li><a href="/blog/blog">Blog</a></li>
                 <li><a href="#">Service</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/blog/contact">Contact</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -102,7 +102,133 @@
 </section>
 
 <div class="post-area">
-  <a href="//2016/05/21/welcome-to-jekyll.html" class="bold">Welcome to jekyll!</a>
+  <a href="/blog//2017/05/06/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87.html" class="bold">面试准备</a>
+  <p class="post-date">06 May 2017</p>
+  <p>
+    高并发 问题 什么是原子操作 原子操作是指一个不受其他操作影响的操作任务单元。原子操作是在多线程环境下避免数据不一致必须的手段。int++并不是一个原子操作，所以当一个线程读取它的值并加1时，另外一个线程有可能会读到之前的值，这就会引发错误。为了解决这个问题，必须保证增加操作是原子的，在JDK1.5之前我们可以使用同步技术来做到这一点。到JDK1.5，java.util.concurrent.atomic包提供了int和long类型的装类，它们可以自动的保证对于他们的操作是原子的并且不需要使用同步 什么是Executors框架？ 什么是阻塞队列？如何使用阻塞队列来实现生产者-消费者模型？ java.util.concurrent.BlockingQueue的特性是：当队列是空的时，从队列中获取或删除元素的操作将会被阻塞，或者当队列是满时，往队列里添加元素的操作会被阻塞。阻塞队列不接受空值，当你尝试向队列中添加空值的时候，它会抛出NullPointerException。阻塞队列的实现都是线程安全的，所有的查询方法都是原子的并且使用了内部锁或者其他形式的并发控制。BlockingQueue 接口是java collections框架的一部分，它主要用于实现生产者-消费者问题。 高并发优化 从最基础的地方做起，优化我们写的代码，减少必要的资源浪费 避免频繁的使用new对象，对于整个应用只需要存在一个实例的类，我们可以使用单例模式。对于String连接操作，使用StringBuffer或`StringBuilder，对于工具类可以通过静态方法来访问 避免使用错误的方式，尽量不用instanceof做条件判断。使用java中效率高的类，比如ArrayList比Vector性能 html静态化 我们通过一个链接地址访问，通过这个链接地址，服务器对应的模块处理这个请求，转到对应的jsp页面，最后生成我们要的数据。但是，如果上千万个请求的话，有太多的高并发请求，那么就会加重服务器的压力，最坏的情况是把服务器down掉。那么如何避免这种情况的出现呢？如果我们把最初对test.do的请求结果保存成一个html文件，然后每次用户都去访问这个html文件，这样就不用再去访问服务器了，服务器的压力不就减少了？ 当用户去访问，会自动的生成test.html ，然后再显示给用户 图片服务器分离 对于web服务器来说，图片是最消耗资源的，于是我们有必要把图片与页面进行分离，我们把图片放到独立的图片 服务器。这样的架构可以降低提供页面访问请求的服务器系统压力，并且可以保证系统不会因为图片的问题而崩 溃。在图片服务器上，我们可以对不同的配置进行优 缓存 具体接触过的缓存机制是hibernate的缓存机制。为了避免每次都向数据库中取得数据，我们把用户常常访问到的数据放到内存中，甚至缓存十分大的时候我们可以把内存中的缓存放到硬盘中。还有高级的分布式缓存数据库使用，都可以增加系统的抗压力 分批传送 在做某项目的时候，一次传递的参数太多，而且数据库规定一次最多传递的参数最多是三万条，当时有五万条记录，那怎么传送呢？最终是分批传送，电梯里一次乘不下那么多的人，会报超重的bug，那就分批把人送上去,还有一次在考试系统中，如果那么多的考试人员同时提交到数据库中，数据库的压力增大，有时会被down掉，当时采用的方法是使用ajax异步传输，没有等待考生点击提交按钮的时候，就把考生的答案自动提交，这样也避免了突然断电考生前面做过的题出现丢失的现象 数据库集群 当面对复杂的应用，用户大量访问的时候，一台数据很快无法满足需求，于是我们需要使用数据库集群或者库表散列。我们在应用程序中安装业务和应用或者功能模块将数据进行分离，不同的模块对应不同的数据库或表，再按照一定的策略对某个页面或者功能进行更小的数据库散列 DB优化 在数据库设计的时候就要考虑到后期的维护，数据库三范式是我们设计数据库索要遵循的原则 &gt; 数据库三范式 &gt; 第一范式：强调的是列的原子性 &gt; 第二范式： 首先是 1NF，另外包含两部分内容，一是表必须有一个主键；二是没有包含在主键中的列必须完全依赖于主键，而不能只依赖于主键的一部分 &gt; 第三范式： 首先是 2NF，另外非主键列必须直接依赖于主键，不能存在传递依赖 索引的建立：建立索引要适当，如果一个表经常用来被查询，对于增加和修改很少被用到，我们就可以为这个表建立索引，因为对于增加和修改和删除操作时，我们对索引的维护要大大超过索引给我们带来的效率 数据库建立索引的优缺点 优点 &gt; * 通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性 &gt; * 可以大大加快数据的检索速度，这也是创建索引的最主要的原因...
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/Mybatis(%E7%BC%93%E5%AD%98).html" class="bold">[转]Mybatis（缓存）</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    ﻿#### mybatis 缓存分为一级缓存和二级缓存 一级缓存 MyBatis的一级缓存指的是在一个Session域内,session为关闭的时候执行的查询会根据SQL为key被缓存(跟mysql缓存一样,修改任何参数的值都会导致缓存失效) – 单独使用MyBatis而不继承Spring,使用原生的MyBatis的SqlSessionFactory来构造sqlSession查询,是可以使用以及缓存的 — 当参数不变的时候只进行了一次查询,参数变更以后,则需要重新进行查询,而清空缓存以后,参数相同的查询过的SQL也需要重新查询 – 跟Spring集成的时候(使用mybatis-spring) @Repository public class UserDao extends SqlSessionDaoSupport { public User selectUserById(int id) { SqlSession session = getSqlSession(); session.selectOne("dao.userdao.selectUserByID", id); // 由于session的实现是SqlSessionTemplate的动态代理实现 // 它已经在代理类内执行了session.close(),所以无需手动关闭session return session.selectOne("dao.userdao.selectUserByID", id); } } 这里执行了2次sql查询,看似我们使用了同一个sqlSession,但是实际上因为我们的dao继承了SqlSessionDaoSupport,而SqlSessionDaoSupport内部sqlSession的实现是使用用动态代理实现的,这个动态代理sqlSessionProxy使用一个模板方法封装了select()等操作,每一次select()查询都会自动先执行openSession(),执行完close()以后调用close()方法,相当于生成了一个新的session实例,所以我们无需手动的去关闭这个session()(关于这一点见下面mybatis的官方文档),当然也无法使用mybatis的一级缓存,也就是说mybatis的一级缓存在spring中是没有作用的 官方文档摘要 MyBatis SqlSession provides you with specific methods to handle transactions...
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%9A%84%E6%8E%A7%E5%88%B6.html" class="bold">高并发控制</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    代码
+
+
+  
+    优化代码
+
+    
+      
+        避免使用new对象，对整个应用尽量使用一个对象，可使用单利模式。
+      
+      
+        对String链接操作，使用StringBuffer或StringBuildder
+      
+    
+  
+
+
+html静态化
+
+
+  高并发下服务器转化jsp为html会加重服务器负担,有可能的话，使用静态html
+
+
+图片服务器分离
+
+
+  图片等静态资源放在独立服务器上，让服务器专注数据的处理
+
+
+缓存
+
+
+  使用hibernate的缓存机制，或使用缓存，如redis，以缓解服务器压力
+
+
+分批传送
+
+
+  有时还传送数据过大，需将数据分批传送，防止一次大量数据传输，数据保存时失败，导致大量数据丢失
+
+
+数据库集群
+
+
+  面对大量的数据请求，一台服务器可能已经无法满足数据的交换，于是就需要数据库集群或数据表散列。
+
+
+DB优化
+
+
+  
+    遵循数据库设计三范式
+  
+  
+    适当建立索引
+  
+  
+    慎用外键
+  
+
+
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/rubymine%E6%BF%80%E6%B4%BB.html" class="bold">rubymine2107 激活</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    4UXNY6NKFS-eyJsaWNlbnNlSWQiOiI0VVhOWTZOS0ZTIiwibGljZW5zZWVOYW1lIjoiVXNlciBDb2RlciIsImFzc2lnbmVlTmFtZSI6IiIsImFzc2lnbmVlRW1haWwiOiIiLCJsaWNlbnNlUmVzdHJpY3Rpb24iOiJGb3IgZWR1Y2F0aW9uYWwgdXNlIG9ubHkiLCJjaGVja0NvbmN1cnJlbnRVc2UiOmZhbHNlLCJwcm9kdWN0cyI6W3siY29kZSI6IkFDIiwicGFpZFVwVG8iOiIyMDE4LTAyLTE0In0seyJjb2RlIjoiRE0iLCJwYWlkVXBUbyI6IjIwMTgtMDItMTQifSx7ImNvZGUiOiJJSSIsInBhaWRVcFRvIjoiMjAxOC0wMi0xNCJ9LHsiY29kZSI6IlJTMCIsInBhaWRVcFRvIjoiMjAxOC0wMi0xNCJ9LHsiY29kZSI6IldTIiwicGFpZFVwVG8iOiIyMDE4LTAyLTE0In0seyJjb2RlIjoiRFBOIiwicGFpZFVwVG8iOiIyMDE4LTAyLTE0In0seyJjb2RlIjoiUkMiLCJwYWlkVXBUbyI6IjIwMTgtMDItMTQifSx7ImNvZGUiOiJQUyIsInBhaWRVcFRvIjoiMjAxOC0wMi0xNCJ9LHsiY29kZSI6IkRDIiwicGFpZFVwVG8iOiIyMDE4LTAyLTE0In0seyJjb2RlIjoiREIiLCJwYWlkVXBUbyI6IjIwMTgtMDItMTQifSx7ImNvZGUiOiJSTSIsInBhaWRVcFRvIjoiMjAxOC0wMi0xNCJ9LHsiY29kZSI6IlBDIiwicGFpZFVwVG8iOiIyMDE4LTAyLTE0In0seyJjb2RlIjoiQ0wiLCJwYWlkVXBUbyI6IjIwMTgtMDItMTQifV0sImhhc2giOiI1Mjk5NjU1LzAiLCJncmFjZVBlcmlvZERheXMiOjAsImF1dG9Qcm9sb25nYXRlZCI6ZmFsc2UsImlzQXV0b1Byb2xvbmdhdGVkIjpmYWxzZX0=-vaN2LDXEHZhJuA6ty/l8gqzoAfnxXdgWVDw8boMp8HzNP9J573xXWOy9THOjEgl0350zGrLyU5Yfb3FLCBbKCIQaVyKES1Y32ykO7oAPg74zikYTCfP582HB0pzgvr7jsFFxgyCYvwU+UavEcCyOV0/iF3WJIuP5l013w6xcpcCVS9TvarpFFExKilKzyg1295t8Cki1Y6uJkW3ZcexPfED/iEkhdb5CMfYeuTZ2DvC/+b0Ec7N0gitBxIQsJwRZvVGXcd2GVG+Tersgygk0rZwGoVmdXh5k58Y3ZWkkKGfeBomZwrdx0ONo6GWtrL2sEIl0LKpjA5EKrxxHxsN6kA==-MIIEPjCCAiagAwIBAgIBBTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTE1MTEwMjA4MjE0OFoXDTE4MTEwMTA4MjE0OFowETEPMA0GA1UEAwwGcHJvZDN5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxcQkq+zdxlR2mmRYBPzGbUNdMN6OaXiXzxIWtMEkrJMO/5oUfQJbLLuMSMK0QHFmaI37WShyxZcfRCidwXjot4zmNBKnlyHodDij/78TmVqFl8nOeD5+07B8VEaIu7c3E1N+e1doC6wht4I4+IEmtsPAdoaj5WCQVQbrI8KeT8M9VcBIWX7fD0fhexfg3ZRt0xqwMcXGNp3DdJHiO0rCdU+Itv7EmtnSVq9jBG1usMSFvMowR25mju2JcPFp1+I4ZI+FqgR8gyG8oiNDyNEoAbsR3lOpI7grUYSvkB/xVy/VoklPCK2h0f0GJxFjnye8NT1PAywoyl7RmiAVRE/EKwIDAQABo4GZMIGWMAkGA1UdEwQCMAAwHQYDVR0OBBYEFGEpG9oZGcfLMGNBkY7SgHiMGgTcMEgGA1UdIwRBMD+AFKOetkhnQhI2Qb1t4Lm0oFKLl/GzoRykGjAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBggkA0myxg7KDeeEwEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0PBAQDAgWgMA0GCSqGSIb3DQEBCwUAA4ICAQC9WZuYgQedSuOc5TOUSrRigMw4/+wuC5EtZBfvdl4HT/8vzMW/oUlIP4YCvA0XKyBaCJ2iX+ZCDKoPfiYXiaSiH+HxAPV6J79vvouxKrWg2XV6ShFtPLP+0gPdGq3x9R3+kJbmAm8w+FOdlWqAfJrLvpzMGNeDU14YGXiZ9bVzmIQbwrBA+c/F4tlK/DV07dsNExihqFoibnqDiVNTGombaU2dDup2gwKdL81ua8EIcGNExHe82kjF4zwfadHk3bQVvbfdAwxcDy4xBjs3L4raPLU3yenSzr/OEur1+jfOxnQSmEcMXKXgrAQ9U55gwjcOFKrgOxEdek/Sk1VfOjvS+nuM4eyEruFMfaZHzoQiuw4IqgGc45ohFH0UUyjYcuFxxDSU9lMCv8qdHKm+wnPRb0l9l5vXsCBDuhAGYD6ss+Ga+aDY6f/qXZuUCEUOH3QUNbbCUlviSz6+GiRnt1kA9N2Qachl+2yBfaqUqr8h7Z2gsx5LcIf5kYNsqJ0GavXTVyWh7PYiKX4bs354ZQLUwwa/cG++2+wNWP+HtBhVxMRNTdVhSm38AknZlD+PTAsWGu9GyLmhti2EnVwGybSD2Dxmhxk3IPCkhKAK+pl0eWYGZWG3tJ9mZ7SowcXLWDFAk0lRJnKGFMTggrWjV8GYpw5bq23VmIqqDLgkNzuoog==
+
+
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/Rails%E4%B8%ADExcel%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5.html" class="bold">Rails中Excel的数据导入</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    Rails中Excel的数据导入 从界面开始 首先创建一个表单 &lt;%= bootstrap_form_tag url: '/imports' , :html =&gt; {:id =&gt; 'import_car_form', :multipart =&gt; true} do |f| %&gt; &lt;input type="text" size="50" id="upfile" name="upfile" readonly&gt; &lt;%= f.file_field :file, class: "hidden", hide_label: true, :onchange =&gt; "upfile.value=this.value", :required =&gt; 'true'%&gt; &lt;a href="javascript:_file.click();" class="btn btn-sm btn-success"&gt;&lt;span class="glyphicon glyphicon-plus"&gt;选择文件&lt;/span&gt;&lt;/a&gt; &lt;%= f.submit "上传", class: "btn...
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/Mybatis(%E5%88%9D%E8%AF%86).html" class="bold">Mybatis（初识）</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    Mybatis实践 MyBatis简介 * Mybatis前身是iBatis,是一个基于java的数据持久层/(半)对相关系映射框架 * Mybatis是对jdbc的封装，是开发人员只需要关注SQL本身，而不需要话费过多的精力去处理如注册驱动，设置参数，创建connection / Statement , 解析结果集等JDBC过程性代码，Bybatis基于XML/注解的方式配置statement，执行SQL，并将执行结果映射成JAVA对象，大大降低了数据库开发难度 初识 * 使用Mybatis,需要在pom.xml添加依赖,顺手加上mysql &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;3.2.3&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.26&lt;/version&gt; &lt;/dependency&gt; 配置 * MyBatis的配置分为两类 * 一类将Mybatis配置进项目中使用，`mybatis-config.xml`,网上关于这类配置很多,一半结合springMVC,会使用 spring-mybatis.xml &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/context...
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/AngularJs%E7%9A%84%E4%BD%BF%E7%94%A8-%E4%BA%8C.html" class="bold">angularJs的使用（二）</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    使用angularJs （一） 环境 后台支持： Java , springMVC, mybatis, mysql 前端框架： Jquery , BootStrap , AngularJs 使用 一般AngularJs 应用在一个单页面的web项目中，一般结构为 head js和css文件 body header sidebar(菜单部分) main-content footer 一般header和footer都是固定的,点击菜单（sidebar）中的菜单，页面（main-content）部分做出相应的改变，本文仅围绕这个模式书写 在main-content上设置属性ui-view ui-view是告诉angularJs,今后更改页面，刷新页面，就在这个属性所在的标签下，在你还没有告诉angular要去哪个页面的时候，angular会去路由中找到默认路由去渲染 左侧菜单设置设置相应的controller 新建sidebarController.js 建立go方法 meedesidy.controller('sidebar', [ '$scope', '$http', '$state', '$stateParams', function($scope, $http, $state, stateParams) { //调用go方法跳往指定页面，在ui-view下显示 $scope.go = function($event, url) { $state.go(url); }...
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/AngularJs%E7%9A%84%E4%BD%BF%E7%94%A8-%E4%B8%80.html" class="bold">angularJs的使用（一）</a>
+  <p class="post-date">21 May 2016</p>
+  <p>
+    使用angularJs （一） 环境 后台支持： Java , springMVC, mybatis, mysql 前端框架： Jquery , BootStrap , AngularJs 使用 创建app.js 创建ng-app 在标签上添加ng-app属性 如： &lt;body ng-app='meedesidy'&gt;&lt;/body&gt;这样就创建了一个名称为meedesidy的angular项目 设置路由 app.js中设置路由，一般都是在spa(single page application 单页面项目)中使用angularJs,这里配置的是在主页面下的子页面的路由 代码： meedesidy.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) { // 默认路由 $urlRouterProvider.otherwise('index'); // 配置基本路由 $stateProvider.state('index', { url: '/index', templateUrl: 'pages/index.jsp' }).state('user', { url: '/user', templateUrl: 'pages/user/index.jsp',...
+  </p>
+</div>
+
+<div class="post-area">
+  <a href="/blog//2016/05/21/welcome-to-jekyll.html" class="bold">Welcome to jekyll!</a>
   <p class="post-date">21 May 2016</p>
   <p>
     You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when...
@@ -110,7 +236,7 @@
 </div>
 
 <div class="post-area">
-  <a href="//2016/05/20/this-post-demonstrates-post-content-styles.html" class="bold">This post demonstrates post content styles</a>
+  <a href="/blog//2016/05/20/this-post-demonstrates-post-content-styles.html" class="bold">This post demonstrates post content styles</a>
   <p class="post-date">20 May 2016</p>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Some great heading (h2) Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et,...
@@ -118,7 +244,7 @@
 </div>
 
 <div class="post-area">
-  <a href="//2016/05/20/super-long-article.html" class="bold">Some articles are just so long they deserve a really long title to see if things will break well</a>
+  <a href="/blog//2016/05/20/super-long-article.html" class="bold">Some articles are just so long they deserve a really long title to see if things will break well</a>
   <p class="post-date">20 May 2016</p>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris...
@@ -126,7 +252,7 @@
 </div>
 
 <div class="post-area">
-  <a href="//2016/05/20/my-example-post.html" class="bold">My Example Post</a>
+  <a href="/blog//2016/05/20/my-example-post.html" class="bold">My Example Post</a>
   <p class="post-date">20 May 2016</p>
   <p>
     Eos eu docendi tractatos sapientem, brute option menandri in vix, quando vivendo accommodare te ius. Nec melius fastidii constituam id, viderer theophrastus ad sit, hinc semper periculis cum id. Noluisse postulant assentior est in, no choro sadipscing repudiandae vix. Vis in euismod delenit dignissim. Ex quod nostrum sit, suas decore...
@@ -152,9 +278,9 @@
         <div class="footer-manu">
           <ul>
             <li><a href="#">About Us</a></li>
-            <li><a href="//contact">Contact us</a></li>
+            <li><a href="/blog//contact">Contact us</a></li>
             <li><a href="#">How it works</a></li>
-            <li><a href="//blog">Blog</a></li>
+            <li><a href="/blog//blog">Blog</a></li>
             <li><a href="#">Terms</a></li>
           </ul>
         </div>
