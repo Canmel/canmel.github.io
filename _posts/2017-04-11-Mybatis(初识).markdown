@@ -1,0 +1,187 @@
+---
+layout: post
+title: "Mybatis实践"
+author: "Bart Simpson"
+meta: "Springfield"
+---
+
+### Mybatis实践
+
+#### MyBatis简介
+
+    * Mybatis前身是iBatis,是一个基于java的数据持久层/(半)对相关系映射框架
+
+    * Mybatis是对jdbc的封装，是开发人员只需要关注SQL本身，而不需要话费过多的精力去处理如注册驱动，设置参数，创建connection / Statement , 解析结果集等JDBC过程性代码，Bybatis基于XML/注解的方式配置statement，执行SQL，并将执行结果映射成JAVA对象，大大降低了数据库开发难度
+
+#### 初识
+
+    * 使用Mybatis,需要在pom.xml添加依赖,顺手加上mysql
+
+```xml
+
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.2.3</version>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.26</version>
+</dependency>
+```
+
+#### 配置
+
+    * MyBatis的配置分为两类
+
+        * 一类将Mybatis配置进项目中使用，`mybatis-config.xml`,网上关于这类配置很多,一半结合springMVC,会使用
+
+`spring-mybatis.xml`
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+        <?xml version="1.0" encoding="UTF-8"?>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                                http://www.springframework.org/schema/context
+                                http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                                http://www.springframework.org/schema/mvc
+                                http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+        	<!-- 自动扫描 -->
+        	<context:component-scan base-package="com.meedesidy" />
+        	<!-- 引入配置文件 -->
+        	<bean id="propertyConfigurer"
+        		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        		<property name="location" value="classpath:jdbc.properties" />
+        	</bean>
+        	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        		destroy-method="close">
+        		<property name="driverClassName" value="${driver}" />
+        		<property name="url" value="${url}" />
+        		<property name="username" value="${username}" />
+        		<property name="password" value="${password}" />
+        		<!-- 初始化连接大小 -->
+        		<property name="initialSize" value="${initialSize}"></property>
+        		<!-- 连接池最大数量 -->
+        		<property name="maxActive" value="${maxActive}"></property>
+        		<!-- 连接池最大空闲 -->
+        		<property name="maxIdle" value="${maxIdle}"></property>
+        		<!-- 连接池最小空闲 -->
+        		<property name="minIdle" value="${minIdle}"></property>
+        		<!-- 获取连接最大等待时间 -->
+        		<property name="maxWait" value="${maxWait}"></property>
+        	</bean>
+        	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+        	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        		<property name="dataSource" ref="dataSource" />
+        		<property name="plugins">
+        			<list>
+        				<bean class="com.meedesidy.plugin.PagePlugin">
+        					<property name="pageSqlId" value=".*pageQuery.*" />
+        					<property name="dialect" value="postgres" />
+        				</bean>
+        			</list>
+        		</property>
+        		<!-- 自动扫描mapping.xml文件 -->
+        		<property name="mapperLocations" value="classpath:com/meedesidy/mapping/*.xml"></property>
+      </bean>
+        <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+       <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.meedesidy.dao" />
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        </bean>
+        <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+        	<bean id="transactionManager"class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        		    <property name="dataSource" ref="dataSource" />
+        	</bean>
+</beans>
+```
+
+        * 另一类配置文件是数据访问接口配置文件，如　`UserMapper.xml`
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.mybatis.UserDao">
+    <!-- 这里namespace必须是UserMapper接口的路径” -->
+    <insert id="insertUser" parameterType="User">
+        insert into user(name,age) values(#{name},#{age})
+        <!-- 这里sql结尾不能加分号，否则报“ORA-00911”的错误 -->
+    </insert>
+
+    <!-- 这里的id必须和UserMapper接口中的接口方法名相同 -->
+    <select id="getUser" resultType="User" parameterType="java.lang.String">
+        select * from user where name=#{name}
+    </select>
+</mapper>
+```
+
+- mybatis 需要定义Dao接口，mapper中定义的id与接口中的方法名相同
+
+- 当API接口层接收到调用请求时，会接收到传入SQL的ID和传入对象（可以是Map、JavaBean或者基本数据类型），Mybatis会根据SQL的ID找到对应的MappedStatement，然后根据传入参数对象对MappedStatement进行解析，解析后可以得到最终要执行的SQL语句和参数。
+
+- mybatis通过JDK的动态代理方式，在启动加载配置文件时，根据配置mapper的xml去生成Dao的实现。
+
+- 在mybatis 配置文件中加入扫描，在启动时加载mapper文件。
+
+- 又通过namespace的映射，映射到要实现的接口，代理类通过`接口- MapperID`找到相应的MappedStatement
+
+
+
+#### jdbc配置
+
+- 使用配置文件　`jdbc.propertis`保存jdbc链接信息
+
+- **JDBC编程的步骤**：
+-- 加载数据库驱动
+-- 创建并获取数据库链接
+-- 创建jdbc statement对象
+-- 设置sql语句
+-- 设置sql语句中的参数(使用preparedStatement)
+-- 通过statement执行sql并获取结果
+-- 对sql执行结果进行解析处理
+-- 释放资源(resultSet、preparedstatement、connection)
+
+- **MyBatis执行过程**
+
+-- 通过mybatis环境等配置信息构造**SqlSessionFactory**即会话工厂
+
+-- 由会话工厂创建**sqlSession**即会话，操作数据库需要通过**sqlSession**进行。
+
+-- mybatis底层自定义了Executor执行器接口操作数据库，Executor接口有两个实现，一个是基本执行器、一个是缓存执行
+
+-- Mapped Statement也是mybatis一个底层封装对象，它包装了mybatis配置信息及sql映射信息等。mapper.xml文件中一个sql对        应一个Mapped Statement对象，sql的id即是Mapped statement的id。
+
+-- Mapped Statement对sql执行输入参数进行定义，包括HashMap、基本类型、pojo，Executor通过Mapped Statement在执行sql前               将输入的java对象映射至sql中，输入参数映射就是jdbc编程中对preparedStatement设置参数。
+![mybatis](http://olvg7xziu.bkt.clouddn.com/20160725221506672.jpg)
+
+
+#### 连接池
+* mybatis 把数据源分为三种：
+
+- UNPOOLED    不使用连接池的数据源
+
+- POOLED        使用连接池的数据源
+
+- JNDI                 使用JNDI实现的数据源
+
+* 相应地，MyBatis内部分别定义了实现了**Java.sql.DataSource**接口的**UnpooledDataSource**，**PooledDataSource**类来表示`UNPOOLED`、`POOLED`类型的数据源
+
+##### 重复创建`java.sql.Connection`去链接数据库对cpu的开销是不必要的负担，连接池解决这个矛盾
+
+- 对于需要频繁地跟数据库交互的应用程序，可以在创建了**Connection对象**，并操作完数据库后，可以不释放掉资源，而是将它放到**内存**中，当下次需要操作数据库时，可以直接从内存中取出Connection对象，不需要再创建了，这样就极大地节省了创建Connection对象的资源消耗。由于内存也是有限和宝贵的，这又对我们对内存中的Connection对象怎么有效地维护提出了很高的要求。我们将在内存中存放Connection对象的容器称之为 连接池（Connection Pool）
+
+

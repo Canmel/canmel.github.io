@@ -1,0 +1,118 @@
+---
+layout: post
+title: mybatis 缓存
+subtitle: Jekyll is a blog-aware, static site generator in Ruby https://jekyllrb.com
+date: 2016-05-20 21:11:27
+author: jekyll
+---
+
+#### mybatis 缓存分为一级缓存和二级缓存
+
+##### 一级缓存
+
+- MyBatis的一级缓存指的是在一个Session域内,session为关闭的时候执行的查询会根据SQL为key被缓存(跟mysql缓存一样,修改任何参数的值都会导致缓存失效)
+
+-- 单独使用MyBatis而不继承Spring,使用原生的MyBatis的SqlSessionFactory来构造sqlSession查询,是可以使用以及缓存的
+
+--- 当参数不变的时候只进行了一次查询,参数变更以后,则需要重新进行查询,而清空缓存以后,参数相同的查询过的SQL也需要重新查询
+
+-- 跟Spring集成的时候(使用mybatis-spring)
+
+```
+
+
+@Repository
+public class UserDao extends SqlSessionDaoSupport {
+    public User selectUserById(int id) {
+        SqlSession session = getSqlSession();
+        session.selectOne("dao.userdao.selectUserByID", id);
+        // 由于session的实现是SqlSessionTemplate的动态代理实现
+        // 它已经在代理类内执行了session.close(),所以无需手动关闭session
+        return session.selectOne("dao.userdao.selectUserByID", id);
+    }
+}
+```
+
+> 这里执行了2次sql查询,看似我们使用了同一个sqlSession,但是实际上因为我们的dao继承了SqlSessionDaoSupport,而SqlSessionDaoSupport内部sqlSession的实现是使用用动态代理实现的,这个动态代理sqlSessionProxy使用一个模板方法封装了select()等操作,每一次select()查询都会自动先执行openSession(),执行完close()以后调用close()方法,相当于生成了一个新的session实例,所以我们无需手动的去关闭这个session()(关于这一点见下面mybatis的官方文档),当然也无法使用mybatis的一级缓存,也就是说mybatis的一级缓存在spring中是没有作用的
+
+
+
+* 官方文档摘要
+
+> MyBatis SqlSession provides you with specific methods to handle transactions programmatically. But when using MyBatis-Spring your beans will be injected with a Spring managed SqlSession or a Spring managed mapper. That means that Spring will always handle your transactions.
+
+> You cannot call SqlSession.commit(), SqlSession.rollback() or SqlSession.close() over a Spring managed SqlSession. If you try to do so, a UnsupportedOperationException exception will be thrown. Note these methods are not exposed in injected mapper classes.
+
+##### 二级缓存
+
+* 二级缓存就是global caching,它超出session范围之外,可以被所有sqlSession共享,它的实现机制和mysql的缓存一样,开启它只需要在mybatis的配置文件开启settings里的
+
+```
+
+
+<setting name="cacheEnabled" value="true"/>
+```
+
+* 以及在相应的Mapper文件(例如userMapper.xml)里开启
+
+```
+
+
+<mapper namespace="dao.userdao">
+   ...  select statement ...
+       <!-- Cache 配置 -->
+    <cache
+        eviction="FIFO"
+        flushInterval="60000"
+        size="512"
+        readOnly="true" />
+</mapper>
+```
+
+* 需要注意的是global caching的作用域是针对Mapper的Namespace而言的,也就是说只在有在这个Namespace内的查询才能共享这个cache.例如上面的 dao.userdao namespace, 下面是官方文档的介绍
+
+> It's important to remember that a cache configuration and the cache instance are bound to the namespace of the SQL Map file. Thus, all statements in the same namespace as the cache are bound by it.
+
+* 当我们访问两次 /getUser 这个url,查看日志输出
+
+```
+DEBUG - Creating a new SqlSession
+DEBUG - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@659812] was not registered for synchronization because synchronization is not active
+DEBUG - Cache Hit Ratio [dao.userdao]: 0.0
+DEBUG - Fetching JDBC Connection from DataSource
+DEBUG - JDBC Connection [jdbc:mysql://127.0.0.1:3306/mybatistest?characterEncoding=utf8, UserName=root@localhost, MySQL-AB JDBC Driver] will not be managed by Spring
+DEBUG - ooo Using Connection [jdbc:mysql://127.0.0.1:3306/mybatistest?characterEncoding=utf8, UserName=root@localhost, MySQL-AB JDBC Driver]
+DEBUG - ==> Preparing: SELECT * FROM user WHERE id = ?
+DEBUG - ==> Parameters: 1(Integer)
+DEBUG - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@659812]
+DEBUG - Returning JDBC Connection to DataSource
+DEBUG - Invoking afterPropertiesSet() on bean with name 'index'
+DEBUG - Rendering view [org.springframework.web.servlet.view.JstlView: name 'index'; URL [/index.jsp]] in DispatcherServlet with name 'dispatcher'
+DEBUG - Added model object 'org.springframework.validation.BindingResult.user' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'index'
+DEBUG - Added model object 'user' of type [bean.User] to request in view with name 'index'
+DEBUG - Forwarding to resource [/index.jsp] in InternalResourceView 'index'
+DEBUG - Successfully completed request
+DEBUG - Returning cached instance of singleton bean 'sqlSessionFactory'
+DEBUG - DispatcherServlet with name 'dispatcher' processing GET request for [/user/getUser]
+DEBUG - Looking up handler method for path /user/getUser
+DEBUG - Returning handler method [public java.lang.String controller.UserController.getUser(org.springframework.ui.Model)]
+DEBUG - Returning cached instance of singleton bean 'userController'
+DEBUG - Last-Modified value for [/user/getUser] is: -1
+DEBUG - Creating a new SqlSession
+DEBUG - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@539a92] was not registered for synchronization because synchronization is not active
+DEBUG - Cache Hit Ratio [dao.userdao]: 0.5
+DEBUG - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@539a92]
+DEBUG - Rendering view [org.springframework.web.servlet.view.JstlView: name 'index'; URL [/index.jsp]] in DispatcherServlet with name 'dispatcher'
+DEBUG - Added model object 'org.springframework.validation.BindingResult.user' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'index'
+DEBUG - Added model object 'user' of type [bean.User] to request in view with name 'index'
+DEBUG - Forwarding to resource [/index.jsp] in InternalResourceView 'index'
+DEBUG - Successfully completed request
+```
+
+* 可以看出第二次访问同一个url的时候相同的查询 hit cache了,这就是global cache的作用
+
+
+
+
+
+本文来自[今天的风儿好喧嚣啊~ MyBatis 缓存](http://www.cnblogs.com/zemliu/archive/2013/08/05/3239014.html)
