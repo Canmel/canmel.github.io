@@ -4,6 +4,32 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="airspace-jekyll (v0.1.0, /home/baily/RubymineProjects/canmel.github.io/_site) [path][gem]">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/_site/js" />
+          <root url="file://$MODULE_DIR$/_site/css" />
+          <root url="file://$MODULE_DIR$/_site/img" />
+          <root url="file://$MODULE_DIR$/_site/2016" />
+          <root url="file://$MODULE_DIR$/_site/blog" />
+          <root url="file://$MODULE_DIR$/_site/work" />
+          <root url="file://$MODULE_DIR$/_site/fonts" />
+          <root url="file://$MODULE_DIR$/_site/contact" />
+          <root url="file://$MODULE_DIR$/_site/screenshots" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/_site/js" />
+          <root url="file://$MODULE_DIR$/_site/css" />
+          <root url="file://$MODULE_DIR$/_site/img" />
+          <root url="file://$MODULE_DIR$/_site/2016" />
+          <root url="file://$MODULE_DIR$/_site/blog" />
+          <root url="file://$MODULE_DIR$/_site/work" />
+          <root url="file://$MODULE_DIR$/_site/fonts" />
+          <root url="file://$MODULE_DIR$/_site/contact" />
+          <root url="file://$MODULE_DIR$/_site/screenshots" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.5.1, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.14.6, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="colorator (v1.1.0, rbenv: 2.3.1) [gem]" level="application" />
