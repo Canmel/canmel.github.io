@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>使用angularJs （一）</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/min/waypoints.min.js"></script>
+<script src="/js/jquery.counterup.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" >
+              <img src="/img/logo.png" alt="Logo" style="width: 70px">
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">主页</a></li>
+                <!--<li><a href="/work">Work</a></li>-->
+                <li><a href="/blog">博客</a></li>
+                <!--<li><a href="#">Service</a></li>-->
+                <li><a href="/contact">联系我</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section id="intro" style="border: 1px dotted #ddd;">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="block">
+            <h1>使用angularJs （一）</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Bart Simpson</span> on <span class="bold">April 11, 2017</span></p>
+            </div>
+            <hr />
+            <p><h4 id="使用angularjs-一">使用angularJs （一）</h4>
+
+<h3 id="环境">环境</h3>
+<ul>
+  <li>后台支持： Java , springMVC, mybatis, mysql</li>
+  <li>前端框架： Jquery , BootStrap , AngularJs</li>
+</ul>
+
+<h3 id="使用">使用</h3>
+<ol>
+  <li>创建app.js
+    <ul>
+      <li>创建ng-app</li>
+    </ul>
+    <ul>
+      <li>在标签上添加<code class="highlighter-rouge">ng-app</code>属性
+        <ul>
+          <li>如： <code class="highlighter-rouge">&lt;body ng-app='meedesidy'&gt;&lt;/body&gt;</code>这样就创建了一个名称为<code class="highlighter-rouge">meedesidy</code>的angular项目
+            <ul>
+              <li>设置路由</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">app.js</code>中设置路由，一般都是在spa(single page application 单页面项目)中使用angularJs,这里配置的是在主页面下的子页面的路由</li>
+      <li>
+        <p>代码：</p>
+      </li>
+      <li>
+        <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="nx">meedesidy</span><span class="p">.</span><span class="nx">config</span><span class="p">([</span><span class="s1">'$stateProvider'</span><span class="p">,</span> <span class="s1">'$urlRouterProvider'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$stateProvider</span><span class="p">,</span> <span class="nx">$urlRouterProvider</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="c1">//	默认路由</span>
+      <span class="nx">$urlRouterProvider</span><span class="p">.</span><span class="nx">otherwise</span><span class="p">(</span><span class="s1">'index'</span><span class="p">);</span>
+
+      <span class="c1">//	配置基本路由</span>
+      <span class="nx">$stateProvider</span><span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">'index'</span><span class="p">,</span> <span class="p">{</span>
+          <span class="na">url</span><span class="p">:</span> <span class="s1">'/index'</span><span class="p">,</span>
+          <span class="na">templateUrl</span><span class="p">:</span> <span class="s1">'pages/index.jsp'</span>
+      <span class="p">}).</span><span class="nx">state</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="p">{</span>
+          <span class="na">url</span><span class="p">:</span> <span class="s1">'/user'</span><span class="p">,</span>
+          <span class="na">templateUrl</span><span class="p">:</span> <span class="s1">'pages/user/index.jsp'</span><span class="p">,</span>
+          <span class="na">controller</span><span class="p">:</span> <span class="s1">'user'</span>
+      <span class="p">})</span><span class="err">；</span>
+  <span class="p">}]);</span>
+</code></pre>
+        </div>
+      </li>
+      <li>当angular找不到指定的路由会去寻找指定的路由，这里设置的是 index</li>
+      <li>当访问<code class="highlighter-rouge">localhost:8080/project/#/user</code>会去渲染加载<code class="highlighter-rouge">user/index.jsp</code>这个模板,并且会设置当前的控制器名称为<code class="highlighter-rouge">menu</code></li>
+      <li>设置了控制器名称，必须要加载相应的控制器,才能在相应的控制器中控制user/index.jsp中的内容
+    * 设置控制器</li>
+      <li>在javascript文件夹下创建controller文件夹，并在controller文件夹下创建<code class="highlighter-rouge">userController.js</code>文件</li>
+      <li>
+        <p>在controller文件中添加controller</p>
+      </li>
+      <li>
+        <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="c1">// 在app-name 下定义一个 name为 user 的controller</span>
+  <span class="nx">meedesidy</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'$scope'</span><span class="p">,</span> <span class="s1">'$http'</span><span class="p">,</span> <span class="s1">'$state'</span><span class="p">,</span> <span class="s1">'$stateParams'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">$http</span><span class="p">,</span> <span class="nx">$state</span><span class="p">,</span> <span class="nx">$stateParams</span><span class="p">)</span> <span class="p">{</span>
+
+
+  <span class="p">}]);</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>HTTP请求
+    <ul>
+      <li>http请求需要注入<code class="highlighter-rouge">$http</code>服务</li>
+      <li>请求：</li>
+      <li>
+        <pre><code class="language-jacascript">  $http({
+      method: "post",	// 发送一个post请求
+      url: "/xxx/user/pageQuery",
+      data: $.param($scope.searchParams),	// 参数，可表达式
+      headers : { 'Content-Type': 'application/x-www-form-urlencoded' } //header可选，头部信息
+  }).then(function(resp){		//请求成功回调 参数是response
+      $scope.datas = resp.data.result;
+  }),(function(resp){			//请求失败的回调 参数是response
+      console.info(resp);
+  });
+
+
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>请求获取到了数据现在就可以在界面上显示了</li>
+</ul>
+</p>
+          </div>
+        </div><!-- .col-md-7 close -->
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="/contact">Contact us</a></li>
+            <li><a href="#">How it works</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design &amp; Developed by <a href="http://www.themefisher.com">Themefisher</a>. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </body>
+</html>
