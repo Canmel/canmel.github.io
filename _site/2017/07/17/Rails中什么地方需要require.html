@@ -112,6 +112,151 @@
 </div>
 <p><strong><code class="highlighter-rouge">Qustion</code></strong> 然而在<code class="highlighter-rouge">Controller</code>中并没有任何的<code class="highlighter-rouge">require</code>或者<code class="highlighter-rouge">import</code>或者<code class="highlighter-rouge">include</code>等动作，那<code class="highlighter-rouge">User</code>类是怎么加载到<code class="highlighter-rouge">controller</code>中的呢？</p>
 
+<h3 id="整理这个问题的时候我顺便找到了关于-ruby-内核类加载机制-">整理这个问题的时候,我顺便找到了关于 <a href="http://www.baidu.com">Ruby 内核类加载机制 </a></h3>
+
+<h4 id="load_path">$LOAD_PATH</h4>
+
+<ul>
+  <li>在<code class="highlighter-rouge">Rails</code>项目中有很多第三方库，如果要对第三方库和业务代码进行管理，即<code class="highlighter-rouge">$LOAD_PATH</code></li>
+  <li><code class="highlighter-rouge">Ruby</code>并不要求统一管理类，理论上我们的类文件可以遍布整个系统各个角落，意味着我们需要为每个文件制定一个绝对路径活着相对路径</li>
+  <li><code class="highlighter-rouge">$LOAD_PATH</code>是一个字符串数组，元素是一堆路径
+    <pre><code class="language-irb">  irb(main):001:0&gt; $:
+  =&gt; ["/home/baily/.rbenv/plugins/rbenv-gem-rehash", "/home/baily/.rbenv/rbenv.d/exec/gem-rehash", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/did_you_mean-1.0.0/lib", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/site_ruby/2.3.0", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/site_ruby/2.3.0/x86_64-linux", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/site_ruby", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/vendor_ruby/2.3.0", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/vendor_ruby/2.3.0/x86_64-linux", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/vendor_ruby", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/2.3.0", "/home/baily/.rbenv/versions/2.3.1/lib/ruby/2.3.0/x86_64-linux"]
+  irb(main):002:0&gt;
+</code></pre>
+  </li>
+  <li>这样就可以很方便对类库进行管理，和新类库的添加
+    <blockquote>
+      <p>$:.unshift File.dirname(<strong>FILE</strong>) //添加新路径</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h4 id="ruby-kernel-中的类加载">Ruby Kernel 中的类加载</h4>
+
+<p><strong>Ruby 内核提供了 4 个类加载命令，分别是 load, autoload, require, require_relative, 分别对应了不同的使用场景</strong></p>
+
+<ul>
+  <li>
+    <p>load(filename, wrap=false):</p>
+
+    <blockquote>
+      <p>每次重新加载整个文件，成功返回true,失败抛出异常，wrap为true时，被加载文件会在一个匿名模块中执行，避免污染；</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>autoload(module, filename):</p>
+
+    <blockquote>
+      <p>将filename与module关联，当第一次使用module时，使用require加载该文件;成功返回nil,失败抛出异常</p>
+    </blockquote>
+  </li>
+  <li>require(name):
+    <blockquote>
+      <p>函数执行时，如果name是绝对路径，则会去查找该文件；通常name是相对路径，需要$:.unshift添加搜索路径；,Ruby会在$:中的目录中搜索该文件,第一次加载返回true，已经加载返回false，找不到文件会抛出LoadError</p>
+    </blockquote>
+  </li>
+  <li>require_relative(filename):
+    <blockquote>
+      <p>直接取相对路径。此时与$LOAD_PATH($:)无关，是文件本身路径的相对地址</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="activesupport-对内核类加载的扩展">ActiveSupport 对内核类加载的扩展</h3>
+
+<p><strong>Active Support 是 Rails 裡的工具函式庫，它也擴充了一些 Ruby 標準函式庫。除了被用在 Rails 核心程式中，你也可以在你的程式中使用</strong></p>
+
+<h4 id="autoload-扩展">autoload 扩展</h4>
+<p><strong>除了<code class="highlighter-rouge">ActiveSupport</code>对gem的扩展，在<code class="highlighter-rouge">Rails</code>中，维护了一个类似<code class="highlighter-rouge">$LOAD_PATH</code>的变量<code class="highlighter-rouge">autoload_paths</code></strong></p>
+
+<ul>
+  <li>Rails 3 中默认会将 <code class="highlighter-rouge">app</code> 下的子目录以及 lib 目录全部加入 <code class="highlighter-rouge">autoload_paths</code>, Rails 4 中去掉了 lib.</li>
+  <li>
+    <p>以下是一个刚生成的 Rails 3 项目的 <code class="highlighter-rouge">autoload</code> 路径:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  $ bin/rails r 'puts ActiveSupport::Dependencies.autoload_paths'
+  .../app/assets
+  .../app/controllers
+  .../app/helpers
+  .../app/mailers
+  .../app/models
+  .../app/controllers/concerns
+  .../app/models/concerns
+  .../test/mailers/previews
+  .../lib
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>在 Rails 中还可以添加自定义的 autoload 路径:</p>
+
+    <div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="c1"># config/application.rb</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">autoload_paths</span> <span class="o">&lt;&lt;</span> <span class="s2">"</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/something"</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p><strong><code class="highlighter-rouge">autoload_paths</code> 实际上是在 <code class="highlighter-rouge">ActiveSupport::Dependencies.autoload_paths</code> 中定义的, 这是一个 <code class="highlighter-rouge">String Array</code>, 可见 <code class="highlighter-rouge">Rails</code> 的 <code class="highlighter-rouge">autoload</code> 本质上是 <code class="highlighter-rouge">ActiveSupport</code> 的 <code class="highlighter-rouge">autoload</code> 机制</strong></p>
+
+<ul>
+  <li>以下代码将当前目录加入<code class="highlighter-rouge">autoload_paths</code>, 这样在<code class="highlighter-rouge">Ruby</code>找不到某个常量定义的时候，<code class="highlighter-rouge">ActiveSupport</code>就会尝试找到常量定义文件并自动加载.
+    <div class="highlighter-rouge"><pre class="highlight"><code>  ActiveSupport::Dependencies.autoload_paths &lt;&lt; '.'
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><strong>到这里<code class="highlighter-rouge">rails</code>项目中就可以在业务代码中互相访问了, 在<code class="highlighter-rouge">autoload_path</code>中没有包含的路径，则需要添加</strong></p>
+  </li>
+  <li>查询<code class="highlighter-rouge">autoload_path</code>
+    <blockquote>
+      <p>bin/rails r ‘puts ActiveSupport::Dependencies.autoload_paths’ # 查询autoload_path</p>
+    </blockquote>
+  </li>
+  <li>添加<code class="highlighter-rouge">autoload_path</code>
+    <blockquote>
+      <p>config.autoload_paths « ”#{Rails.root}/something” # 添加autoload_path</p>
+    </blockquote>
+  </li>
+  <li>也可以在代码中添加<code class="highlighter-rouge">require</code>
+    <blockquote>
+      <p>require ‘../test.rb’ # 如果name是绝对路径，则会去查找该文件；通常name是相对路径，需要$:.unshift添加搜索路径；</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><strong><code class="highlighter-rouge">Answer</code>：</strong></p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">User</code>加载到<code class="highlighter-rouge">UsersController</code>是通过<code class="highlighter-rouge">Rails</code>的扩展库<code class="highlighter-rouge">ActiveSupport</code>维护的一个类似<code class="highlighter-rouge">$LOAD_PATH</code>的一个变量<code class="highlighter-rouge">autoload_path</code>管理文件的<code class="highlighter-rouge">load</code>之类的行为,他默认路径包含<code class="highlighter-rouge">app/</code>之下的几个文件夹(受rails版本，可能不相同)，<code class="highlighter-rouge">/controller</code>和<code class="highlighter-rouge">model</code>在其中，所以可以在<code class="highlighter-rouge">controller</code>中访问<code class="highlighter-rouge">model</code>信息</p>
+  </li>
+  <li>也就是说在<code class="highlighter-rouge">rails3</code>以下路径下都是不用<code class="highlighter-rouge">include</code>, <code class="highlighter-rouge">require</code>, <code class="highlighter-rouge">import</code>这类行为，就可以使用
+    <div class="highlighter-rouge"><pre class="highlight"><code>  .../app/assets
+  .../app/controllers
+  .../app/helpers
+  .../app/mailers
+  .../app/models
+  .../app/controllers/concerns
+  .../app/models/concerns
+  .../test/mailers/previews
+  .../lib
+</code></pre>
+    </div>
+  </li>
+  <li>而在<code class="highlighter-rouge">autoload_path</code>中不包含的路径就需要手动<code class="highlighter-rouge">require</code>,像这样：
+    <div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="c1">## Rails 5</span>
+  <span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span><span class="o">::</span><span class="no">Base</span>
+    <span class="c1"># rails的autoload没有lib的路径</span>
+    <span class="c1"># $LOAD_PATH中 $: 中有lib的路径，所以不需要require全路径</span>
+    <span class="nb">require</span> <span class="s1">'util/myutil'</span>
+  <span class="k">end</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
 </p>
           </div>
         </div><!-- .col-md-7 close -->
