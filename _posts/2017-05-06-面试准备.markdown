@@ -1,9 +1,8 @@
 ---
 layout: post
-title: 面试准备
-subtitle: Jekyll is a blog-aware, static site generator in Ruby https://jekyllrb.com
-date: 2016-05-20 21:11:27
-author: jekyll
+title: "面试准备问题"
+author: "meedesidy"
+meta: "Springfield"
 ---
 
 ##### 高并发
