@@ -1,105 +1,114 @@
+
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en">
   <head>
-
     <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>面试准备问题</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-<!-- CSS -->
-<link rel="stylesheet" href="/css/owl.carousel.css" />
-<link rel="stylesheet" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/css/font-awesome.min.css" />
-<link rel="stylesheet" href="/css/airspace.css" />
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/ionicons.min.css" />
-<link rel="stylesheet" href="/css/animate.css" />
-<link rel="stylesheet" href="/css/responsive.css" />
-<link rel="stylesheet" href="/css/syntax.css" />
+    <title>面试准备问题</title>
+    
+    <meta name="author" content="James Turnbull">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Js -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
-<script src="/js/plugins.js"></script>
-<script src="/js/min/waypoints.min.js"></script>
-<script src="/js/jquery.counterup.js"></script>
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
 
-
-<script src="/js/main.js"></script>
-
-<!--
-/*
- * Airspace
- * Ported to Jekyll by Andrew Lee
- * https://github.com/luminousrubyist/airspace-jekyll
- * Designed and Developed by ThemeFisher
- * https://themefisher.com/
- *
- */
--->
-
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
   </head>
+
   <body>
-
-
-    <!-- Header Start -->
-<header>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <!-- header Nav Start -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html" >
-              <img src="/img/logo.png" alt="Logo" style="width: 70px">
-            </a>
-          </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">主页</a></li>
-                <!--<li><a href="/work">Work</a></li>-->
-                <li><a href="/blog">博客</a></li>
-                <!--<li><a href="#">Service</a></li>-->
-                <li><a href="/contact">联系我</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+          </button>
+          <a class="navbar-brand" href="/">James' Docker-Driven Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
-</header><!-- header close -->
-
-
-
-    <div class="post">
-  <!-- Wrapper Start -->
-  <section id="intro" style="border: 1px dotted #ddd;">
+    </nav>
     <div class="container">
-      <div class="row">
-        <div>
-          <div class="block">
-            <h1>面试准备问题</h1>
-            <div class="post-info-wrapper">
-              <p class="italic">By <span class="bold">meedesidy</span> on <span class="bold">May 6, 2017</span></p>
-            </div>
-            <hr />
-            <p><h5 id="高并发">高并发</h5>
+      
+<div class="page-header">
+  <h1>面试准备问题 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>06 May 2017</span>
+    </div>
+    <div class="content">
+      <h5 id="高并发">高并发</h5>
 
 <h6 id="问题">问题</h6>
 
@@ -131,7 +140,7 @@
 
     <ul>
       <li>
-        <p>避免频繁的使用new对象，对于整个应用只需要存在一个实例的类，我们可以使用单例模式。对于String连接操作，使用<code class="highlighter-rouge">StringBuffer</code>或`StringBuilder，对于工具类可以通过静态方法来访问</p>
+        <p>避免频繁的使用new对象，对于整个应用只需要存在一个实例的类，我们可以使用单例模式。对于String连接操作，使用<code>StringBuffer</code>或`StringBuilder，对于工具类可以通过静态方法来访问</p>
       </li>
       <li>
         <p>避免使用错误的方式，尽量不用instanceof做条件判断。使用java中效率高的类，比如ArrayList比Vector性能</p>
@@ -180,7 +189,7 @@
   </li>
 </ol>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<pre><code>
  &gt; 数据库三范式
 
  &gt; 第一范式：强调的是列的原子性
@@ -190,7 +199,6 @@
  &gt; 第三范式： 首先是 2NF，另外非主键列必须直接依赖于主键，不能存在传递依赖
 
 </code></pre>
-</div>
 <ul>
   <li>索引的建立：建立索引要适当，如果一个表经常用来被查询，对于增加和修改很少被用到，我们就可以为这个表建立索引，因为对于增加和修改和删除操作时，我们对索引的维护要大大超过索引给我们带来的效率</li>
 </ul>
@@ -199,7 +207,7 @@
 
 <p>优点</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> &gt; * 通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性
+<pre><code> &gt; * 通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性
 
  &gt; * 可以大大加快数据的检索速度，这也是创建索引的最主要的原因
 
@@ -210,11 +218,10 @@
  &gt; * 通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能
 
 </code></pre>
-</div>
 
 <p><strong>缺点</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> &gt; * 创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加
+<pre><code> &gt; * 创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加
 
  &gt; * 索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大
  &gt; * 当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度
@@ -230,7 +237,6 @@
  &gt; * 对于那些定义为text, image和bit数据类型的列不应该增加索引
 
 </code></pre>
-</div>
 <ul>
   <li>外键要慎用，因为主键代表这一张表，而外键代表一群表，对表之间进行了关联，在删除修改等需要我们关联</li>
   <li>在数据库操作上尽量使用prepareStatement，少用Statement，因为<strong>PrepareStatement</strong>是进行预编译的。connection设置为readOnly，Connection是对书库连接，属于重量级，我们使用即可。连接池的使用，我们可以修改数据库默认的连接数</li>
@@ -258,19 +264,19 @@
 
     <ul>
       <li>
-        <p><code class="highlighter-rouge">new</code>: 新建</p>
+        <p><code>new</code>: 新建</p>
       </li>
       <li>
-        <p><code class="highlighter-rouge">runnable**</code>: 调用start()</p>
+        <p><code>runnable**</code>: 调用start()</p>
       </li>
       <li>
-        <p><code class="highlighter-rouge">running</code>: 线程理想状态，cpu分配了时间给了线程</p>
+        <p><code>running</code>: 线程理想状态，cpu分配了时间给了线程</p>
       </li>
       <li>
-        <p><code class="highlighter-rouge">blocked</code>: 阻塞：sleep(), wait() –&gt; 阻塞　–&gt; notify(), notifyAll() –&gt; runnable</p>
+        <p><code>blocked</code>: 阻塞：sleep(), wait() –&gt; 阻塞　–&gt; notify(), notifyAll() –&gt; runnable</p>
       </li>
       <li>
-        <p><code class="highlighter-rouge">dead</code>: 死亡</p>
+        <p><code>dead</code>: 死亡</p>
       </li>
     </ul>
   </li>
@@ -378,23 +384,21 @@
       <li>单例模式有以下特点：</li>
     </ul>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> &gt; 单例类只能有一个实例。
+    <pre><code> &gt; 单例类只能有一个实例。
  &gt; 单例类必须自己创建自己的唯一实例。
  &gt; 单例类必须给所有其他对象提供这一实例。
 
 </code></pre>
-    </div>
 
     <ul>
       <li>单利模式类型</li>
     </ul>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> &gt; 懒汉模式：　第一次调用的时候初始化实例（线程不安全，需要加同步）
+    <pre><code> &gt; 懒汉模式：　第一次调用的时候初始化实例（线程不安全，需要加同步）
 
  &gt; 饿汉模式：　项目加载的时候初始化实例，　自始至终只有一个实例（天生线程安全）
 
 </code></pre>
-    </div>
   </li>
   <li>
     <p>工厂模式</p>
@@ -403,11 +407,10 @@
       <li><strong>工厂模式的两种情况</strong></li>
     </ul>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>     &gt; 在编码时不能预见需要创建哪种类的实例
+    <pre><code>     &gt; 在编码时不能预见需要创建哪种类的实例
 
      &gt; 系统不应依赖于产品类实例如何被创建、组合和表达的细节
 </code></pre>
-    </div>
   </li>
   <li>
     <p>代理模式</p>
@@ -416,16 +419,14 @@
       <li>
         <p>静态代理　</p>
 
-        <div class="highlighter-rouge"><pre class="highlight"><code> &gt; 聚合实现方式中代理类聚合了被代理类，且代理类及被代理类都实现了同一个接口，可实现灵活多变。继承式的实现方式则不够灵活
+        <pre><code> &gt; 聚合实现方式中代理类聚合了被代理类，且代理类及被代理类都实现了同一个接口，可实现灵活多变。继承式的实现方式则不够灵活
 </code></pre>
-        </div>
       </li>
       <li>
         <p>动态代理</p>
 
-        <div class="highlighter-rouge"><pre class="highlight"><code> &gt; 一般来说，对代理模式而言，一个主题类与一个代理类一一对应，这也是静态代理模式的特点。
+        <pre><code> &gt; 一般来说，对代理模式而言，一个主题类与一个代理类一一对应，这也是静态代理模式的特点。
 </code></pre>
-        </div>
       </li>
     </ul>
   </li>
@@ -437,7 +438,7 @@
   <li>
     <p>JDK动态代理步骤</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  &gt; 创建一个实现InvocationHandler接口的类，它必须实现invoke()方法
+    <pre><code>  &gt; 创建一个实现InvocationHandler接口的类，它必须实现invoke()方法
 
   &gt; 创建被代理的类及接口
 
@@ -445,7 +446,6 @@
 
   &gt; 通过代理调用方法
 </code></pre>
-    </div>
   </li>
 </ul>
 
@@ -457,7 +457,7 @@
   <li>
     <p>实现原理</p>
 
-    <p>MyBatis应用程序根据<code class="highlighter-rouge">XML</code>配置文件创建<code class="highlighter-rouge">SqlSessionFactory</code>，<code class="highlighter-rouge">SqlSessionFactory</code>在根据配置，配置来源于两个地方，一处是配置文件，一处是Java代码的注解，获取一个<code class="highlighter-rouge">SqlSession</code>。<code class="highlighter-rouge">SqlSession</code>包含了执行sql所需要的所有方法，可以通过<code class="highlighter-rouge">SqlSession</code>实例直接运行映射的sql语句，完成对数据的增删改查和事务提交等，用完之后关闭<code class="highlighter-rouge">SqlSession</code></p>
+    <p>MyBatis应用程序根据<code>XML</code>配置文件创建<code>SqlSessionFactory</code>，<code>SqlSessionFactory</code>在根据配置，配置来源于两个地方，一处是配置文件，一处是Java代码的注解，获取一个<code>SqlSession</code>。<code>SqlSession</code>包含了执行sql所需要的所有方法，可以通过<code>SqlSession</code>实例直接运行映射的sql语句，完成对数据的增删改查和事务提交等，用完之后关闭<code>SqlSession</code></p>
   </li>
   <li>
     <p>优点</p>
@@ -513,7 +513,7 @@
       </li>
     </ul>
 
-    <p>MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由<code class="highlighter-rouge">apache software foundation</code> 迁移到了google code，并且改名为MyBatis 。iBATIS一词来源于“internet”和“abatis”的组合，是一个基于Java的持久层框架。iBATIS提供的持久层框架包括SQL Maps和Data Access Object(DAO)</p>
+    <p>MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由<code>apache software foundation</code> 迁移到了google code，并且改名为MyBatis 。iBATIS一词来源于“internet”和“abatis”的组合，是一个基于Java的持久层框架。iBATIS提供的持久层框架包括SQL Maps和Data Access Object(DAO)</p>
   </li>
 </ol>
 
@@ -564,10 +564,10 @@
 
     <ul>
       <li>
-        <p>Mybatis首先去缓存中查询结果集，如果没有则查询数据库，如果有则从缓存取出返回结果集就不走数据库。Mybatis内部存储缓存使用一个<code class="highlighter-rouge">HashMap</code>，key为<code class="highlighter-rouge">hashCode+sqlId+Sql</code>语句。value为从查询出来映射生成的java对象</p>
+        <p>Mybatis首先去缓存中查询结果集，如果没有则查询数据库，如果有则从缓存取出返回结果集就不走数据库。Mybatis内部存储缓存使用一个<code>HashMap</code>，key为<code>hashCode+sqlId+Sql</code>语句。value为从查询出来映射生成的java对象</p>
       </li>
       <li>
-        <p>Mybatis的二级缓存即查询缓存，它的作用域是一个mapper的<code class="highlighter-rouge">namespace</code>，即在同一个namespace中查询sql可以从缓存中获取数据。二级缓存是可以跨<code class="highlighter-rouge">SqlSession</code>的。</p>
+        <p>Mybatis的二级缓存即查询缓存，它的作用域是一个mapper的<code>namespace</code>，即在同一个namespace中查询sql可以从缓存中获取数据。二级缓存是可以跨<code>SqlSession</code>的。</p>
       </li>
     </ul>
   </li>
@@ -590,22 +590,22 @@
         <p>处理器映射器找到具体的处理器，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet</p>
       </li>
       <li>
-        <p><code class="highlighter-rouge">DispatcherServlet</code>调用<code class="highlighter-rouge">HandlerAdapter</code>处理器适配器</p>
+        <p><code>DispatcherServlet</code>调用<code>HandlerAdapter</code>处理器适配器</p>
       </li>
       <li>
-        <p>HandlerAdapter经过适配调用具体的<code class="highlighter-rouge">处理器</code>(Controller，也叫后端控制器)</p>
+        <p>HandlerAdapter经过适配调用具体的<code>处理器</code>(Controller，也叫后端控制器)</p>
       </li>
       <li>
-        <p>Controller执行完成返回<code class="highlighter-rouge">ModelAndView</code></p>
+        <p>Controller执行完成返回<code>ModelAndView</code></p>
       </li>
       <li>
         <p>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet</p>
       </li>
       <li>
-        <p>DispatcherServlet将ModelAndView传给<code class="highlighter-rouge">ViewReslover</code>视图解析器</p>
+        <p>DispatcherServlet将ModelAndView传给<code>ViewReslover</code>视图解析器</p>
       </li>
       <li>
-        <p>ViewReslover解析后返回具体<code class="highlighter-rouge">View</code></p>
+        <p>ViewReslover解析后返回具体<code>View</code></p>
       </li>
       <li>
         <p>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）</p>
@@ -624,16 +624,16 @@
 
         <ul>
           <li>
-            <p>文件上传解析，如果请求类型是multipart将通过<code class="highlighter-rouge">MultipartResolver</code>进行文件上传解析；</p>
+            <p>文件上传解析，如果请求类型是multipart将通过<code>MultipartResolver</code>进行文件上传解析；</p>
           </li>
           <li>
-            <p>通过<code class="highlighter-rouge">HandlerMapping</code>，将请求映射到<code class="highlighter-rouge">处理器</code>（返回一个<code class="highlighter-rouge">HandlerExecutionChain</code>，它包括一个处理器、多个HandlerInterceptor拦截器）</p>
+            <p>通过<code>HandlerMapping</code>，将请求映射到<code>处理器</code>（返回一个<code>HandlerExecutionChain</code>，它包括一个处理器、多个HandlerInterceptor拦截器）</p>
           </li>
           <li>
-            <p>通过<code class="highlighter-rouge">HandlerAdapter</code>支持多种类型的处理器(HandlerExecutionChain中的处理器)</p>
+            <p>通过<code>HandlerAdapter</code>支持多种类型的处理器(HandlerExecutionChain中的处理器)</p>
           </li>
           <li>
-            <p>通过<code class="highlighter-rouge">ViewResolver</code>解析逻辑视图名到具体视图实现；</p>
+            <p>通过<code>ViewResolver</code>解析逻辑视图名到具体视图实现；</p>
           </li>
           <li>
             <p>本地化解析</p>
@@ -646,45 +646,67 @@
     </ul>
   </li>
 </ol>
-</p>
-          </div>
-        </div><!-- .col-md-7 close -->
-      </div>
+
     </div>
-  </section>
-</div>
-<p class="center-text" style="padding: 30px;">
-  <a href="/blog">Back to blog</a>
-</p>
+
+    
+
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/04/11/Rails%E4%B8%ADExcel%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5" title="Rails中Excel的数据导入">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2017/07/13/ruby%E4%B8%ADString%E5%92%8Csymbol%E7%9A%84%E5%8C%BA%E5%88%AB" title="ruby中String和symbol的区别">Next &rarr;</a></li>
+      
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
 
-
-
-
-
-
-
-
-    <!-- footer Start -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="footer-manu">
-          <ul>
-            <li><a href="#">主页</a></li>
-            <li><a href="/contact">联系我</a></li>
-            <li><a href="/blog">博客</a></li>
-          </ul>
-        </div>
-        <p>Copyright &copy; Design &amp; Developed by <a href="http://www.themefisher.com">Themefisher</a>. All rights reserved.</p>
-      </div>
-    </div>
   </div>
-</footer>
+</div>
 
 
-    </body>
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 James Turnbull
+          <span class="pull-right text-muted">
+            powered by
+            <a href="http://dbtek.github.io/jekyll-bootstrap-3" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll-Bootstrap-3</a>
+            and <a href="http://getbootstrap.com" target="_blank">Twitter Bootstrap 3.0.3</a>
+          </span>
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>
+
