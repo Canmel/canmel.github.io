@@ -3,7 +3,7 @@ layout: post
 title: "使用angularJs （二）"
 author: "Bart Simpson"
 meta: "Springfield"
-tag : [angular, js]
+tag : [Angular, Js]
 ---
 
 #### 使用angularJs （二）

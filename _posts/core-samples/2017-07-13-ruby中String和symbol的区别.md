@@ -3,6 +3,7 @@ layout: post
 title: "ruby中String和symbol的区别"
 author: "meedesidy"
 meta: "Springfield"
+tag: [Ruby, summary]
 ---
 
 ## ruby中String和symbol的区别

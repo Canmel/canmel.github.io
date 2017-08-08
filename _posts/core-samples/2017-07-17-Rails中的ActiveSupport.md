@@ -3,6 +3,7 @@ layout: post
 title: "Rails中的ActiveSupport"
 author: "meedesidy"
 meta: "Springfield"
+tag: [Ruby, Rails, summary]
 ---
 
 ## Rails中的ActiveSupport

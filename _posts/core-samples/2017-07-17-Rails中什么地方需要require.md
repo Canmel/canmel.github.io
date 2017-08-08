@@ -3,6 +3,7 @@ layout: post
 title: "Rails中什么时候需要require"
 author: "meedesidy"
 meta: "Springfield"
+tag: [Ruby, Rails, summary]
 ---
 
 ## Rails中什么时候需要require

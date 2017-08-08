@@ -3,7 +3,7 @@ layout: post
 title: "Rails中Excel的数据导入"
 author: "Bart Simpson"
 meta: "Springfield"
-tag: [ruby]
+tag: [Ruby, Rails, summary]
 ---
 
 #### Rails中Excel的数据导入
