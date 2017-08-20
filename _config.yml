@@ -14,11 +14,9 @@ markdown: kramdown
 title : Meedesidy Blog
 tagline: A blog isn't just about words or Docker
 author :
-  name : James Turnbull
-  email : james@example.com
-  github : jamtur01
-  twitter : kartar
-  feedburner : feedname
+  name : Meedesidy
+  email : 892379244@qq.com
+  github : Canmel
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
