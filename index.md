@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Meedesidy Blog
-tagline: Myblog
+tagline: 不是每一个问题都是钉子，不是每一个问题都是锤子
 email: 892379244@qq.com
 github: Canmal
 ---
