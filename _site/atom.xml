@@ -4,14 +4,13 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-08-14T17:19:58+08:00</updated>
+ <updated>2017-08-14T17:38:09+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>James Turnbull</name>
    <email>james@example.com</email>
  </author>
 
- 
  <entry>
    <title>Rails中的ActiveSupport</title>
    <link href="http://canmel.github.io/2017/07/17/Rails%E4%B8%AD%E7%9A%84ActiveSupport"/>
