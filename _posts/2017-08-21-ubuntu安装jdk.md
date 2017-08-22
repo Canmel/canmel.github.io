@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ubuntu 安装jdk"
+title: "ubuntu安装java开发环境"
 description: ""
 category: 
 tags: [java]
@@ -39,3 +39,5 @@ tags: [java]
 ### 测试jdk 是是否安装成功
 > ~ java -version
 > ~ javac -version
+
+
