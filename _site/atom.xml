@@ -4,13 +4,83 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-08-20T23:12:03+08:00</updated>
+ <updated>2017-08-21T09:49:15+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
    <email>892379244@qq.com</email>
  </author>
 
+ 
+ <entry>
+   <title>ubuntu安装java开发环境</title>
+   <link href="http://canmel.github.io/2017/08/21/ubuntu%E5%AE%89%E8%A3%85jdk"/>
+   <updated>2017-08-21T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/08/21/ubuntu安装jdk</id>
+   <content type="html">
+&lt;h3 id=&quot;添加ppa更新&quot;&gt;添加ppa,更新&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;~ sudo add-apt-repository ppa:webupd8team/java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;~ sudo apt-get update&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;###　安装oracle-java-installer&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jdk7
+    &lt;blockquote&gt;
+      &lt;p&gt;~ sudo apt-get install oracle-java7-installer&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;jdk8
+    &lt;blockquote&gt;
+      &lt;p&gt;~ sudo apt-get install oracle-java8-installer&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;安装器会提示你同意 oracle 的服务条款,选择 ok,然后选择yes 即可
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;设置系统默认jdk&quot;&gt;设置系统默认jdk&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;JDk7
+    &lt;blockquote&gt;
+      &lt;p&gt;~ sudo update-java-alternatives -s java-7-oracle&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;JDk8
+    &lt;blockquote&gt;
+      &lt;p&gt;~ sudo update-java-alternatives -s java-8-oracle&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;切换jdk版本&quot;&gt;切换jdk版本&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;jdk8 切换到jdk7
+    &lt;blockquote&gt;
+      &lt;p&gt;~ sudo update-java-alternatives -s java-7-oracle&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;jdk7 切换到jdk8
+    &lt;blockquote&gt;
+      &lt;p&gt;~ sudo update-java-alternatives -s java-8-oracle&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;测试jdk-是是否安装成功&quot;&gt;测试jdk 是是否安装成功&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;~ java -version
+~ javac -version&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>在阿里云服务器使用docker部署web项目</title>

@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
 
-    <title>在阿里云服务器使用docker部署web项目</title>
-    
+    <title>ubuntu安装java开发环境</title>
+    <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -83,37 +83,77 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>在阿里云服务器使用docker部署web项目 </h1>
+  <h1>ubuntu安装java开发环境 </h1>
 </div>
 
 <div class="row post-full">
   <div class="col-md-12">
     <div class="date">
-      <span>20 August 2017</span>
+      <span>21 August 2017</span>
     </div>
     <div class="content">
-      <h2 id="在阿里云服务器使用docker部署web项目">在阿里云服务器使用docker部署web项目</h2>
-<h3 id="准备">准备</h3>
+      
+<h3 id="添加ppa更新">添加ppa,更新</h3>
+
+<blockquote>
+  <p>~ sudo add-apt-repository ppa:webupd8team/java</p>
+</blockquote>
+
+<blockquote>
+  <p>~ sudo apt-get update</p>
+</blockquote>
+
+<p>###　安装oracle-java-installer</p>
 
 <ul>
-  <li>github 帐号，创建新的<code>repository</code>,并将代码push到这个<code>repository</code></li>
-  <li>阿里云服务器</li>
-  <li>注册<code>daocloud</code></li>
+  <li>jdk7
+    <blockquote>
+      <p>~ sudo apt-get install oracle-java7-installer</p>
+    </blockquote>
+  </li>
+  <li>jdk8
+    <blockquote>
+      <p>~ sudo apt-get install oracle-java8-installer</p>
+    </blockquote>
+  </li>
 </ul>
 
-<h3 id="ssh登录远程服务器">ssh登录远程服务器</h3>
-
+<pre><code>安装器会提示你同意 oracle 的服务条款,选择 ok,然后选择yes 即可
+</code></pre>
+<h3 id="设置系统默认jdk">设置系统默认jdk</h3>
 <ul>
-  <li><code>~ ssh root@99.99.99.99 </code></li>
+  <li>JDk7
+    <blockquote>
+      <p>~ sudo update-java-alternatives -s java-7-oracle</p>
+    </blockquote>
+  </li>
+  <li>JDk8
+    <blockquote>
+      <p>~ sudo update-java-alternatives -s java-8-oracle</p>
+    </blockquote>
+  </li>
 </ul>
 
-<h3 id="安装docker">安装docker</h3>
-
+<h3 id="切换jdk版本">切换jdk版本</h3>
 <ul>
-  <li>可以借鉴 <a href="http://blog.csdn.net/mickjoust/article/details/51578629">Ubuntu 16.04安装使用Docker </a></li>
+  <li>jdk8 切换到jdk7
+    <blockquote>
+      <p>~ sudo update-java-alternatives -s java-7-oracle</p>
+    </blockquote>
+  </li>
+  <li>jdk7 切换到jdk8
+    <blockquote>
+      <p>~ sudo update-java-alternatives -s java-8-oracle</p>
+    </blockquote>
+  </li>
 </ul>
 
-<p>###</p>
+<h3 id="测试jdk-是是否安装成功">测试jdk 是是否安装成功</h3>
+<blockquote>
+  <p>~ java -version
+~ javac -version</p>
+</blockquote>
+
 
     </div>
 
@@ -128,7 +168,7 @@
 
   
      
-    	<li><a href="/tags.html#Docker-ref">Docker <span>1</span></a></li>
+    	<li><a href="/tags.html#java-ref">java <span>1</span></a></li>
     
   
 
@@ -141,11 +181,11 @@
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/07/17/Rails%E4%B8%AD%E7%9A%84ActiveSupport" title="Rails中的ActiveSupport">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/08/20/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8docker%E5%8F%91%E5%B8%83web%E9%A1%B9%E7%9B%AE" title="在阿里云服务器使用docker部署web项目">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/08/21/ubuntu%E5%AE%89%E8%A3%85jdk" title="ubuntu安装java开发环境">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
     </ul>
     <hr>
