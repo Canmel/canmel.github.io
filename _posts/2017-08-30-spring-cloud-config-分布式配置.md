@@ -243,7 +243,7 @@ security.user.password=mypassword
 ```
 - 客户端使用，在配置文件中添加配置（存在bootstrap.properties时，似乎在application.propeties中配置无效）
 ```
-# bootstrap.properties
+#-- bootstrap.properties 
 spring.cloud.config.username=meedesidy
 spring.cloud.config.password=mypassword
 ```
