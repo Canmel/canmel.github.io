@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
 
-    <title>ubuntu安装java开发环境</title>
-    <meta name="description" content="">
+    <title>Spring cloud application.properties</title>
+    <meta name="description" content="Spring cloud application.properties常用的配配置">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -83,76 +83,62 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>ubuntu安装java开发环境 </h1>
+  <h1>Spring cloud application.properties </h1>
 </div>
 
 <div class="row post-full">
   <div class="col-md-12">
     <div class="date">
-      <span>21 August 2017</span>
+      <span>22 August 2017</span>
     </div>
     <div class="content">
       
-<h3 id="添加ppa更新">添加ppa,更新</h3>
-
-<blockquote>
-  <p>~ sudo add-apt-repository ppa:webupd8team/java</p>
-</blockquote>
-
-<blockquote>
-  <p>~ sudo apt-get update</p>
-</blockquote>
-
-<p>###　安装oracle-java-installer</p>
-
 <ul>
-  <li>jdk7
-    <blockquote>
-      <p>~ sudo apt-get install oracle-java7-installer</p>
-    </blockquote>
+  <li>server:
+    <ul>
+      <li>port:                 <code>服务端口</code></li>
+    </ul>
   </li>
-  <li>jdk8
-    <blockquote>
-      <p>~ sudo apt-get install oracle-java8-installer</p>
-    </blockquote>
+  <li>spring:
+    <ul>
+      <li>application:
+        <ul>
+          <li>name:             <code>服务名称，</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>eureka:
+    <ul>
+      <li>client:
+        <ul>
+          <li>serviceUrl:
+            <ul>
+              <li>defaultZone:  <code>服务注册中心地址</code>
+  为了安全很多时候都会为服务注册中心加上安全校验配置serviceUrl加上Url加上安全校验信息，比如<code>http://&lt;username&gt;:&lt;password&gt;@localhost:1111/eureka/</code>
+  其中<code>username</code>是安全校验信息用户名，<code>password</code>为该用户的密码</li>
+            </ul>
+          </li>
+          <li>register-with-eureka: <code>默认true, 启动时想注册机注册自己</code></li>
+          <li>fetch-registry:   <code>检索服务　默认true</code></li>
+          <li>registry-fetch-interval-seconds: <code>获取只读服务列表的时间间隔默认３０秒, 前提是fetch-registry　不为false</code></li>
+        </ul>
+      </li>
+      <li>instance:
+        <ul>
+          <li>hostname:         <code>主机名</code></li>
+          <li>lease-renewal-interval-in-seconds: <code>服务续约任务的调用时间　默认30秒</code></li>
+          <li>lease-expiration-duration-in-seconds: <code>定义服务失效时间　默认90秒</code></li>
+        </ul>
+      </li>
+      <li>server:
+        <ul>
+          <li>enable-self-preservation: <code>保护机制(检测实例心跳链接: 15分组低于85%)　默认true</code></li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
-
-<pre><code>安装器会提示你同意 oracle 的服务条款,选择 ok,然后选择yes 即可
-</code></pre>
-<h3 id="设置系统默认jdk">设置系统默认jdk</h3>
-<ul>
-  <li>JDk7
-    <blockquote>
-      <p>~ sudo update-java-alternatives -s java-7-oracle</p>
-    </blockquote>
-  </li>
-  <li>JDk8
-    <blockquote>
-      <p>~ sudo update-java-alternatives -s java-8-oracle</p>
-    </blockquote>
-  </li>
-</ul>
-
-<h3 id="切换jdk版本">切换jdk版本</h3>
-<ul>
-  <li>jdk8 切换到jdk7
-    <blockquote>
-      <p>~ sudo update-java-alternatives -s java-7-oracle</p>
-    </blockquote>
-  </li>
-  <li>jdk7 切换到jdk8
-    <blockquote>
-      <p>~ sudo update-java-alternatives -s java-8-oracle</p>
-    </blockquote>
-  </li>
-</ul>
-
-<h3 id="测试jdk-是是否安装成功">测试jdk 是是否安装成功</h3>
-<blockquote>
-  <p>~ java -version
-~ javac -version</p>
-</blockquote>
 
 
     </div>
@@ -168,7 +154,7 @@
 
   
      
-    	<li><a href="/tags.html#java-ref">java <span>1</span></a></li>
+    	<li><a href="/tags.html#spring-cloud-ref">spring-cloud <span>1</span></a></li>
     
   
 
@@ -181,11 +167,11 @@
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/08/20/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8docker%E5%8F%91%E5%B8%83web%E9%A1%B9%E7%9B%AE" title="在阿里云服务器使用docker部署web项目">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/08/21/ubuntu%E5%AE%89%E8%A3%85jdk" title="ubuntu安装java开发环境">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/08/22/spring-cloud-applicationproperties" title="Spring cloud application.properties">Next &rarr;</a></li>
+        <li class="next"><a href="/2017/08/23/java-8-%E6%96%B0%E7%89%B9%E6%80%A7" title="java 8 新特性">Next &rarr;</a></li>
       
     </ul>
     <hr>

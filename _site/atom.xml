@@ -4,13 +4,229 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-08-21T09:49:15+08:00</updated>
+ <updated>2017-08-23T17:13:57+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
    <email>892379244@qq.com</email>
  </author>
 
+ 
+ <entry>
+   <title>spring cloud 源码分析</title>
+   <link href="http://canmel.github.io/2017/08/23/spring-cloud"/>
+   <updated>2017-08-23T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/08/23/spring-cloud-</id>
+   <content type="html">
+&lt;h3 id=&quot;注解enablediscoveryclient&quot;&gt;注解　@EnableDiscoveryClient&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;功能: 开启一个&lt;code&gt;DiscoveryClient&lt;/code&gt;实例&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;####　org.springframework.cloud.client.discovery.DiscoveryClient
+定义了用来发现服务的常用抽象方法，所以使用&lt;code&gt;spring cloud&lt;/code&gt; 构建的微服务可以方便的切换不同的服务治理框架，而不需要改动代码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public interface DiscoveryClient {
+
+	/**
+	 * A human readable description of the implementation, used in HealthIndicator
+	 * @return the description
+	 */
+	public String description();
+
+	/**
+	 * @return ServiceInstance with information used to register the local service
+	 */
+	public ServiceInstance getLocalServiceInstance();
+
+	/**
+	 * Get all ServiceInstances associated with a particular serviceId
+	 * @param serviceId the serviceId to query
+	 * @return a List of ServiceInstance
+	 */
+	public List&amp;lt;ServiceInstance&amp;gt; getInstances(String serviceId);
+
+	/**
+	 * @return all known service ids
+	 */
+	public List&amp;lt;String&amp;gt; getServices();
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;orgspringframeworkcloudnetflixeurekaeurekadiscoveryclient&quot;&gt;org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient&lt;/h4&gt;
+&lt;p&gt;是&lt;code&gt;DiscoveryClient&lt;/code&gt;接口的一个实现，从命名来看，他是&lt;code&gt;Eureka&lt;/code&gt;发现服务的封装，所以&lt;code&gt;EurekaDiscoveryClient&lt;/code&gt;依赖&lt;code&gt;Eureka&lt;/code&gt;的服务接口&lt;code&gt;com.netflix.discovery.EurekaClient&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;EurekaClient&lt;/code&gt;的类注释&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt; * EurekaClient API contracts are:
+ *  - provide the ability to get InstanceInfo(s) (in various different ways)
+ *  - provide the ability to get data about the local Client (known regions, own AZ etc)
+ *  - provide the ability to register and access the healthcheck handler for the client
+ *
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;EurekaClient　API 负责的任务：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;提供通过各种不同的方式获取实例（服务）信息&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;提供获取本地client（服务）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;检查登记处理程序的client(服务)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;comnetflixdiscoverysharedlookupservice&quot;&gt;com.netflix.discovery.shared.LookupService&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;寻找服务&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;comnetflixdiscoverydiscoveryclient&quot;&gt;com.netflix.discovery.DiscoveryClient&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;Eureka&lt;/code&gt; 真正用来发现服务的类&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;这个类帮助与&lt;code&gt;Eureka Service&lt;/code&gt;相互协作&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;Eureka Service&lt;/code&gt; 负责下面的任务：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;向&lt;code&gt;Eureka Service&lt;/code&gt;注册服务实例&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;向&lt;code&gt;Eureka Service&lt;/code&gt;服务租约&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;当服务关闭期间，向&lt;code&gt;Eureka Service&lt;/code&gt;取消租约&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;查询&lt;code&gt;Eureka Service&lt;/code&gt;中的服务实例列表&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code&gt;Eureka Client&lt;/code&gt;还需要一个&lt;code&gt;Eureka Service&lt;/code&gt;的&lt;code&gt;URL&lt;/code&gt;列表&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>java 8 新特性</title>
+   <link href="http://canmel.github.io/2017/08/23/java-8-%E6%96%B0%E7%89%B9%E6%80%A7"/>
+   <updated>2017-08-23T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/08/23/java-8-新特性</id>
+   <content type="html">
+&lt;h3 id=&quot;1-default方法defender方法&quot;&gt;1. default方法（defender方法）&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public interface BaseInterface {
+  public void doSomeWork();
+}
+
+class SimpleInterfaceImpl implements BaseInterface{
+  @Override
+  public void doSomeWork() {
+    System.out.println(&quot;Do Some Work implementation in the class&quot;);
+  }
+ 
+  public static void main(String[] args) {
+    SimpleInterfaceImpl simpObj = new SimpleInterfaceImpl();
+    simpObj.doSomeWork();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果要向上面的接口添加新方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public interface BaseInterface {
+  public void doSomeWork();
+  public void doSomeOtherWork();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行会得到&lt;code&gt;SimpleInterfaceImpl&lt;/code&gt; 不是一个抽象类或没有重写&lt;code&gt;doSomeOtherWork()&lt;/code&gt;这个抽象方法&lt;/p&gt;
+
+&lt;p&gt;所以要直接改变/拓展一个接口内部方法变得困难,在尝试强化&lt;code&gt;java 8 Collections API&lt;/code&gt; 让其支持&lt;code&gt;lambda&lt;/code&gt;表达式的时候，就面临了这样的挑战,为了克服这个困难，&lt;code&gt;Java 8&lt;/code&gt;中引入了一个新的概念，叫做&lt;code&gt;default&lt;/code&gt;方法，也可以称为&lt;code&gt;Defender&lt;/code&gt;方法，或者&lt;code&gt;虚拟扩展方法&lt;/code&gt;（&lt;code&gt;Virtual extension methods)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;例如： in java.util&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;default void replaceAll(UnaryOperator&amp;lt;E&amp;gt; operator) {
+    Objects.requireNonNull(operator);
+    final ListIterator&amp;lt;E&amp;gt; li = this.listIterator();
+    while (li.hasNext()) {
+        li.set(operator.apply(li.next()));
+    }
+}
+
+default void sort(Comparator&amp;lt;? super E&amp;gt; c) {
+    Object[] a = this.toArray();
+    Arrays.sort(a, (Comparator) c);
+    ListIterator&amp;lt;E&amp;gt; i = this.listIterator();
+    for (Object e : a) {
+        i.next();
+        i.set((E) e);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Spring cloud application.properties</title>
+   <link href="http://canmel.github.io/2017/08/22/spring-cloud-applicationproperties"/>
+   <updated>2017-08-22T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/08/22/spring-cloud-applicationproperties</id>
+   <content type="html">
+&lt;ul&gt;
+  &lt;li&gt;server:
+    &lt;ul&gt;
+      &lt;li&gt;port:                 &lt;code&gt;服务端口&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;spring:
+    &lt;ul&gt;
+      &lt;li&gt;application:
+        &lt;ul&gt;
+          &lt;li&gt;name:             &lt;code&gt;服务名称，&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;eureka:
+    &lt;ul&gt;
+      &lt;li&gt;client:
+        &lt;ul&gt;
+          &lt;li&gt;serviceUrl:
+            &lt;ul&gt;
+              &lt;li&gt;defaultZone:  &lt;code&gt;服务注册中心地址&lt;/code&gt;
+  为了安全很多时候都会为服务注册中心加上安全校验配置serviceUrl加上Url加上安全校验信息，比如&lt;code&gt;http://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@localhost:1111/eureka/&lt;/code&gt;
+  其中&lt;code&gt;username&lt;/code&gt;是安全校验信息用户名，&lt;code&gt;password&lt;/code&gt;为该用户的密码&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;register-with-eureka: &lt;code&gt;默认true, 启动时想注册机注册自己&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;fetch-registry:   &lt;code&gt;检索服务　默认true&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;registry-fetch-interval-seconds: &lt;code&gt;获取只读服务列表的时间间隔默认３０秒, 前提是fetch-registry　不为false&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;instance:
+        &lt;ul&gt;
+          &lt;li&gt;hostname:         &lt;code&gt;主机名&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;lease-renewal-interval-in-seconds: &lt;code&gt;服务续约任务的调用时间　默认30秒&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;lease-expiration-duration-in-seconds: &lt;code&gt;定义服务失效时间　默认90秒&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;server:
+        &lt;ul&gt;
+          &lt;li&gt;enable-self-preservation: &lt;code&gt;保护机制(检测实例心跳链接: 15分组低于85%)　默认true&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>ubuntu安装java开发环境</title>
