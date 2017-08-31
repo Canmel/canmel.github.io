@@ -15,6 +15,7 @@ tags: [java, spring]
 
 
 ### 1. 文件结构
+
 - [X] **config**
     - [X]  **src/main/java**
         - [X] **com/meedesidy/config**
@@ -29,6 +30,7 @@ tags: [java, spring]
     
 
 ### 2. 依赖
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -107,13 +109,16 @@ public class ConfigApplication {
 	}
 }
 ```
+
 添加`@SpringBootApplication` 开启`Spring Cloud Config 服务端功能`
 
 
 ---
 
 ### 4. 添加配置
+
 1. `application.properties`
+
 ```properties
 server.port=8888
 
@@ -124,6 +129,7 @@ spring.cloud.config.server.git.uri.password=xxxxxx
 spring.cloud.config.server.git.uri.search-paths=xxxxxx
 ```
 #### 配置说明
+
 1. `spring.cloud.config.server.git.uri`: Git仓库位置
 2. `spring.cloud.config.server.git.uri.username`: Git用户名
 3. `spring.cloud.config.server.git.uri.password`: Git密码
@@ -132,6 +138,7 @@ spring.cloud.config.server.git.uri.search-paths=xxxxxx
 ---
 
 ### 5. 填写仓库中实际配置信息
+
 - 在git上的`search-paths`路径下添加文件
     - meedesidy.properties
     - meedesidy-test.properties
@@ -151,13 +158,16 @@ spring.cloud.config.server.git.uri.search-paths=xxxxxx
 ---
 
 ### 6. 测试使用
+
 #### ①　创建服务，在`pom.xml`添加下面的依赖
+
 ```
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-config</artifactId>
 </dependency>
 ```
+
 #### ② 　创建`bootstrap.properties`
     
 ```text
@@ -168,10 +178,12 @@ spring.cloud.config.uri=http://localhost:8888
 
 server.port=3001
 ```
+
 > 注：客户端获得外部配置文件后加载到客户端ApplicationContext实例，该配置内容优先级高于客户端jar包内部的配置内容，所以jar包内重复的内容不在重复加载
 > 如：　若`application.properties`与`bootstrap.properties`中都定义了项目名称，则以前者为准．
 
 #### ③ 　属性绑定@Value("${from}")
+
 ```java
 @RefreshScope
 @RestController
@@ -187,6 +199,7 @@ Public class TestController{
 ```
 
 #### ④　注入@Autowired
+
 ```java
 @RefreshScope
 @RestController
@@ -200,9 +213,11 @@ Public class TestController{
 	}
 }
 ```
+
 > 注：　`Environment`在 `org.springframework.core.env.Environment`,并不在cloud下
 
 #### ⑤　启动访问
+
 - 启动 `注册中心`　
 - 启动 `配置中心`
 - 启动 `meedesidy`应用
@@ -213,23 +228,32 @@ Public class TestController{
 ---
 
 ### 占位符配置URI
+
 > 如：　spring.cloud.config.server.git.uri=https://github.com/Canmel/{application}
 
 - **{application}**
+
 spring cloud 会根据`spring.application.name`填充占位符,从而动态获取配置
+
 - **{profile}**
+
 根据`profile`填充
+
 - **{lebel}**
+
 分支，如果分支名中出现'/',在HTTP的URL中使用＂(_)＂来替代，避免改变URI含义
 
 ---
 
 ### 安全保护
+
 > 敏感信息存放在未加密的微服务应用上是不安全的
 > 配置中心加密方式有很多，由于spring cloud基于`spring boot`与`Spring Security` 结合使用会更加方便
 
 #### 配置`Spring Security`
+
 - 依赖
+
 ```xml
 <dependency>
 	<groupId>org.springframework.boot</groupId>
@@ -237,11 +261,14 @@ spring cloud 会根据`spring.application.name`填充占位符,从而动态获�
 </dependency>
 ```
 - 启动默认会在日志给出一个随机密码，一般不适用随机密码，由配置文件指定
+
 ```
 sucurity.user.name=meeedesidy
 security.user.password=mypassword
 ```
+
 - 客户端使用，在配置文件中添加配置（存在bootstrap.properties时，似乎在application.propeties中配置无效）
+
 ```
 #-- bootstrap.properties 
 spring.cloud.config.username=meedesidy
@@ -253,19 +280,23 @@ spring.cloud.config.password=mypassword
 #### 配置中心
 
 - 依赖
+
 ```xml
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-eureka</artifactId>
 </dependency>
 ```
+
 - 主类添加注释`@EnableDiscoveryClient`,以获取被注册中心发现的能力．
 - 配置文件,指明注册中心地址
+
 ```xml
  eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
 ```
 #### 客户端
 - 配置(添加对配置中心的需求及安全信息)
+
 ```yml
 spring:
   cloud:
@@ -277,8 +308,11 @@ spring:
         serviceId: config-server
       profile: dev
 ```
+
 - 主类添加注释`@EnableDiscoveryClient`,以获取被注册中心发现的能力．
+
 #### 使用
+
 ```java
 @Value("${from}")
 private String from;
