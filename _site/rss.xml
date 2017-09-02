@@ -5,112 +5,674 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-08-23T17:13:57+08:00</lastBuildDate>
-        <pubDate>2017-08-23T17:13:57+08:00</pubDate>
+        <lastBuildDate>2017-09-03T01:38:51+08:00</lastBuildDate>
+        <pubDate>2017-09-03T01:38:51+08:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
-                <title>spring cloud 源码分析</title>
+                <title>spring cloud stream 消息驱动微服务</title>
                 <description>
-&lt;h3 id=&quot;注解enablediscoveryclient&quot;&gt;注解　@EnableDiscoveryClient&lt;/h3&gt;
+&lt;h2 id=&quot;依赖&quot;&gt;依赖&lt;/h2&gt;
 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;spring-cloud-starter-stream-rabbit&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;接收消息&quot;&gt;接收消息&lt;/h2&gt;
+
+&lt;h3 id=&quot;代码&quot;&gt;代码&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;功能: 开启一个&lt;code&gt;DiscoveryClient&lt;/code&gt;实例&lt;/p&gt;
+  &lt;p&gt;SinkReceiver.class&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;####　org.springframework.cloud.client.discovery.DiscoveryClient
-定义了用来发现服务的常用抽象方法，所以使用&lt;code&gt;spring cloud&lt;/code&gt; 构建的微服务可以方便的切换不同的服务治理框架，而不需要改动代码&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public interface DiscoveryClient {
-
-	/**
-	 * A human readable description of the implementation, used in HealthIndicator
-	 * @return the description
-	 */
-	public String description();
-
-	/**
-	 * @return ServiceInstance with information used to register the local service
-	 */
-	public ServiceInstance getLocalServiceInstance();
-
-	/**
-	 * Get all ServiceInstances associated with a particular serviceId
-	 * @param serviceId the serviceId to query
-	 * @return a List of ServiceInstance
-	 */
-	public List&amp;lt;ServiceInstance&amp;gt; getInstances(String serviceId);
-
-	/**
-	 * @return all known service ids
-	 */
-	public List&amp;lt;String&amp;gt; getServices();
-
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;/**
+* @EnableBinding 指定一个或多个定义了@Input或@Output注解的接口
+* 以此实现对消息通道(Channel)的绑定
+* Sink.class 是Spring Cloud Stream 默认实现对输入消息绑定的定义
+* @Input或@Output注释的会自动加入spring容器，可以直接注入
+*/
+@EnableBinding(value = {Sink.class})
+public class SinkReceiver {
+	
+	private static Logger logger =                           LoggerFactory.getLogger(MeedStreamApplication.class);
+     
+     /**
+     * @StreamListener被注释的方法注册为消息中心中间件上数据流的时间监听器
+     * 注解中的属性值对应监听的消息通道名
+     */
+	@StreamListener(Sink.INPUT)
+	public void receiver(Object payload ) {
+		logger.info(&quot;Received : &quot; + payload);
+	}
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;orgspringframeworkcloudnetflixeurekaeurekadiscoveryclient&quot;&gt;org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient&lt;/h4&gt;
-&lt;p&gt;是&lt;code&gt;DiscoveryClient&lt;/code&gt;接口的一个实现，从命名来看，他是&lt;code&gt;Eureka&lt;/code&gt;发现服务的封装，所以&lt;code&gt;EurekaDiscoveryClient&lt;/code&gt;依赖&lt;code&gt;Eureka&lt;/code&gt;的服务接口&lt;code&gt;com.netflix.discovery.EurekaClient&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;配置&quot;&gt;配置&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;EurekaClient&lt;/code&gt;的类注释&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt; * EurekaClient API contracts are:
- *  - provide the ability to get InstanceInfo(s) (in various different ways)
- *  - provide the ability to get data about the local Client (known regions, own AZ etc)
- *  - provide the ability to register and access the healthcheck handler for the client
- *
+&lt;pre&gt;&lt;code&gt;＃＃ 对应`RabbitMQ` 上`exchanges(消息交换机)`的name, 这里将设置为`test`　
+spring.cloud.stream.bindings.sendoutput.destination=test
+
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;EurekaClient　API 负责的任务：&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;提供通过各种不同的方式获取实例（服务）信息&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;提供获取本地client（服务）&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;hr /&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;检查登记处理程序的client(服务)&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h2 id=&quot;发送消息&quot;&gt;发送消息&lt;/h2&gt;
 
-&lt;h4 id=&quot;comnetflixdiscoverysharedlookupservice&quot;&gt;com.netflix.discovery.shared.LookupService&lt;/h4&gt;
+&lt;h3 id=&quot;代码-1&quot;&gt;代码&lt;/h3&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;寻找服务&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@EnableBinding(value = {Sender.class})
+public class SinkSender {
+	private static Logger logger = LoggerFactory.getLogger(SinkSender.class);
 
-&lt;h4 id=&quot;comnetflixdiscoverydiscoveryclient&quot;&gt;com.netflix.discovery.DiscoveryClient&lt;/h4&gt;
+    @Bean
+	@InboundChannelAdapter(value = Sender.SENDER, poller = @Poller(fixedDelay = &quot;2000&quot;))
+	public MessageSource&amp;lt;String&amp;gt; timerMessageSource(){
+		return () -&amp;gt; new GenericMessage&amp;lt;&amp;gt;(&quot;xxxxxxx2秒调用一次&quot;);
+	}
+}	
 
-&lt;p&gt;&lt;code&gt;Eureka&lt;/code&gt; 真正用来发现服务的类&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;这个类帮助与&lt;code&gt;Eureka Service&lt;/code&gt;相互协作&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;&lt;code&gt;Eureka Service&lt;/code&gt; 负责下面的任务：&lt;/p&gt;
+&lt;h3 id=&quot;配置-1&quot;&gt;配置&lt;/h3&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;向&lt;code&gt;Eureka Service&lt;/code&gt;注册服务实例&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;＃＃ 对应`RabbitMQ` 上`exchanges(消息交换机)`的name, 这里将设置为`test`
+＃＃ 可以不进行设置，但要使得消息交换机名称和之前的`test`一致才能接收消息，
+＃＃ 两种方式:
+＃＃ １．@StreamListener `参数` 与 前面的`test`一致
+＃＃ ２．设置如下参数改变当前要接入的消息交换机`name`
+spring.cloud.stream.bindings.receiverinput.destination=test
 
-&lt;blockquote&gt;
-  &lt;p&gt;向&lt;code&gt;Eureka Service&lt;/code&gt;服务租约&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;当服务关闭期间，向&lt;code&gt;Eureka Service&lt;/code&gt;取消租约&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;@EnableBinding : 绑定消息通道（channel）&lt;/strong&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;查询&lt;code&gt;Eureka Service&lt;/code&gt;中的服务实例列表&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code&gt;Eureka Client&lt;/code&gt;还需要一个&lt;code&gt;Eureka Service&lt;/code&gt;的&lt;code&gt;URL&lt;/code&gt;列表&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;@StreamListener : 注册监听&lt;/strong&gt;&lt;/p&gt;
 </description>
-                <link>http://canmel.github.io/2017/08/23/spring-cloud</link>
-                <guid>http://canmel.github.io/2017/08/23/spring-cloud-</guid>
-                <pubDate>2017-08-23T00:00:00+08:00</pubDate>
+                <link>http://canmel.github.io/2017/09/03/spring-cloud-stream-%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8%E5%BE%AE%E6%9C%8D%E5%8A%A1</link>
+                <guid>http://canmel.github.io/2017/09/03/spring-cloud-stream-消息驱动微服务</guid>
+                <pubDate>2017-09-03T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>spring cloud config 分布式配置中心</title>
+                <description>
+&lt;h1 id=&quot;spring-cloud-config-分布式配置中心&quot;&gt;spring cloud config 分布式配置中心&lt;/h1&gt;
+
+&lt;p&gt;之前跟着&lt;code&gt;spring cloud 微服务实战&lt;/code&gt;做分布式配置中心，一直报&lt;code&gt;环境仓库&lt;/code&gt;, 注入失败的问题,记录下现在的成功项目现状&lt;/p&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h3 id=&quot;1-文件结构&quot;&gt;1. 文件结构&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;[X] &lt;strong&gt;config&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;[X]  &lt;strong&gt;src/main/java&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;[X] &lt;strong&gt;com/meedesidy/config&lt;/strong&gt;
+            &lt;ul&gt;
+              &lt;li&gt;[ ] ConfigApplication.class&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;[X]  &lt;strong&gt;src/main/resources&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;[ ] application.properties&lt;/li&gt;
+          &lt;li&gt;[ ] bootstrap.properties&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;[X]  &lt;strong&gt;src/test/java&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;[X] &lt;strong&gt;com/meedesidy/cinfig&lt;/strong&gt;
+            &lt;ul&gt;
+              &lt;li&gt;[ ] ConfigApplicationTest.class&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;[ ] pom.xml&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-依赖&quot;&gt;2. 依赖&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&amp;gt;
+	&amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+
+	&amp;lt;groupId&amp;gt;com.skio&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;config&amp;lt;/artifactId&amp;gt;
+	&amp;lt;version&amp;gt;0.0.1-SNAPSHOT&amp;lt;/version&amp;gt;
+	&amp;lt;packaging&amp;gt;jar&amp;lt;/packaging&amp;gt;
+
+	&amp;lt;name&amp;gt;config&amp;lt;/name&amp;gt;
+	&amp;lt;description&amp;gt;Demo project for Spring Boot&amp;lt;/description&amp;gt;
+
+	&amp;lt;parent&amp;gt;
+		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+		&amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt;
+		&amp;lt;version&amp;gt;1.5.6.RELEASE&amp;lt;/version&amp;gt;
+		&amp;lt;relativePath/&amp;gt; &amp;lt;!-- lookup parent from repository --&amp;gt;
+	&amp;lt;/parent&amp;gt;
+
+	&amp;lt;properties&amp;gt;
+		&amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt;
+		&amp;lt;project.reporting.outputEncoding&amp;gt;UTF-8&amp;lt;/project.reporting.outputEncoding&amp;gt;
+		&amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+		&amp;lt;spring-cloud.version&amp;gt;Dalston.SR3&amp;lt;/spring-cloud.version&amp;gt;
+	&amp;lt;/properties&amp;gt;
+
+	&amp;lt;dependencies&amp;gt;
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-cloud-config-server&amp;lt;/artifactId&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-cloud-starter-eureka&amp;lt;/artifactId&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-boot-starter-test&amp;lt;/artifactId&amp;gt;
+			&amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+	&amp;lt;/dependencies&amp;gt;
+
+	&amp;lt;dependencyManagement&amp;gt;
+		&amp;lt;dependencies&amp;gt;
+			&amp;lt;dependency&amp;gt;
+				&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+				&amp;lt;artifactId&amp;gt;spring-cloud-dependencies&amp;lt;/artifactId&amp;gt;
+				&amp;lt;version&amp;gt;${spring-cloud.version}&amp;lt;/version&amp;gt;
+				&amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
+				&amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
+			&amp;lt;/dependency&amp;gt;
+		&amp;lt;/dependencies&amp;gt;
+	&amp;lt;/dependencyManagement&amp;gt;
+
+	&amp;lt;build&amp;gt;
+		&amp;lt;plugins&amp;gt;
+			&amp;lt;plugin&amp;gt;
+				&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+				&amp;lt;artifactId&amp;gt;spring-boot-maven-plugin&amp;lt;/artifactId&amp;gt;
+			&amp;lt;/plugin&amp;gt;
+		&amp;lt;/plugins&amp;gt;
+	&amp;lt;/build&amp;gt;
+&amp;lt;/project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;3-添加注释&quot;&gt;3. 添加注释&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@SpringBootApplication
+@EnableConfigServer
+public class ConfigApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigApplication.class, args);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;添加&lt;code&gt;@SpringBootApplication&lt;/code&gt; 开启&lt;code&gt;Spring Cloud Config 服务端功能&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;4-添加配置&quot;&gt;4. 添加配置&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;application.properties&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-properties&quot;&gt;server.port=8888
+
+spring.cloud.config.label=master
+spring.cloud.config.server.git.uri=https://github.com/Canmel/spring-cloud-config/
+spring.cloud.config.server.git.uri.username=892379244@qq.com
+spring.cloud.config.server.git.uri.password=xxxxxx
+spring.cloud.config.server.git.uri.search-paths=xxxxxx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;配置说明&quot;&gt;配置说明&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;spring.cloud.config.server.git.uri&lt;/code&gt;: Git仓库位置&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;spring.cloud.config.server.git.uri.username&lt;/code&gt;: Git用户名&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;spring.cloud.config.server.git.uri.password&lt;/code&gt;: Git密码&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;spring.cloud.config.server.git.uri.search-paths&lt;/code&gt;: 仓库下相对位置，多个时以逗号分隔&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;5-填写仓库中实际配置信息&quot;&gt;5. 填写仓库中实际配置信息&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在git上的&lt;code&gt;search-paths&lt;/code&gt;路径下添加文件
+    &lt;ul&gt;
+      &lt;li&gt;meedesidy.properties&lt;/li&gt;
+      &lt;li&gt;meedesidy-test.properties&lt;/li&gt;
+      &lt;li&gt;meedesidy-dev.properties&lt;/li&gt;
+      &lt;li&gt;meedesidy-prod.properties&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;search-paths&lt;/code&gt;路径下的文件添加对应内容
+    &lt;ul&gt;
+      &lt;li&gt;meedesidy.properties =&amp;gt; &lt;code&gt;from=meedesidy-default-1.0&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;meedesidy-test.properties =&amp;gt; &lt;code&gt;from=meedesidy-test-1.0&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;meedesidy-dev.properties =&amp;gt; &lt;code&gt;from=meedesidy-dev-1.0&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;meedesidy-prod.properties =&amp;gt; &lt;code&gt;from=meedesidy-prod-1.0&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;切换分支&lt;code&gt;test-branch&lt;/code&gt;,修改&lt;code&gt;search-paths&lt;/code&gt;路径下的文件
+    &lt;ul&gt;
+      &lt;li&gt;meedesidy.properties =&amp;gt; &lt;code&gt;from=meedesidy-default-2.0&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;meedesidy-test.properties =&amp;gt; &lt;code&gt;from=meedesidy-test-2.0&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;meedesidy-dev.properties =&amp;gt; &lt;code&gt;from=meedesidy-dev-2.0&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;meedesidy-prod.properties =&amp;gt; &lt;code&gt;from=meedesidy-prod-2.0&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;6-测试使用&quot;&gt;6. 测试使用&lt;/h3&gt;
+
+&lt;h4 id=&quot;创建服务在pomxml添加下面的依赖&quot;&gt;①　创建服务，在&lt;code&gt;pom.xml&lt;/code&gt;添加下面的依赖&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;spring-cloud-starter-config&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;-创建bootstrapproperties&quot;&gt;② 　创建&lt;code&gt;bootstrap.properties&lt;/code&gt;&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;spring.application.name=meedesidy
+spring.cloud.config.profile=dev
+spring.cloud.config.label=master
+spring.cloud.config.uri=http://localhost:8888
+
+server.port=3001
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注：客户端获得外部配置文件后加载到客户端ApplicationContext实例，该配置内容优先级高于客户端jar包内部的配置内容，所以jar包内重复的内容不在重复加载
+如：　若&lt;code&gt;application.properties&lt;/code&gt;与&lt;code&gt;bootstrap.properties&lt;/code&gt;中都定义了项目名称，则以前者为准．&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;-属性绑定valuefrom&quot;&gt;③ 　属性绑定@Value(“${from}”)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@RefreshScope
+@RestController
+Public class TestController{
+	@Value(&quot;${from}&quot;)
+	private String from;
+	
+	@RequestMapping(value = &quot;/from&quot;, method = RequestMethod.GET)
+	public String from(){
+	    return this.from;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;注入autowired&quot;&gt;④　注入@Autowired&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@RefreshScope
+@RestController
+Public class TestController{
+    @Autowired
+	private Environment env;
+	
+    @RequestMapping(value = &quot;environment&quot;, method = RequestMethod.GET)
+	public String environment() {
+		return env.getProperty(&quot;from&quot;, &quot;undefined&quot;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注：　&lt;code&gt;Environment&lt;/code&gt;在 &lt;code&gt;org.springframework.core.env.Environment&lt;/code&gt;,并不在cloud下&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;启动访问&quot;&gt;⑤　启动访问&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;启动 &lt;code&gt;注册中心&lt;/code&gt;　&lt;/li&gt;
+  &lt;li&gt;启动 &lt;code&gt;配置中心&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;启动 &lt;code&gt;meedesidy&lt;/code&gt;应用&lt;/li&gt;
+  &lt;li&gt;访问　&lt;code&gt;localhost:3001/environment&lt;/code&gt;可以根据配置环境(profile)输出对应的&lt;code&gt;from&lt;/code&gt;属性值&lt;/li&gt;
+  &lt;li&gt;访问　&lt;code&gt;localhost:3001/from&lt;/code&gt;可以根据配置环境(profile)输出对应的&lt;code&gt;from&lt;/code&gt;属性值&lt;/li&gt;
+  &lt;li&gt;修改&lt;code&gt;git&lt;/code&gt;上的文件数据&lt;strong&gt;&lt;code&gt;不可以&lt;/code&gt;&lt;/strong&gt;实时更改&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;占位符配置uri&quot;&gt;占位符配置URI&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;如：　spring.cloud.config.server.git.uri=https://github.com/Canmel/{application}&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;{application}&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;spring cloud 会根据&lt;code&gt;spring.application.name&lt;/code&gt;填充占位符,从而动态获取配置&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;{profile}&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;根据&lt;code&gt;profile&lt;/code&gt;填充&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;{lebel}&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;分支，如果分支名中出现’/’,在HTTP的URL中使用＂(_)＂来替代，避免改变URI含义&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;安全保护&quot;&gt;安全保护&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;敏感信息存放在未加密的微服务应用上是不安全的
+配置中心加密方式有很多，由于spring cloud基于&lt;code&gt;spring boot&lt;/code&gt;与&lt;code&gt;Spring Security&lt;/code&gt; 结合使用会更加方便&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;配置spring-security&quot;&gt;配置&lt;code&gt;Spring Security&lt;/code&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;依赖&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;spring-boot-starter-security&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;启动默认会在日志给出一个随机密码，一般不适用随机密码，由配置文件指定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;sucurity.user.name=meeedesidy
+security.user.password=mypassword
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;客户端使用，在配置文件中添加配置（存在bootstrap.properties时，似乎在application.propeties中配置无效）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;#-- bootstrap.properties 
+spring.cloud.config.username=meedesidy
+spring.cloud.config.password=mypassword
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;服务化配置中心&quot;&gt;服务化配置中心&lt;/h3&gt;
+&lt;h4 id=&quot;配置中心&quot;&gt;配置中心&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;依赖&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;spring-cloud-starter-eureka&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;主类添加注释&lt;code&gt;@EnableDiscoveryClient&lt;/code&gt;,以获取被注册中心发现的能力．&lt;/li&gt;
+  &lt;li&gt;配置文件,指明注册中心地址&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt; eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;客户端&quot;&gt;客户端&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;配置(添加对配置中心的需求及安全信息)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;spring:
+  cloud:
+    config:
+      username: meedesidy
+      password: lidejian111
+      discovery:
+        enable: true
+        serviceId: config-server
+      profile: dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;主类添加注释&lt;code&gt;@EnableDiscoveryClient&lt;/code&gt;,以获取被注册中心发现的能力．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;使用&quot;&gt;使用&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Value(&quot;${from}&quot;)
+private String from;
+
+@RequestMapping(&quot;/from&quot;)
+public String from(){
+    return from;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/08/30/spring-cloud-config-%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE</link>
+                <guid>http://canmel.github.io/2017/08/30/spring-cloud-config-分布式配置</guid>
+                <pubDate>2017-08-30T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>spring cloud RestTemplate 几种的请求</title>
+                <description>
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;get请求&quot;&gt;GET请求&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方法名&lt;/th&gt;
+      &lt;th&gt;返回　&lt;/th&gt;
+      &lt;th&gt;参数&lt;/th&gt;
+      &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;getForEntity&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;org.springframework.http.ResponseEntity&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Object&lt;/code&gt;… urlVariables&lt;/td&gt;
+      &lt;td&gt;第三个参数是一个数组，顺序对应&lt;code&gt;url&lt;/code&gt;占位符顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;getForEntity&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;org.springframework.http.ResponseEntity&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType, Map uriVariables&lt;/td&gt;
+      &lt;td&gt;url定义：　http://xxx.xxx?name={name}, map参数必须有一个key为&lt;code&gt;name&lt;/code&gt;的键值对&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;getForEntity&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;org.springframework.http.ResponseEntity&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;getForObject&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;自定义　&lt;code&gt;responseType&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Object&lt;/code&gt;… uriVariables&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;uriVariables&lt;/code&gt;为&lt;code&gt;url&lt;/code&gt;中占位符对应的参数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;getForObject&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;自定义　&lt;code&gt;responseType&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Map&lt;/code&gt; uriVariables&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;uriVariables&lt;/code&gt;为&lt;code&gt;url&lt;/code&gt;中占位符对应的参数,名称需要与&lt;code&gt;map&lt;/code&gt;的&lt;code&gt;key&lt;/code&gt;对应起来&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;getForObject&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;自定义　&lt;code&gt;responseType&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;post请求&quot;&gt;POST请求&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方法名&lt;/th&gt;
+      &lt;th&gt;返回　&lt;/th&gt;
+      &lt;th&gt;参数&lt;/th&gt;
+      &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForEntity&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;org.springframework.http.ResponseEntity&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Object&lt;/code&gt;… urlVariables&lt;/td&gt;
+      &lt;td&gt;第三个参数是一个数组，顺序对应&lt;code&gt;url&lt;/code&gt;占位符顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForEntity&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;org.springframework.http.ResponseEntity&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Map&lt;/code&gt; uriVariables&lt;/td&gt;
+      &lt;td&gt;url定义：　http://xxx.xxx?name={name}, &lt;code&gt;map&lt;/code&gt;参数必须有一个key为&lt;code&gt;name&lt;/code&gt;的键值对&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForEntity&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;org.springframework.http.ResponseEntity&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForObject&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;自定义　&lt;code&gt;responseType&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Object&lt;/code&gt;… uriVariables&lt;/td&gt;
+      &lt;td&gt;第三个参数是一个数组，顺序对应&lt;code&gt;url&lt;/code&gt;占位符顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForObject&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;自定义　&lt;code&gt;responseType&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Map&lt;/code&gt; uriVariables&lt;/td&gt;
+      &lt;td&gt;url定义：　http://xxx.xxx?name={name}, &lt;code&gt;map&lt;/code&gt;参数必须有一个key为&lt;code&gt;name&lt;/code&gt;的键值对&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForObject&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;自定义　&lt;code&gt;responseType&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForLocation&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Object&lt;/code&gt;… uriVariables&lt;/td&gt;
+      &lt;td&gt;第三个参数是一个数组，顺序对应&lt;code&gt;url&lt;/code&gt;占位符顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForLocation&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Map&lt;/code&gt; uriVariables&lt;/td&gt;
+      &lt;td&gt;url定义：　http://xxx.xxx?name={name}, &lt;code&gt;map&lt;/code&gt;参数必须有一个key为&lt;code&gt;name&lt;/code&gt;的键值对&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;postForLocation&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;put请求&quot;&gt;PUT请求&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方法名&lt;/th&gt;
+      &lt;th&gt;返回　&lt;/th&gt;
+      &lt;th&gt;参数&lt;/th&gt;
+      &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;put&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Object&lt;/code&gt;… urlVariables&lt;/td&gt;
+      &lt;td&gt;第三个参数是一个数组，顺序对应&lt;code&gt;url&lt;/code&gt;占位符顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;put&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType, &lt;code&gt;Map&lt;/code&gt; uriVariables&lt;/td&gt;
+      &lt;td&gt;url定义：　http://xxx.xxx?name={name}, &lt;code&gt;map&lt;/code&gt;参数必须有一个key为&lt;code&gt;name&lt;/code&gt;的键值对&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;put&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt; request, &lt;code&gt;Class&lt;/code&gt; responseType&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;delete请求&quot;&gt;DELETE请求&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方法名&lt;/th&gt;
+      &lt;th&gt;返回　&lt;/th&gt;
+      &lt;th&gt;参数&lt;/th&gt;
+      &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;put&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Object&lt;/code&gt;… urlVariables&lt;/td&gt;
+      &lt;td&gt;第三个参数是一个数组，顺序对应&lt;code&gt;url&lt;/code&gt;占位符顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;put&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;String&lt;/code&gt; url, &lt;code&gt;Map&lt;/code&gt; uriVariables&lt;/td&gt;
+      &lt;td&gt;url定义：　http://xxx.xxx?name={name}, &lt;code&gt;map&lt;/code&gt;参数必须有一个key为&lt;code&gt;name&lt;/code&gt;的键值对&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;put&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;URI&lt;/code&gt; url&lt;/td&gt;
+      &lt;td&gt;使用一个统一资源标识符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+                <link>http://canmel.github.io/2017/08/25/spring-cloud-resttemplate</link>
+                <guid>http://canmel.github.io/2017/08/25/spring-cloud-resttemplate</guid>
+                <pubDate>2017-08-25T00:00:00+08:00</pubDate>
         </item>
 
         <item>
