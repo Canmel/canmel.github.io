@@ -3,7 +3,7 @@ layout: post
 title: "spring cloud stream 消息驱动微服务"
 description: ""
 category: 
-tags: []
+tags: [spring-cloud, spring, java]
 ---
 {% include JB/setup %}
 
