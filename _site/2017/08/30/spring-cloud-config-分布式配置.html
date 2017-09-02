@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>spring cloud config 分布式配置中心</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>spring cloud config 分布式配置中心 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>30 August 2017</span>
+    </div>
+    <div class="content">
+      
+<h1 id="spring-cloud-config-分布式配置中心">spring cloud config 分布式配置中心</h1>
+
+<p>之前跟着<code>spring cloud 微服务实战</code>做分布式配置中心，一直报<code>环境仓库</code>, 注入失败的问题,记录下现在的成功项目现状</p>
+
+<p>[TOC]</p>
+
+<h3 id="1-文件结构">1. 文件结构</h3>
+
+<ul>
+  <li>[X] <strong>config</strong>
+    <ul>
+      <li>[X]  <strong>src/main/java</strong>
+        <ul>
+          <li>[X] <strong>com/meedesidy/config</strong>
+            <ul>
+              <li>[ ] ConfigApplication.class</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>[X]  <strong>src/main/resources</strong>
+        <ul>
+          <li>[ ] application.properties</li>
+          <li>[ ] bootstrap.properties</li>
+        </ul>
+      </li>
+      <li>[X]  <strong>src/test/java</strong>
+        <ul>
+          <li>[X] <strong>com/meedesidy/cinfig</strong>
+            <ul>
+              <li>[ ] ConfigApplicationTest.class</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>[ ] pom.xml</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-依赖">2. 依赖</h3>
+
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+	&lt;groupId&gt;com.skio&lt;/groupId&gt;
+	&lt;artifactId&gt;config&lt;/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
+
+	&lt;name&gt;config&lt;/name&gt;
+	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+
+	&lt;parent&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+		&lt;version&gt;1.5.6.RELEASE&lt;/version&gt;
+		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+	&lt;/parent&gt;
+
+	&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+		&lt;java.version&gt;1.8&lt;/java.version&gt;
+		&lt;spring-cloud.version&gt;Dalston.SR3&lt;/spring-cloud.version&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+	&lt;dependencyManagement&gt;
+		&lt;dependencies&gt;
+			&lt;dependency&gt;
+				&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+				&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+				&lt;version&gt;${spring-cloud.version}&lt;/version&gt;
+				&lt;type&gt;pom&lt;/type&gt;
+				&lt;scope&gt;import&lt;/scope&gt;
+			&lt;/dependency&gt;
+		&lt;/dependencies&gt;
+	&lt;/dependencyManagement&gt;
+
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+
+<h3 id="3-添加注释">3. 添加注释</h3>
+
+<pre><code class="language-java">@SpringBootApplication
+@EnableConfigServer
+public class ConfigApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigApplication.class, args);
+	}
+}
+</code></pre>
+
+<p>添加<code>@SpringBootApplication</code> 开启<code>Spring Cloud Config 服务端功能</code></p>
+
+<hr />
+
+<h3 id="4-添加配置">4. 添加配置</h3>
+
+<ol>
+  <li><code>application.properties</code></li>
+</ol>
+
+<pre><code class="language-properties">server.port=8888
+
+spring.cloud.config.label=master
+spring.cloud.config.server.git.uri=https://github.com/Canmel/spring-cloud-config/
+spring.cloud.config.server.git.uri.username=892379244@qq.com
+spring.cloud.config.server.git.uri.password=xxxxxx
+spring.cloud.config.server.git.uri.search-paths=xxxxxx
+</code></pre>
+<h4 id="配置说明">配置说明</h4>
+
+<ol>
+  <li><code>spring.cloud.config.server.git.uri</code>: Git仓库位置</li>
+  <li><code>spring.cloud.config.server.git.uri.username</code>: Git用户名</li>
+  <li><code>spring.cloud.config.server.git.uri.password</code>: Git密码</li>
+  <li><code>spring.cloud.config.server.git.uri.search-paths</code>: 仓库下相对位置，多个时以逗号分隔</li>
+</ol>
+
+<hr />
+
+<h3 id="5-填写仓库中实际配置信息">5. 填写仓库中实际配置信息</h3>
+
+<ul>
+  <li>在git上的<code>search-paths</code>路径下添加文件
+    <ul>
+      <li>meedesidy.properties</li>
+      <li>meedesidy-test.properties</li>
+      <li>meedesidy-dev.properties</li>
+      <li>meedesidy-prod.properties</li>
+    </ul>
+  </li>
+  <li><code>search-paths</code>路径下的文件添加对应内容
+    <ul>
+      <li>meedesidy.properties =&gt; <code>from=meedesidy-default-1.0</code></li>
+      <li>meedesidy-test.properties =&gt; <code>from=meedesidy-test-1.0</code></li>
+      <li>meedesidy-dev.properties =&gt; <code>from=meedesidy-dev-1.0</code></li>
+      <li>meedesidy-prod.properties =&gt; <code>from=meedesidy-prod-1.0</code></li>
+    </ul>
+  </li>
+  <li>切换分支<code>test-branch</code>,修改<code>search-paths</code>路径下的文件
+    <ul>
+      <li>meedesidy.properties =&gt; <code>from=meedesidy-default-2.0</code></li>
+      <li>meedesidy-test.properties =&gt; <code>from=meedesidy-test-2.0</code></li>
+      <li>meedesidy-dev.properties =&gt; <code>from=meedesidy-dev-2.0</code></li>
+      <li>meedesidy-prod.properties =&gt; <code>from=meedesidy-prod-2.0</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="6-测试使用">6. 测试使用</h3>
+
+<h4 id="创建服务在pomxml添加下面的依赖">①　创建服务，在<code>pom.xml</code>添加下面的依赖</h4>
+
+<pre><code>&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h4 id="-创建bootstrapproperties">② 　创建<code>bootstrap.properties</code></h4>
+
+<pre><code class="language-text">spring.application.name=meedesidy
+spring.cloud.config.profile=dev
+spring.cloud.config.label=master
+spring.cloud.config.uri=http://localhost:8888
+
+server.port=3001
+</code></pre>
+
+<blockquote>
+  <p>注：客户端获得外部配置文件后加载到客户端ApplicationContext实例，该配置内容优先级高于客户端jar包内部的配置内容，所以jar包内重复的内容不在重复加载
+如：　若<code>application.properties</code>与<code>bootstrap.properties</code>中都定义了项目名称，则以前者为准．</p>
+</blockquote>
+
+<h4 id="-属性绑定valuefrom">③ 　属性绑定@Value(“${from}”)</h4>
+
+<pre><code class="language-java">@RefreshScope
+@RestController
+Public class TestController{
+	@Value("${from}")
+	private String from;
+	
+	@RequestMapping(value = "/from", method = RequestMethod.GET)
+	public String from(){
+	    return this.from;
+	}
+}
+</code></pre>
+
+<h4 id="注入autowired">④　注入@Autowired</h4>
+
+<pre><code class="language-java">@RefreshScope
+@RestController
+Public class TestController{
+    @Autowired
+	private Environment env;
+	
+    @RequestMapping(value = "environment", method = RequestMethod.GET)
+	public String environment() {
+		return env.getProperty("from", "undefined");
+	}
+}
+</code></pre>
+
+<blockquote>
+  <p>注：　<code>Environment</code>在 <code>org.springframework.core.env.Environment</code>,并不在cloud下</p>
+</blockquote>
+
+<h4 id="启动访问">⑤　启动访问</h4>
+
+<ul>
+  <li>启动 <code>注册中心</code>　</li>
+  <li>启动 <code>配置中心</code></li>
+  <li>启动 <code>meedesidy</code>应用</li>
+  <li>访问　<code>localhost:3001/environment</code>可以根据配置环境(profile)输出对应的<code>from</code>属性值</li>
+  <li>访问　<code>localhost:3001/from</code>可以根据配置环境(profile)输出对应的<code>from</code>属性值</li>
+  <li>修改<code>git</code>上的文件数据<strong><code>不可以</code></strong>实时更改</li>
+</ul>
+
+<hr />
+
+<h3 id="占位符配置uri">占位符配置URI</h3>
+
+<blockquote>
+  <p>如：　spring.cloud.config.server.git.uri=https://github.com/Canmel/{application}</p>
+</blockquote>
+
+<ul>
+  <li><strong>{application}</strong></li>
+</ul>
+
+<p>spring cloud 会根据<code>spring.application.name</code>填充占位符,从而动态获取配置</p>
+
+<ul>
+  <li><strong>{profile}</strong></li>
+</ul>
+
+<p>根据<code>profile</code>填充</p>
+
+<ul>
+  <li><strong>{lebel}</strong></li>
+</ul>
+
+<p>分支，如果分支名中出现’/’,在HTTP的URL中使用＂(_)＂来替代，避免改变URI含义</p>
+
+<hr />
+
+<h3 id="安全保护">安全保护</h3>
+
+<blockquote>
+  <p>敏感信息存放在未加密的微服务应用上是不安全的
+配置中心加密方式有很多，由于spring cloud基于<code>spring boot</code>与<code>Spring Security</code> 结合使用会更加方便</p>
+</blockquote>
+
+<h4 id="配置spring-security">配置<code>Spring Security</code></h4>
+
+<ul>
+  <li>依赖</li>
+</ul>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<ul>
+  <li>启动默认会在日志给出一个随机密码，一般不适用随机密码，由配置文件指定</li>
+</ul>
+
+<pre><code>sucurity.user.name=meeedesidy
+security.user.password=mypassword
+</code></pre>
+
+<ul>
+  <li>客户端使用，在配置文件中添加配置（存在bootstrap.properties时，似乎在application.propeties中配置无效）</li>
+</ul>
+
+<pre><code>#-- bootstrap.properties 
+spring.cloud.config.username=meedesidy
+spring.cloud.config.password=mypassword
+</code></pre>
+<hr />
+
+<h3 id="服务化配置中心">服务化配置中心</h3>
+<h4 id="配置中心">配置中心</h4>
+
+<ul>
+  <li>依赖</li>
+</ul>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<ul>
+  <li>主类添加注释<code>@EnableDiscoveryClient</code>,以获取被注册中心发现的能力．</li>
+  <li>配置文件,指明注册中心地址</li>
+</ul>
+
+<pre><code class="language-xml"> eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
+</code></pre>
+<h4 id="客户端">客户端</h4>
+<ul>
+  <li>配置(添加对配置中心的需求及安全信息)</li>
+</ul>
+
+<pre><code class="language-yml">spring:
+  cloud:
+    config:
+      username: meedesidy
+      password: lidejian111
+      discovery:
+        enable: true
+        serviceId: config-server
+      profile: dev
+</code></pre>
+
+<ul>
+  <li>主类添加注释<code>@EnableDiscoveryClient</code>,以获取被注册中心发现的能力．</li>
+</ul>
+
+<h4 id="使用">使用</h4>
+
+<pre><code class="language-java">@Value("${from}")
+private String from;
+
+@RequestMapping("/from")
+public String from(){
+    return from;
+}
+</code></pre>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#java-ref">java <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#spring-ref">spring <span>1</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/08/25/spring-cloud-resttemplate" title="spring cloud RestTemplate 几种的请求">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2017/09/03/spring-cloud-stream-%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8%E5%BE%AE%E6%9C%8D%E5%8A%A1" title="spring cloud stream 消息驱动微服务">Next &rarr;</a></li>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

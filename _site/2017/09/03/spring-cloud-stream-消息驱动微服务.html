@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>spring cloud stream 消息驱动微服务</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>spring cloud stream 消息驱动微服务 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>03 September 2017</span>
+    </div>
+    <div class="content">
+      
+<h2 id="依赖">依赖</h2>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-stream-rabbit&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<hr />
+
+<h2 id="接收消息">接收消息</h2>
+
+<h3 id="代码">代码</h3>
+<blockquote>
+  <p>SinkReceiver.class</p>
+</blockquote>
+
+<pre><code class="language-java">/**
+* @EnableBinding 指定一个或多个定义了@Input或@Output注解的接口
+* 以此实现对消息通道(Channel)的绑定
+* Sink.class 是Spring Cloud Stream 默认实现对输入消息绑定的定义
+* @Input或@Output注释的会自动加入spring容器，可以直接注入
+*/
+@EnableBinding(value = {Sink.class})
+public class SinkReceiver {
+	
+	private static Logger logger =                           LoggerFactory.getLogger(MeedStreamApplication.class);
+     
+     /**
+     * @StreamListener被注释的方法注册为消息中心中间件上数据流的时间监听器
+     * 注解中的属性值对应监听的消息通道名
+     */
+	@StreamListener(Sink.INPUT)
+	public void receiver(Object payload ) {
+		logger.info("Received : " + payload);
+	}
+}
+</code></pre>
+
+<h3 id="配置">配置</h3>
+
+<pre><code>＃＃ 对应`RabbitMQ` 上`exchanges(消息交换机)`的name, 这里将设置为`test`　
+spring.cloud.stream.bindings.sendoutput.destination=test
+
+</code></pre>
+
+<hr />
+
+<h2 id="发送消息">发送消息</h2>
+
+<h3 id="代码-1">代码</h3>
+
+<pre><code class="language-java">@EnableBinding(value = {Sender.class})
+public class SinkSender {
+	private static Logger logger = LoggerFactory.getLogger(SinkSender.class);
+
+    @Bean
+	@InboundChannelAdapter(value = Sender.SENDER, poller = @Poller(fixedDelay = "2000"))
+	public MessageSource&lt;String&gt; timerMessageSource(){
+		return () -&gt; new GenericMessage&lt;&gt;("xxxxxxx2秒调用一次");
+	}
+}	
+
+</code></pre>
+
+<hr />
+
+<h3 id="配置-1">配置</h3>
+
+<pre><code>＃＃ 对应`RabbitMQ` 上`exchanges(消息交换机)`的name, 这里将设置为`test`
+＃＃ 可以不进行设置，但要使得消息交换机名称和之前的`test`一致才能接收消息，
+＃＃ 两种方式:
+＃＃ １．@StreamListener `参数` 与 前面的`test`一致
+＃＃ ２．设置如下参数改变当前要接入的消息交换机`name`
+spring.cloud.stream.bindings.receiverinput.destination=test
+
+</code></pre>
+
+<p><strong>@EnableBinding : 绑定消息通道（channel）</strong></p>
+
+<p><strong>@StreamListener : 注册监听</strong></p>
+
+    </div>
+
+    
+
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/08/30/spring-cloud-config-%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE" title="spring cloud config 分布式配置中心">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
