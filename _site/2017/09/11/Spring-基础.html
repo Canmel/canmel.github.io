@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Spring 基础</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>Spring 基础 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>11 September 2017</span>
+    </div>
+    <div class="content">
+      <h1 id="spring-基础">Spring 基础</h1>
+
+<h2 id="spring-依赖注入">Spring 依赖注入</h2>
+
+<h3 id="概念">概念</h3>
+
+<blockquote>
+  <p>控制反转(ICO)和依赖注入(DI)在spring中概念是等同的，控制反转时通过依赖注入实现的，所谓依赖注入是容器负责创建对象和维护对象之间的依赖关系，而不是通过对象自己负责自己的创建和解决自己的依赖．</p>
+</blockquote>
+
+<p>Spring IoC容器(ApplicationContext)负责创建Bean,并通过容器将功能类注入到你需要的Bean中</p>
+
+<h3 id="创建和注入方式">创建和注入方式</h3>
+
+<p><code>xml</code>, <code>注解</code>, <code>JAVA配置</code>, <code>Groovy配置</code></p>
+
+<h4 id="声明bean的注解">声明Bean的注解</h4>
+
+<ul>
+  <li>@Component  没有明确的角色</li>
+  <li>@Service    在业务逻辑层（service）使用</li>
+  <li>@Repository 在数据访问层(Dao)使用</li>
+  <li>@Controller 控制层(controller)使用</li>
+</ul>
+
+<h4 id="注入bean的注解">注入Bean的注解</h4>
+
+<ul>
+  <li>@Autowired  Spring提供的注解</li>
+  <li>@Inject     JSR-330提供的注解</li>
+  <li>@Resource   JSR-250提供的注解
+均可注释在<code>set</code>方法或属性上</li>
+</ul>
+
+<h4 id="扫描注册bean">扫描注册Bean</h4>
+
+<ul>
+  <li>@Component(“com.xx.xxx”)  自动扫描包名下所有使用声明了<code>Bean</code>的注解,并注册为<code>Bean</code></li>
+  <li>
+    <p>@configuration    声明当前是一个配置类型, 相当于一个xml配置文件,表明这个类可能会有<code>Bean</code>的注解,此处无需在使用包扫描,因为所有的Bean都在此类中定义了</p>
+  </li>
+  <li><strong>以上两种方式都会自动加载注释了声明了bean的注解到Spring容器中</strong></li>
+</ul>
+
+<h2 id="aop">AOP</h2>
+
+<h3 id="概念-1">概念</h3>
+
+<blockquote>
+  <p>面向切面编程,相对于OOP面向对象编程
+AOP的目的是为了解耦,让一组类共享相同的行为</p>
+</blockquote>
+
+<h3 id="aspectj-注解式切面编程">AspectJ 注解式切面编程</h3>
+
+<ul>
+  <li><code>@AspectJ</code>    声明一个切面</li>
+  <li><code>@After</code>, <code>@Before</code>, <code>@Around</code>定义建言,可直接使用拦截规则为参数</li>
+  <li><code>@PointCut</code>   定义拦截规则</li>
+</ul>
+
+<h2 id="自定义注解">自定义注解</h2>
+
+<h3 id="示例代码">示例代码</h3>
+
+<pre><code class="language-java">@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Action {
+	String name();
+	String tesd();
+}
+</code></pre>
+<h3 id="注释">注释</h3>
+
+<ul>
+  <li>@Target(ElementType.METHOD)   表示该注解用于什么地方，可能的值在枚举类 ElemenetType</li>
+  <li>@Retention 表示在什么级别保存该注解信息, 可选<code>RetentionPolicy</code>内的枚举类型</li>
+  <li>@Documented 将此注解包含在 javadoc 中它代表着此注解会被javadoc工具提取成文档</li>
+</ul>
+
+<h2 id="bean的scope">@Bean的<code>scope</code></h2>
+
+<h3 id="概念-2">概念</h3>
+
+<blockquote>
+  <p>描述Spring 容器如何新建Bean实例</p>
+</blockquote>
+
+<h3 id="实现-通过scope实现">实现 通过@Scope实现</h3>
+
+<ul>
+  <li>Singleton     一个spring容器只有一个bean实例,默认为单例</li>
+  <li>Prototype     每次调用新建一个Bean</li>
+  <li>Request       Web项目给每一个 Http Request新建一个实例</li>
+  <li>Session       Web项目给每一个 Http Session新建一个实例</li>
+  <li>
+    <p>GlobalSession 只在portal应用中有用,给每一个Global Http Session 创建一个</p>
+  </li>
+  <li>需要注入的类</li>
+</ul>
+
+<pre><code class="language-java">@Service
+@Scope("prototype") // 每次调用创建一个实例
+public class DemoPrototypeService {
+
+}
+</code></pre>
+
+
+    </div>
+
+    
+
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/09/03/spring-cloud-stream-%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8%E5%BE%AE%E6%9C%8D%E5%8A%A1" title="spring cloud stream 消息驱动微服务">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2017/09/11/spring-boot-%E4%BA%8B%E4%BB%B6" title="spring boot 事件">Next &rarr;</a></li>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
