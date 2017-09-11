@@ -3,7 +3,7 @@ layout: post
 title: "spring boot 事件"
 description: ""
 category: 
-tags: [java spring-boot spring]
+tags: [java, spring-boot, spring]
 ---
 
 ## 概念
