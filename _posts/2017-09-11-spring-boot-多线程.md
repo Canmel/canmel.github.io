@@ -3,7 +3,7 @@ layout: post
 title: "spring boot 多线程"
 description: ""
 category: 
-tags: [java spring-boot spring]
+tags: [java, spring-boot, spring]
 ---
 
 > Spring 通过任务执行器（TaskExecutor）实现多线程和并发编程，使用`ThreadPoolTaskExecutor`可实现一个基于线程池`TaskExecutor`
