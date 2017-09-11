@@ -4,13 +4,309 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-09-03T02:00:15+08:00</updated>
+ <updated>2017-09-11T12:35:14+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
    <email>892379244@qq.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Spring boot 常用配置</title>
+   <link href="http://canmel.github.io/2017/09/11/spring-boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE"/>
+   <updated>2017-09-11T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/09/11/spring-boot-常用配置</id>
+   <content type="html">&lt;h1 id=&quot;spring-常用配置&quot;&gt;Spring 常用配置&lt;/h1&gt;
+
+&lt;h2 id=&quot;bean的scope&quot;&gt;@Bean的&lt;code&gt;scope&lt;/code&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;概念&quot;&gt;概念&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;描述Spring 容器如何新建Bean实例&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;实现-通过scope实现&quot;&gt;实现 通过@Scope实现&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Singleton     一个spring容器只有一个bean实例,默认为单例&lt;/li&gt;
+  &lt;li&gt;Prototype     每次调用新建一个Bean&lt;/li&gt;
+  &lt;li&gt;Request       Web项目给每一个 Http Request新建一个实例&lt;/li&gt;
+  &lt;li&gt;Session       Web项目给每一个 Http Session新建一个实例&lt;/li&gt;
+  &lt;li&gt;GlobalSession 只在portal应用中有用,给每一个Global Http Session 创建一个&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>spring boot 多线程</title>
+   <link href="http://canmel.github.io/2017/09/11/spring-boot-%E5%A4%9A%E7%BA%BF%E7%A8%8B"/>
+   <updated>2017-09-11T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/09/11/spring-boot-多线程</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;Spring 通过任务执行器（TaskExecutor）实现多线程和并发编程，使用&lt;code&gt;ThreadPoolTaskExecutor&lt;/code&gt;可实现一个基于线程池&lt;code&gt;TaskExecutor&lt;/code&gt;
+通过&lt;code&gt;＠EnableAsync&lt;/code&gt;开启对异步任务的支持，并通过在实际执行的&lt;code&gt;Bean&lt;/code&gt;的方法中使用&lt;code&gt;＠Async&lt;/code&gt;注解其是一个&lt;code&gt;异步任务&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;h3 id=&quot;配置类&quot;&gt;配置类&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Configuration
+@ComponentScan(&quot;com.meedesidy.test_spring4.executor&quot;)
+@EnableAsync
+// 实现AsyncConfigurer 重写getAsyncExecutor, getAsyncUncaughtExceptionHandler
+public class TaskExecutorConfig implements AsyncConfigurer{
+    
+    //配置一个基于线程池的Executor
+	@Override
+	public Executor getAsyncExecutor() {
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+		executor.setCorePoolSize(5);
+		executor.setMaxPoolSize(10);
+		executor.setQueueCapacity(25);
+		executor.initialize();
+		return executor;
+	}
+
+	@Override
+	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+		return null;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;任务执行类&quot;&gt;任务执行类&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Service
+public class AsyncTaskService {
+
+	@Async // @Async 定义在方法上,该方法是个异步方法,若在类上,该类下所有的方法都是异步方法
+	public void executeAsyncTask(Integer i) {
+		System.out.println(&quot;执行异步任务：&quot; + i);
+	}
+	
+	@Async
+	public void executeAsyncTaskPlus(Integer i) {
+		System.out.println(&quot;执行异步任务 + 1: &quot; + (i + 1));
+	}
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>spring boot 事件</title>
+   <link href="http://canmel.github.io/2017/09/11/spring-boot-%E4%BA%8B%E4%BB%B6"/>
+   <updated>2017-09-11T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/09/11/spring-boot-事件</id>
+   <content type="html">&lt;h2 id=&quot;概念&quot;&gt;概念&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;　Spring Event为bean和bean之间通信提供了支持,当一个bean处理完一个,另一个bean做出相应的处理&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;流程&quot;&gt;流程&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;自定义事件, 继承 ApplicationEvent&lt;/li&gt;
+  &lt;li&gt;定义事件监听,实现 ApplicationListener&lt;/li&gt;
+  &lt;li&gt;使用容器发布&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;h3 id=&quot;定义事件&quot;&gt;定义事件&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class DemoEvent extends ApplicationContextEvent {
+
+	private static final long serialVersionUID = 1L;
+	
+	private String msg;
+	
+	public DemoEvent(ApplicationContext source, String msg) {
+		super(source);
+		this.msg = msg;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;定义监听&quot;&gt;定义监听&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Component
+public class DemoListener implements ApplicationListener&amp;lt;DemoEvent&amp;gt;{
+
+	@Override
+	public void onApplicationEvent(DemoEvent event) {
+		String msg = event.getMsg();
+		System.out.println(&quot;我(bean-demo-listener)接收到了 bean-demoPublisher 发布的消息:　&quot; + msg);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;使用容器发布&quot;&gt;使用容器发布&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Component
+public class DemoPublisher {
+	@Autowired
+	ApplicationContext applicationContext;
+	
+	public void publish(String msg) {
+		applicationContext.publishEvent(new DemoEvent(applicationContext, msg));
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;运行&quot;&gt;运行&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public static void main( String[] args ) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EnventConfig.class);
+        DemoPublisher demoPublisher = context.getBean(DemoPublisher.class);
+        demoPublisher.publish(&quot;我在App-class发送一条消息&quot;);
+        context.close();
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;解释&quot;&gt;解释&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;使用容器发布&lt;/code&gt;注入容器;&lt;/li&gt;
+  &lt;li&gt;容器中发布新建的事件&lt;code&gt;DemoEvent&lt;/code&gt;;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;事件监听&lt;/code&gt;,实现&lt;code&gt;ApplicationListener&lt;/code&gt;,重写&lt;code&gt;onApplicationEvent(DemoEvent event)&lt;/code&gt;;&lt;/li&gt;
+  &lt;li&gt;事件监听业务逻辑就在&lt;code&gt;onApplicationEvent&lt;/code&gt;中&lt;/li&gt;
+&lt;/ol&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Spring 基础</title>
+   <link href="http://canmel.github.io/2017/09/11/Spring-%E5%9F%BA%E7%A1%80"/>
+   <updated>2017-09-11T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/09/11/Spring 基础</id>
+   <content type="html">&lt;h1 id=&quot;spring-基础&quot;&gt;Spring 基础&lt;/h1&gt;
+
+&lt;h2 id=&quot;spring-依赖注入&quot;&gt;Spring 依赖注入&lt;/h2&gt;
+
+&lt;h3 id=&quot;概念&quot;&gt;概念&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;控制反转(ICO)和依赖注入(DI)在spring中概念是等同的，控制反转时通过依赖注入实现的，所谓依赖注入是容器负责创建对象和维护对象之间的依赖关系，而不是通过对象自己负责自己的创建和解决自己的依赖．&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Spring IoC容器(ApplicationContext)负责创建Bean,并通过容器将功能类注入到你需要的Bean中&lt;/p&gt;
+
+&lt;h3 id=&quot;创建和注入方式&quot;&gt;创建和注入方式&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;xml&lt;/code&gt;, &lt;code&gt;注解&lt;/code&gt;, &lt;code&gt;JAVA配置&lt;/code&gt;, &lt;code&gt;Groovy配置&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;声明bean的注解&quot;&gt;声明Bean的注解&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Component  没有明确的角色&lt;/li&gt;
+  &lt;li&gt;@Service    在业务逻辑层（service）使用&lt;/li&gt;
+  &lt;li&gt;@Repository 在数据访问层(Dao)使用&lt;/li&gt;
+  &lt;li&gt;@Controller 控制层(controller)使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;注入bean的注解&quot;&gt;注入Bean的注解&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Autowired  Spring提供的注解&lt;/li&gt;
+  &lt;li&gt;@Inject     JSR-330提供的注解&lt;/li&gt;
+  &lt;li&gt;@Resource   JSR-250提供的注解
+均可注释在&lt;code&gt;set&lt;/code&gt;方法或属性上&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;扫描注册bean&quot;&gt;扫描注册Bean&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Component(“com.xx.xxx”)  自动扫描包名下所有使用声明了&lt;code&gt;Bean&lt;/code&gt;的注解,并注册为&lt;code&gt;Bean&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;@configuration    声明当前是一个配置类型, 相当于一个xml配置文件,表明这个类可能会有&lt;code&gt;Bean&lt;/code&gt;的注解,此处无需在使用包扫描,因为所有的Bean都在此类中定义了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;以上两种方式都会自动加载注释了声明了bean的注解到Spring容器中&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;aop&quot;&gt;AOP&lt;/h2&gt;
+
+&lt;h3 id=&quot;概念-1&quot;&gt;概念&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;面向切面编程,相对于OOP面向对象编程
+AOP的目的是为了解耦,让一组类共享相同的行为&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;aspectj-注解式切面编程&quot;&gt;AspectJ 注解式切面编程&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;@AspectJ&lt;/code&gt;    声明一个切面&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;@After&lt;/code&gt;, &lt;code&gt;@Before&lt;/code&gt;, &lt;code&gt;@Around&lt;/code&gt;定义建言,可直接使用拦截规则为参数&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;@PointCut&lt;/code&gt;   定义拦截规则&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;自定义注解&quot;&gt;自定义注解&lt;/h2&gt;
+
+&lt;h3 id=&quot;示例代码&quot;&gt;示例代码&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Action {
+	String name();
+	String tesd();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;注释&quot;&gt;注释&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Target(ElementType.METHOD)   表示该注解用于什么地方，可能的值在枚举类 ElemenetType&lt;/li&gt;
+  &lt;li&gt;@Retention 表示在什么级别保存该注解信息, 可选&lt;code&gt;RetentionPolicy&lt;/code&gt;内的枚举类型&lt;/li&gt;
+  &lt;li&gt;@Documented 将此注解包含在 javadoc 中它代表着此注解会被javadoc工具提取成文档&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;bean的scope&quot;&gt;@Bean的&lt;code&gt;scope&lt;/code&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;概念-2&quot;&gt;概念&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;描述Spring 容器如何新建Bean实例&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;实现-通过scope实现&quot;&gt;实现 通过@Scope实现&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Singleton     一个spring容器只有一个bean实例,默认为单例&lt;/li&gt;
+  &lt;li&gt;Prototype     每次调用新建一个Bean&lt;/li&gt;
+  &lt;li&gt;Request       Web项目给每一个 Http Request新建一个实例&lt;/li&gt;
+  &lt;li&gt;Session       Web项目给每一个 Http Session新建一个实例&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GlobalSession 只在portal应用中有用,给每一个Global Http Session 创建一个&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;需要注入的类&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Service
+@Scope(&quot;prototype&quot;) // 每次调用创建一个实例
+public class DemoPrototypeService {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>spring cloud stream 消息驱动微服务</title>
