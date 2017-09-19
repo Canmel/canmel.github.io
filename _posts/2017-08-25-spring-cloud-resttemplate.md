@@ -3,7 +3,7 @@ layout: post
 title: "spring cloud RestTemplate 几种的请求"
 description: ""
 category: 
-tags: [spring-cloud, spring, java]
+tags: [Spring-cloud, Spring, Java]
 ---
 {% include JB/setup %}
 

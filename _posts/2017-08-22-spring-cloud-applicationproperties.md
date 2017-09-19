@@ -3,7 +3,7 @@ layout: post
 title: "Spring cloud application.properties"
 description: "Spring cloud application.properties常用的配配置"
 category: 
-tags: [spring-cloud, spring, java]
+tags: [Spring-cloud, Spring, Java]
 ---
 {% include JB/setup %}
 

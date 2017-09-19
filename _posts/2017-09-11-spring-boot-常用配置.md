@@ -3,7 +3,7 @@ layout: post
 title: "Spring boot 常用配置"
 description: ""
 category: 
-tags: [java, spring, spring-boot]
+tags: [Java, Spring, Spring-boot]
 ---
 
 # Spring 常用配置
