@@ -3,7 +3,7 @@ layout: post
 title: "spring cloud config 分布式配置中心"
 description: ""
 category: 
-tags: [spring-cloud, spring, java]
+tags: [Spring-cloud, Spring, Java]
 ---
 {% include JB/setup %}
 

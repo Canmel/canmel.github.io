@@ -3,7 +3,7 @@ layout: post
 title: "ubuntu安装java开发环境"
 description: ""
 category: 
-tags: [java]
+tags: [Java]
 ---
 {% include JB/setup %}
 
