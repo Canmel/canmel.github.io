@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>spring boot 多线程</title>
+    <title>Spring boot 计划任务</title>
     <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +83,7 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>spring boot 多线程 </h1>
+  <h1>Spring boot 计划任务 </h1>
 </div>
 
 <div class="row post-full">
@@ -92,55 +92,49 @@
       <span>11 September 2017</span>
     </div>
     <div class="content">
-      <blockquote>
-  <p>Spring 通过任务执行器（TaskExecutor）实现多线程和并发编程，使用<code>ThreadPoolTaskExecutor</code>可实现一个基于线程池<code>TaskExecutor</code>
-通过<code>＠EnableAsync</code>开启对异步任务的支持，并通过在实际执行的<code>Bean</code>的方法中使用<code>＠Async</code>注解其是一个<code>异步任务</code></p>
+      <h2 id="用法">用法</h2>
+
+<blockquote>
+  <p>配置类注解@EnableScheduling 开启对计划任务的支持,然后在要执行的计划任务方法上添加注解@Scheduled,声明这是一个计划任务</p>
 </blockquote>
+
+<p><strong><code>@Scheduled</code>支持多种类型的计划任务,包含<code>cron</code> <code>fixDelay</code> <code>fixRate</code>等</strong></p>
 
 <h2 id="代码">代码</h2>
 
-<h3 id="配置类">配置类</h3>
+<h3 id="计划任务执行类">计划任务执行类</h3>
 
-<pre><code class="language-java">@Configuration
-@ComponentScan("com.meedesidy.test_spring4.executor")
-@EnableAsync
-// 实现AsyncConfigurer 重写getAsyncExecutor, getAsyncUncaughtExceptionHandler
-public class TaskExecutorConfig implements AsyncConfigurer{
-    
-    //配置一个基于线程池的Executor
-	@Override
-	public Executor getAsyncExecutor() {
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(5);
-		executor.setMaxPoolSize(10);
-		executor.setQueueCapacity(25);
-		executor.initialize();
-		return executor;
+<pre><code class="language-java">@Service
+public class ScheduledTaskService {
+
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	
+	// @Scheduled 设置计划任务执行方式
+	@Scheduled(fixedRate = 1000)
+	public void reportCurrentTime() {
+		System.out.println("每隔1秒执行一次 " + dateFormat.format(new Date()));
 	}
+	
+	@Scheduled(cron = "0 0 13 ? * *")
+	public void fixTimeExecution() {
+		System.out.println("在指定时间 " + dateFormat.format(new Date()) + " 执行");
 
-	@Override
-	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-		return null;
 	}
 }
 </code></pre>
 
-<h3 id="任务执行类">任务执行类</h3>
+<h3 id="配置类">配置类</h3>
 
-<pre><code class="language-java">@Service
-public class AsyncTaskService {
+<blockquote>
+  <p>@EnableScheduling 开启对注解类的支持</p>
+</blockquote>
 
-	@Async // @Async 定义在方法上,该方法是个异步方法,若在类上,该类下所有的方法都是异步方法
-	public void executeAsyncTask(Integer i) {
-		System.out.println("执行异步任务：" + i);
-	}
+<pre><code class="language-java">@Configuration
+@ComponentScan("com.meedesidy.test_spring4.schedu")
+@EnableScheduling
+public class TaskSchedulerConfig {
 	
-	@Async
-	public void executeAsyncTaskPlus(Integer i) {
-		System.out.println("执行异步任务 + 1: " + (i + 1));
-	}
 }
-
 </code></pre>
 
 
@@ -159,9 +153,9 @@ public class AsyncTaskService {
      
     	<li><a href="/tags.html#Java-ref">Java <span>14</span></a></li>
      
-    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
-     
     	<li><a href="/tags.html#Spring-ref">Spring <span>10</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
     
   
 
@@ -174,11 +168,11 @@ public class AsyncTaskService {
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/09/11/spring-boot-%E4%BA%8B%E4%BB%B6" title="spring boot 事件">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/09/11/spring-boot-%E7%BB%84%E5%90%88%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%85%83%E6%B3%A8%E8%A7%A3" title="Spring boot 组合注解与元注解">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/09/11/spring-boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE" title="Spring boot 常用配置">Next &rarr;</a></li>
+        <li class="next"><a href="/2017/09/19/HTML%E4%B8%ADplaceholder%E6%8F%90%E7%A4%BA%E6%8D%A2%E8%A1%8C" title="HTML 中 placeholder提示换行">Next &rarr;</a></li>
       
     </ul>
     <hr>

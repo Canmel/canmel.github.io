@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>spring boot 多线程</title>
+    <title>Spring boot 条件注解</title>
     <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +83,7 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>spring boot 多线程 </h1>
+  <h1>Spring boot 条件注解 </h1>
 </div>
 
 <div class="row post-full">
@@ -92,55 +92,83 @@
       <span>11 September 2017</span>
     </div>
     <div class="content">
-      <blockquote>
-  <p>Spring 通过任务执行器（TaskExecutor）实现多线程和并发编程，使用<code>ThreadPoolTaskExecutor</code>可实现一个基于线程池<code>TaskExecutor</code>
-通过<code>＠EnableAsync</code>开启对异步任务的支持，并通过在实际执行的<code>Bean</code>的方法中使用<code>＠Async</code>注解其是一个<code>异步任务</code></p>
+      <h2 id="定义">定义</h2>
+
+<blockquote>
+  <p>通过活动的profile可以获得不同的bean, Spring 4提供了一个通用的基于条件的Bean 的创建, 即使用@Conditional注解</p>
 </blockquote>
 
 <h2 id="代码">代码</h2>
 
-<h3 id="配置类">配置类</h3>
+<h3 id="判定条件定义">判定条件定义</h3>
 
-<pre><code class="language-java">@Configuration
-@ComponentScan("com.meedesidy.test_spring4.executor")
-@EnableAsync
-// 实现AsyncConfigurer 重写getAsyncExecutor, getAsyncUncaughtExceptionHandler
-public class TaskExecutorConfig implements AsyncConfigurer{
-    
-    //配置一个基于线程池的Executor
+<pre><code class="language-java">public class LinuxCondition implements Condition {
 	@Override
-	public Executor getAsyncExecutor() {
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(5);
-		executor.setMaxPoolSize(10);
-		executor.setQueueCapacity(25);
-		executor.initialize();
-		return executor;
-	}
-
-	@Override
-	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-		return null;
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		return context.getEnvironment().getProperty("os.name").contains("Linux");
 	}
 }
 </code></pre>
 
-<h3 id="任务执行类">任务执行类</h3>
-
-<pre><code class="language-java">@Service
-public class AsyncTaskService {
-
-	@Async // @Async 定义在方法上,该方法是个异步方法,若在类上,该类下所有的方法都是异步方法
-	public void executeAsyncTask(Integer i) {
-		System.out.println("执行异步任务：" + i);
-	}
-	
-	@Async
-	public void executeAsyncTaskPlus(Integer i) {
-		System.out.println("执行异步任务 + 1: " + (i + 1));
+<pre><code class="language-java">public class WindowsCondition implements Condition {
+	@Override
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		return context.getEnvironment().getProperty("os.name").contains("Windows");
 	}
 }
+</code></pre>
 
+<h3 id="不同条件下的bean">不同条件下的Bean</h3>
+
+<pre><code class="language-java">public interface ListService {
+	public String showListCmd();
+}
+</code></pre>
+
+<pre><code class="language-java">public class LinuxListService implements ListService {
+
+	@Override
+	public String showListCmd() {
+		return "ls";
+	}
+}
+</code></pre>
+
+<pre><code class="language-java">public class WindowsListService implements ListService{
+
+	@Override
+	public String showListCmd() {
+		return "dir";
+	}
+}
+</code></pre>
+
+<h3 id="配置">配置</h3>
+
+<pre><code class="language-java">@Configuration
+public class ConditionConfig {
+
+	@Bean
+	@Conditional(WindowsCondition.class) // WindowsCondition 中 matches 返回true 则使用这个bean 
+	public ListService windowsListService() {
+		return new WindowsListService();
+	}
+	
+	@Bean
+	@Conditional(LinuxCondition.class) // WindowsCondition 中 matches 返回true 则使用这个bean
+	public ListService linuxListService() {
+		return new LinuxListService();
+	}
+}
+</code></pre>
+
+<h2 id="运行">运行</h2>
+
+<pre><code class="language-java">public static void main( String[] args ) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
+        ListService listService = context.getBean(ListService.class);
+        System.out.println(context.getEnvironment().getProperty("os.name") + "系统下的列表命令:　" + listService.showListCmd());
+}
 </code></pre>
 
 
@@ -159,9 +187,9 @@ public class AsyncTaskService {
      
     	<li><a href="/tags.html#Java-ref">Java <span>14</span></a></li>
      
-    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
-     
     	<li><a href="/tags.html#Spring-ref">Spring <span>10</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
     
   
 
@@ -174,11 +202,11 @@ public class AsyncTaskService {
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/09/11/spring-boot-%E4%BA%8B%E4%BB%B6" title="spring boot 事件">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/09/11/spring-boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE" title="Spring boot 常用配置">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/09/11/spring-boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE" title="Spring boot 常用配置">Next &rarr;</a></li>
+        <li class="next"><a href="/2017/09/11/spring-boot-%E7%BB%84%E5%90%88%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%85%83%E6%B3%A8%E8%A7%A3" title="Spring boot 组合注解与元注解">Next &rarr;</a></li>
       
     </ul>
     <hr>

@@ -5,10 +5,254 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-09-11T12:42:47+08:00</lastBuildDate>
-        <pubDate>2017-09-11T12:42:47+08:00</pubDate>
+        <lastBuildDate>2017-09-19T17:49:54+08:00</lastBuildDate>
+        <pubDate>2017-09-19T17:49:54+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>HTML 中 placeholder提示换行</title>
+                <description>&lt;h2 id=&quot;需求&quot;&gt;需求&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;准备的H5界面是在微信中分享朋友圈的&lt;/li&gt;
+  &lt;li&gt;在&lt;code&gt;textarea&lt;/code&gt;中&lt;code&gt;placeholder&lt;/code&gt;提示可能需要换行&lt;/li&gt;
+  &lt;li&gt;下面要将&lt;code&gt;文本1&lt;/code&gt;,&lt;code&gt;文本2&lt;/code&gt;分两行显示&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;textarea id=&quot;TextArea1&quot; placeholder=&quot;文本1~ 文本2~&quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;textarea id=&quot;TextArea1&quot; placeholder=&quot;文本1~&amp;amp;#13;&amp;amp;#10;文本2~&quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;上述代码即可实现换行&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;问题&quot;&gt;问题&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;安卓手机完全可以实现换行操作，ios不支持&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;解决&quot;&gt;解决&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;添加js&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&quot;js/jquery.watermark.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;textarea添加样式 &lt;code&gt;class=&quot;jq_watermark&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;textarea id=&quot;TextArea1&quot; class=&quot;jq_watermark&quot; placeholder=&quot;文本1~文本2~&quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在文本中添加标签&lt;code&gt;&amp;lt;br/&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;textarea id=&quot;TextArea1&quot; class=&quot;jq_watermark&quot; placeholder=&quot;文本1~&amp;lt;br/&amp;gt;文本2~&quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;ok-解决了&quot;&gt;OK 解决了&lt;/h3&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/09/19/HTML%E4%B8%ADplaceholder%E6%8F%90%E7%A4%BA%E6%8D%A2%E8%A1%8C</link>
+                <guid>http://canmel.github.io/2017/09/19/HTML中placeholder提示换行</guid>
+                <pubDate>2017-09-19T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>Spring boot 计划任务</title>
+                <description>&lt;h2 id=&quot;用法&quot;&gt;用法&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;配置类注解@EnableScheduling 开启对计划任务的支持,然后在要执行的计划任务方法上添加注解@Scheduled,声明这是一个计划任务&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;@Scheduled&lt;/code&gt;支持多种类型的计划任务,包含&lt;code&gt;cron&lt;/code&gt; &lt;code&gt;fixDelay&lt;/code&gt; &lt;code&gt;fixRate&lt;/code&gt;等&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;h3 id=&quot;计划任务执行类&quot;&gt;计划任务执行类&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Service
+public class ScheduledTaskService {
+
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;HH:mm:ss&quot;);
+	
+	// @Scheduled 设置计划任务执行方式
+	@Scheduled(fixedRate = 1000)
+	public void reportCurrentTime() {
+		System.out.println(&quot;每隔1秒执行一次 &quot; + dateFormat.format(new Date()));
+	}
+	
+	@Scheduled(cron = &quot;0 0 13 ? * *&quot;)
+	public void fixTimeExecution() {
+		System.out.println(&quot;在指定时间 &quot; + dateFormat.format(new Date()) + &quot; 执行&quot;);
+
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;配置类&quot;&gt;配置类&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;@EnableScheduling 开启对注解类的支持&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Configuration
+@ComponentScan(&quot;com.meedesidy.test_spring4.schedu&quot;)
+@EnableScheduling
+public class TaskSchedulerConfig {
+	
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/09/11/spring-boot-%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1</link>
+                <guid>http://canmel.github.io/2017/09/11/spring-boot-计划任务</guid>
+                <pubDate>2017-09-11T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>Spring boot 组合注解与元注解</title>
+                <description>&lt;blockquote&gt;
+  &lt;p&gt;　可以使用自定义的注解，使用多个注解组合成一个组合注解，这样我们只需要一个注解就可以表示两个注解&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;h3 id=&quot;组合注解&quot;&gt;组合注解&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Configuration
+@ComponentScan
+public @interface WiselyConfigration {
+
+	String[] value() default {};
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;使用组合注解&quot;&gt;使用组合注解&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@WiselyConfigration(&quot;com.meedesidy.test_spring4.annotation&quot;)
+public class DemoConfig {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;运行&quot;&gt;运行&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;使用新的注解依然可以在容器中加入bean&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public static void main( String[] args ) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
+        DemoService demoService = context.getBean(DemoService.class);
+        demoService.outputResult();
+        context.close();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/09/11/spring-boot-%E7%BB%84%E5%90%88%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%85%83%E6%B3%A8%E8%A7%A3</link>
+                <guid>http://canmel.github.io/2017/09/11/spring-boot-组合注解与元注解</guid>
+                <pubDate>2017-09-11T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>Spring boot 条件注解</title>
+                <description>&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;通过活动的profile可以获得不同的bean, Spring 4提供了一个通用的基于条件的Bean 的创建, 即使用@Conditional注解&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+
+&lt;h3 id=&quot;判定条件定义&quot;&gt;判定条件定义&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class LinuxCondition implements Condition {
+	@Override
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		return context.getEnvironment().getProperty(&quot;os.name&quot;).contains(&quot;Linux&quot;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class WindowsCondition implements Condition {
+	@Override
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		return context.getEnvironment().getProperty(&quot;os.name&quot;).contains(&quot;Windows&quot;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;不同条件下的bean&quot;&gt;不同条件下的Bean&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public interface ListService {
+	public String showListCmd();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class LinuxListService implements ListService {
+
+	@Override
+	public String showListCmd() {
+		return &quot;ls&quot;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class WindowsListService implements ListService{
+
+	@Override
+	public String showListCmd() {
+		return &quot;dir&quot;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;配置&quot;&gt;配置&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Configuration
+public class ConditionConfig {
+
+	@Bean
+	@Conditional(WindowsCondition.class) // WindowsCondition 中 matches 返回true 则使用这个bean 
+	public ListService windowsListService() {
+		return new WindowsListService();
+	}
+	
+	@Bean
+	@Conditional(LinuxCondition.class) // WindowsCondition 中 matches 返回true 则使用这个bean
+	public ListService linuxListService() {
+		return new LinuxListService();
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;运行&quot;&gt;运行&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public static void main( String[] args ) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
+        ListService listService = context.getBean(ListService.class);
+        System.out.println(context.getEnvironment().getProperty(&quot;os.name&quot;) + &quot;系统下的列表命令:　&quot; + listService.showListCmd());
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/09/11/spring-boot-%E6%9D%A1%E4%BB%B6%E6%B3%A8%E8%A7%A3</link>
+                <guid>http://canmel.github.io/2017/09/11/spring-boot-条件注解</guid>
+                <pubDate>2017-09-11T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>Spring boot 常用配置</title>
