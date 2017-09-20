@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>微信朋友圈分享案例</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>微信朋友圈分享案例 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>20 September 2017</span>
+    </div>
+    <div class="content">
+      <blockquote>
+  <p>微信朋友圈分享或者分享给其他好友,如果需要自定义的<code>title</code>, <code>desc</code>, <code>image</code>等</p>
+</blockquote>
+
+<p>##　1. 前提</p>
+
+<ul>
+  <li>微信公众平台<code>公众号设置</code>中按提示设置<code>JS接口安全域名</code></li>
+  <li>获取开发者<code>ID(AppID)</code>, <code>开发者密码(AppSecret)</code></li>
+  <li>微信公众号中-<code>开发</code>-<code>基本配置</code>-<code>IP白名单</code>中按提示设置要分享的页面的域名</li>
+</ul>
+
+<h2 id="2-代码">2. 代码</h2>
+
+<h3 id="js部分">js部分</h3>
+
+<pre><code class="language-html">&lt;script src="js/jquery-1.11.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    $(function () {
+        $.ajax({
+                url: "http://xxxxxxxxx.json",       //获取签名
+                async: false, //　设置同步，去服务器取到数据后设置微信js配置
+                data: "url=" + encodeURIComponent(location.href.split('#')[0]),
+                success: function (data) {
+                    // 数据返回后注入微信的配置
+                    wx.config({
+                        debug: false,
+                        appId: data["appid"],
+                        timestamp: data["timestamp"],
+                        nonceStr: data["nonceStr"],
+                        signature: data["signature"],
+                        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 功能列表，我们要使用JS-SDK的什么功能
+                    });
+                }
+            });
+         wx.ready(function () {
+            wxshare();
+            document.getElementById('bgmusic').play();
+            bindSlide();
+        });
+    });
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="服务器部分">服务器部分</h3>
+
+<h4 id="ruby">ruby</h4>
+
+<pre><code class="language-ruby">  APPID = "xxxxxxxxxxxxxappid".freeze
+  APPSECRET = "xxxxxxxxxxxxxxxxappsecret".freeze
+  MAX_WAIT_TIME = 1.hour
+  # 获取签名等信息
+  def signature
+    # 获取ticket
+    ticket = get_ticket(get_token)
+    # 获取以str开头＋100000以内随机数的随机字符串
+    noncestr = "str#{rand(99999)}"
+    # 时间戳
+    timestamp = Time.now.to_i
+    # 签名
+    signature = get_signature(ticket, timestamp, params[:url], noncestr)
+    # 允许跨域
+    response.set_header('Access-Control-Allow-Origin', "*")
+    # 返回json
+    respond_to do |format|
+      format.json do
+        render json: { ticket: ticket, nonceStr: noncestr, appid: APPID, signature: signature, timestamp: timestamp }
+      end
+    end
+  end
+
+  private
+
+# uri请求　和　加密
+  require "open-uri"
+  require 'digest/sha1'
+
+# 获取加密签名
+  def get_signature(ticket, timestamp, url, noncestr)
+    signaturestr = "jsapi_ticket=#{ticket}&amp;noncestr=#{noncestr}&amp;timestamp=#{timestamp}&amp;url=#{url}"
+    Digest::SHA1.hexdigest(signaturestr)
+  end
+
+# 微信api通过appid和appsecret获取token
+# 这个获取token的接口每天每个账户调取次数有限，一定要缓存下来
+  def get_token
+    if Redis::Value.new("access_token", expiration: MAX_WAIT_TIME).value.nil?
+      uri = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=#{APPID}&amp;secret=#{APPSECRET}"
+      html_response = nil
+      open(uri) do |http|
+        html_response = http.read
+      end
+      access_token = JSON.parse(html_response)["access_token"]
+      Redis::Value.new("access_token", expiration: MAX_WAIT_TIME).value = access_token
+    else
+      Redis::Value.new("access_token", expiration: MAX_WAIT_TIME).value
+    end
+  end
+
+# 微信api通过appid和appsecret获取ticket
+# 这个获取ticket的接口每天每个账户调取次数有限，一定要缓存下来
+  def get_ticket(token)
+    if Redis::Value.new("ticket", expiration: MAX_WAIT_TIME).value.nil?
+      String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + token + "&amp;type=jsapi"
+      html_response = nil
+      open(url) do |http|
+        html_response = http.read
+      end
+      ticket = JSON.parse(html_response)["ticket"]
+      Redis::Value.new("ticket", expiration: MAX_WAIT_TIME).value = ticket
+    else
+      Redis::Value.new("ticket", expiration: MAX_WAIT_TIME).value
+    end
+  end
+
+</code></pre>
+
+<h4 id="java部分">JAVA部分</h4>
+
+<pre><code class="language-java">    public Map&lt;String,String&gt; getSignature(HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String url = request.getParameter("url");
+        Map&lt;String,String&gt; map = new HashMap&lt;String,String&gt;();
+        String signature = "";
+        HttpSession session = request.getSession();
+        Object sessionTicket = session.getAttribute("ticket");
+        Object ticketTime = session.getAttribute("ticketTime");
+        int i = (int)(Math.random()*10000);
+        String nonceStr = "skio"+ i;
+        String timestamp = Long.toString(System.currentTimeMillis() );
+        /**
+         * session中存放的“ticket” 失效时间是7200秒
+         * 当ticket失效存入新的ticket和时间戳
+         */
+        if(sessionTicket != null &amp;&amp; (System.currentTimeMillis() - Long.parseLong(ticketTime.toString())) &lt;= 7200000L){
+            signature = getSignature(sessionTicket.toString(),timestamp,url,nonceStr);
+            map.put("ticket",sessionTicket.toString());
+        }else{
+            String token = getToken();
+            String ticket = getTicket(token);
+            map.put("ticket",ticket);
+            signature = getSignature(ticket,timestamp,url,nonceStr);
+            session.setAttribute("ticket",ticket);
+            session.setAttribute("ticketTime",""+System.currentTimeMillis());
+        }
+        /**
+         *  将信息以键值对的方式传回去
+         *  nonceStr ： 随机字符串
+         *  timestamp ： 签名的时间戳
+         *  signature ： 签名
+         */
+        map.put("nonceStr",nonceStr);
+        map.put("appid","wx706149a49cc4708f");
+        map.put("timestamp",timestamp);
+        map.put("signature",signature);
+        return map;
+    }
+    
+        /**
+     * 获取token
+     * @return
+     */
+    private String getToken(){
+        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx706149a49cc4708f&amp;secret=6b6ec20c8dadf44d071cdef5dd554ab3";
+        String token_json = HttpUtil.doGet(url,null);
+        JSONObject json = new JSONObject(token_json);
+        if(json.has("access_token")){
+            String access_token = json.get("access_token").toString();
+            return  access_token;
+        }else{
+            throw new BusinessException("获取token_json失败!URL = "+url);
+        }
+    }
+    /**
+     * 获取ticket
+     * @return
+     */
+    private String getTicket(String token){
+        String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+token+"&amp;type=jsapi";
+        String ticket_json = HttpUtil.doGet(url,null);
+        JSONObject ticket_obj = new JSONObject(ticket_json);
+        if(ticket_obj.get("errmsg").toString().equals("ok")){
+            String ticket = ticket_obj.get("ticket").toString();
+            return  ticket;
+        }else {
+            throw new BusinessException("获取ticket失败！");
+        }
+    }
+    /**
+     * 获取签名
+     * @param ticket
+     * @return
+     */
+    private String getSignature(String ticket,String timestamp,String url,String nonceStr) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        String signatureStr = "jsapi_ticket="+ticket+"&amp;noncestr="+nonceStr+"&amp;timestamp="+timestamp+"&amp;url="+url;
+        MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+        crypt.reset();
+        crypt.update(signatureStr.getBytes("UTF-8"));
+        String signature = byteToHex(crypt.digest());
+        return signature;
+    }
+    private static String byteToHex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash)
+        {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
+    }
+
+</code></pre>
+
+<h3 id="zzzzz">ZZZZZ｀｀｀</h3>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Html-ref">Html <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>15</span></a></li>
+     
+    	<li><a href="/tags.html#Ruby-ref">Ruby <span>5</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/09/19/HTML%E4%B8%ADplaceholder%E6%8F%90%E7%A4%BA%E6%8D%A2%E8%A1%8C" title="HTML 中 placeholder提示换行">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

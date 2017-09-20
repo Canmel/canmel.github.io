@@ -4,13 +4,237 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-09-19T17:49:54+08:00</updated>
+ <updated>2017-09-20T18:29:18+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
    <email>892379244@qq.com</email>
  </author>
 
+ 
+ <entry>
+   <title>微信朋友圈分享案例</title>
+   <link href="http://canmel.github.io/2017/09/20/%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B%E5%9C%88%E5%88%86%E4%BA%AB%E6%A1%88%E4%BE%8B"/>
+   <updated>2017-09-20T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/09/20/微信朋友圈分享案例</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;微信朋友圈分享或者分享给其他好友,如果需要自定义的&lt;code&gt;title&lt;/code&gt;, &lt;code&gt;desc&lt;/code&gt;, &lt;code&gt;image&lt;/code&gt;等&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;##　1. 前提&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;微信公众平台&lt;code&gt;公众号设置&lt;/code&gt;中按提示设置&lt;code&gt;JS接口安全域名&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;获取开发者&lt;code&gt;ID(AppID)&lt;/code&gt;, &lt;code&gt;开发者密码(AppSecret)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;微信公众号中-&lt;code&gt;开发&lt;/code&gt;-&lt;code&gt;基本配置&lt;/code&gt;-&lt;code&gt;IP白名单&lt;/code&gt;中按提示设置要分享的页面的域名&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-代码&quot;&gt;2. 代码&lt;/h2&gt;
+
+&lt;h3 id=&quot;js部分&quot;&gt;js部分&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;script src=&quot;js/jquery-1.11.1.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&quot;http://res.wx.qq.com/open/js/jweixin-1.2.0.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+    $(function () {
+        $.ajax({
+                url: &quot;http://xxxxxxxxx.json&quot;,       //获取签名
+                async: false, //　设置同步，去服务器取到数据后设置微信js配置
+                data: &quot;url=&quot; + encodeURIComponent(location.href.split('#')[0]),
+                success: function (data) {
+                    // 数据返回后注入微信的配置
+                    wx.config({
+                        debug: false,
+                        appId: data[&quot;appid&quot;],
+                        timestamp: data[&quot;timestamp&quot;],
+                        nonceStr: data[&quot;nonceStr&quot;],
+                        signature: data[&quot;signature&quot;],
+                        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 功能列表，我们要使用JS-SDK的什么功能
+                    });
+                }
+            });
+         wx.ready(function () {
+            wxshare();
+            document.getElementById('bgmusic').play();
+            bindSlide();
+        });
+    });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;服务器部分&quot;&gt;服务器部分&lt;/h3&gt;
+
+&lt;h4 id=&quot;ruby&quot;&gt;ruby&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;  APPID = &quot;xxxxxxxxxxxxxappid&quot;.freeze
+  APPSECRET = &quot;xxxxxxxxxxxxxxxxappsecret&quot;.freeze
+  MAX_WAIT_TIME = 1.hour
+  # 获取签名等信息
+  def signature
+    # 获取ticket
+    ticket = get_ticket(get_token)
+    # 获取以str开头＋100000以内随机数的随机字符串
+    noncestr = &quot;str#{rand(99999)}&quot;
+    # 时间戳
+    timestamp = Time.now.to_i
+    # 签名
+    signature = get_signature(ticket, timestamp, params[:url], noncestr)
+    # 允许跨域
+    response.set_header('Access-Control-Allow-Origin', &quot;*&quot;)
+    # 返回json
+    respond_to do |format|
+      format.json do
+        render json: { ticket: ticket, nonceStr: noncestr, appid: APPID, signature: signature, timestamp: timestamp }
+      end
+    end
+  end
+
+  private
+
+# uri请求　和　加密
+  require &quot;open-uri&quot;
+  require 'digest/sha1'
+
+# 获取加密签名
+  def get_signature(ticket, timestamp, url, noncestr)
+    signaturestr = &quot;jsapi_ticket=#{ticket}&amp;amp;noncestr=#{noncestr}&amp;amp;timestamp=#{timestamp}&amp;amp;url=#{url}&quot;
+    Digest::SHA1.hexdigest(signaturestr)
+  end
+
+# 微信api通过appid和appsecret获取token
+# 这个获取token的接口每天每个账户调取次数有限，一定要缓存下来
+  def get_token
+    if Redis::Value.new(&quot;access_token&quot;, expiration: MAX_WAIT_TIME).value.nil?
+      uri = &quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;amp;appid=#{APPID}&amp;amp;secret=#{APPSECRET}&quot;
+      html_response = nil
+      open(uri) do |http|
+        html_response = http.read
+      end
+      access_token = JSON.parse(html_response)[&quot;access_token&quot;]
+      Redis::Value.new(&quot;access_token&quot;, expiration: MAX_WAIT_TIME).value = access_token
+    else
+      Redis::Value.new(&quot;access_token&quot;, expiration: MAX_WAIT_TIME).value
+    end
+  end
+
+# 微信api通过appid和appsecret获取ticket
+# 这个获取ticket的接口每天每个账户调取次数有限，一定要缓存下来
+  def get_ticket(token)
+    if Redis::Value.new(&quot;ticket&quot;, expiration: MAX_WAIT_TIME).value.nil?
+      String url = &quot;https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&quot; + token + &quot;&amp;amp;type=jsapi&quot;
+      html_response = nil
+      open(url) do |http|
+        html_response = http.read
+      end
+      ticket = JSON.parse(html_response)[&quot;ticket&quot;]
+      Redis::Value.new(&quot;ticket&quot;, expiration: MAX_WAIT_TIME).value = ticket
+    else
+      Redis::Value.new(&quot;ticket&quot;, expiration: MAX_WAIT_TIME).value
+    end
+  end
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;java部分&quot;&gt;JAVA部分&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;    public Map&amp;lt;String,String&amp;gt; getSignature(HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String url = request.getParameter(&quot;url&quot;);
+        Map&amp;lt;String,String&amp;gt; map = new HashMap&amp;lt;String,String&amp;gt;();
+        String signature = &quot;&quot;;
+        HttpSession session = request.getSession();
+        Object sessionTicket = session.getAttribute(&quot;ticket&quot;);
+        Object ticketTime = session.getAttribute(&quot;ticketTime&quot;);
+        int i = (int)(Math.random()*10000);
+        String nonceStr = &quot;skio&quot;+ i;
+        String timestamp = Long.toString(System.currentTimeMillis() );
+        /**
+         * session中存放的“ticket” 失效时间是7200秒
+         * 当ticket失效存入新的ticket和时间戳
+         */
+        if(sessionTicket != null &amp;amp;&amp;amp; (System.currentTimeMillis() - Long.parseLong(ticketTime.toString())) &amp;lt;= 7200000L){
+            signature = getSignature(sessionTicket.toString(),timestamp,url,nonceStr);
+            map.put(&quot;ticket&quot;,sessionTicket.toString());
+        }else{
+            String token = getToken();
+            String ticket = getTicket(token);
+            map.put(&quot;ticket&quot;,ticket);
+            signature = getSignature(ticket,timestamp,url,nonceStr);
+            session.setAttribute(&quot;ticket&quot;,ticket);
+            session.setAttribute(&quot;ticketTime&quot;,&quot;&quot;+System.currentTimeMillis());
+        }
+        /**
+         *  将信息以键值对的方式传回去
+         *  nonceStr ： 随机字符串
+         *  timestamp ： 签名的时间戳
+         *  signature ： 签名
+         */
+        map.put(&quot;nonceStr&quot;,nonceStr);
+        map.put(&quot;appid&quot;,&quot;wx706149a49cc4708f&quot;);
+        map.put(&quot;timestamp&quot;,timestamp);
+        map.put(&quot;signature&quot;,signature);
+        return map;
+    }
+    
+        /**
+     * 获取token
+     * @return
+     */
+    private String getToken(){
+        String url = &quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;amp;appid=wx706149a49cc4708f&amp;amp;secret=6b6ec20c8dadf44d071cdef5dd554ab3&quot;;
+        String token_json = HttpUtil.doGet(url,null);
+        JSONObject json = new JSONObject(token_json);
+        if(json.has(&quot;access_token&quot;)){
+            String access_token = json.get(&quot;access_token&quot;).toString();
+            return  access_token;
+        }else{
+            throw new BusinessException(&quot;获取token_json失败!URL = &quot;+url);
+        }
+    }
+    /**
+     * 获取ticket
+     * @return
+     */
+    private String getTicket(String token){
+        String url = &quot;https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&quot;+token+&quot;&amp;amp;type=jsapi&quot;;
+        String ticket_json = HttpUtil.doGet(url,null);
+        JSONObject ticket_obj = new JSONObject(ticket_json);
+        if(ticket_obj.get(&quot;errmsg&quot;).toString().equals(&quot;ok&quot;)){
+            String ticket = ticket_obj.get(&quot;ticket&quot;).toString();
+            return  ticket;
+        }else {
+            throw new BusinessException(&quot;获取ticket失败！&quot;);
+        }
+    }
+    /**
+     * 获取签名
+     * @param ticket
+     * @return
+     */
+    private String getSignature(String ticket,String timestamp,String url,String nonceStr) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        String signatureStr = &quot;jsapi_ticket=&quot;+ticket+&quot;&amp;amp;noncestr=&quot;+nonceStr+&quot;&amp;amp;timestamp=&quot;+timestamp+&quot;&amp;amp;url=&quot;+url;
+        MessageDigest crypt = MessageDigest.getInstance(&quot;SHA-1&quot;);
+        crypt.reset();
+        crypt.update(signatureStr.getBytes(&quot;UTF-8&quot;));
+        String signature = byteToHex(crypt.digest());
+        return signature;
+    }
+    private static String byteToHex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash)
+        {
+            formatter.format(&quot;%02x&quot;, b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
+    }
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;zzzzz&quot;&gt;ZZZZZ｀｀｀&lt;/h3&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>HTML 中 placeholder提示换行</title>
