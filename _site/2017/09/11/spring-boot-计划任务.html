@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Spring boot 计划任务</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>Spring boot 计划任务 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>11 September 2017</span>
+    </div>
+    <div class="content">
+      <h2 id="用法">用法</h2>
+
+<blockquote>
+  <p>配置类注解@EnableScheduling 开启对计划任务的支持,然后在要执行的计划任务方法上添加注解@Scheduled,声明这是一个计划任务</p>
+</blockquote>
+
+<p><strong><code>@Scheduled</code>支持多种类型的计划任务,包含<code>cron</code> <code>fixDelay</code> <code>fixRate</code>等</strong></p>
+
+<h2 id="代码">代码</h2>
+
+<h3 id="计划任务执行类">计划任务执行类</h3>
+
+<pre><code class="language-java">@Service
+public class ScheduledTaskService {
+
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	
+	// @Scheduled 设置计划任务执行方式
+	@Scheduled(fixedRate = 1000)
+	public void reportCurrentTime() {
+		System.out.println("每隔1秒执行一次 " + dateFormat.format(new Date()));
+	}
+	
+	@Scheduled(cron = "0 0 13 ? * *")
+	public void fixTimeExecution() {
+		System.out.println("在指定时间 " + dateFormat.format(new Date()) + " 执行");
+
+	}
+}
+</code></pre>
+
+<h3 id="配置类">配置类</h3>
+
+<blockquote>
+  <p>@EnableScheduling 开启对注解类的支持</p>
+</blockquote>
+
+<pre><code class="language-java">@Configuration
+@ComponentScan("com.meedesidy.test_spring4.schedu")
+@EnableScheduling
+public class TaskSchedulerConfig {
+	
+}
+</code></pre>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>14</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-ref">Spring <span>10</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/09/11/spring-boot-%E7%BB%84%E5%90%88%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%85%83%E6%B3%A8%E8%A7%A3" title="Spring boot 组合注解与元注解">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2017/09/19/HTML%E4%B8%ADplaceholder%E6%8F%90%E7%A4%BA%E6%8D%A2%E8%A1%8C" title="HTML 中 placeholder提示换行">Next &rarr;</a></li>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Spring boot 条件注解</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>Spring boot 条件注解 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>11 September 2017</span>
+    </div>
+    <div class="content">
+      <h2 id="定义">定义</h2>
+
+<blockquote>
+  <p>通过活动的profile可以获得不同的bean, Spring 4提供了一个通用的基于条件的Bean 的创建, 即使用@Conditional注解</p>
+</blockquote>
+
+<h2 id="代码">代码</h2>
+
+<h3 id="判定条件定义">判定条件定义</h3>
+
+<pre><code class="language-java">public class LinuxCondition implements Condition {
+	@Override
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		return context.getEnvironment().getProperty("os.name").contains("Linux");
+	}
+}
+</code></pre>
+
+<pre><code class="language-java">public class WindowsCondition implements Condition {
+	@Override
+	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		return context.getEnvironment().getProperty("os.name").contains("Windows");
+	}
+}
+</code></pre>
+
+<h3 id="不同条件下的bean">不同条件下的Bean</h3>
+
+<pre><code class="language-java">public interface ListService {
+	public String showListCmd();
+}
+</code></pre>
+
+<pre><code class="language-java">public class LinuxListService implements ListService {
+
+	@Override
+	public String showListCmd() {
+		return "ls";
+	}
+}
+</code></pre>
+
+<pre><code class="language-java">public class WindowsListService implements ListService{
+
+	@Override
+	public String showListCmd() {
+		return "dir";
+	}
+}
+</code></pre>
+
+<h3 id="配置">配置</h3>
+
+<pre><code class="language-java">@Configuration
+public class ConditionConfig {
+
+	@Bean
+	@Conditional(WindowsCondition.class) // WindowsCondition 中 matches 返回true 则使用这个bean 
+	public ListService windowsListService() {
+		return new WindowsListService();
+	}
+	
+	@Bean
+	@Conditional(LinuxCondition.class) // WindowsCondition 中 matches 返回true 则使用这个bean
+	public ListService linuxListService() {
+		return new LinuxListService();
+	}
+}
+</code></pre>
+
+<h2 id="运行">运行</h2>
+
+<pre><code class="language-java">public static void main( String[] args ) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
+        ListService listService = context.getBean(ListService.class);
+        System.out.println(context.getEnvironment().getProperty("os.name") + "系统下的列表命令:　" + listService.showListCmd());
+}
+</code></pre>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>14</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-ref">Spring <span>10</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/09/11/spring-boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE" title="Spring boot 常用配置">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2017/09/11/spring-boot-%E7%BB%84%E5%90%88%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%85%83%E6%B3%A8%E8%A7%A3" title="Spring boot 组合注解与元注解">Next &rarr;</a></li>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

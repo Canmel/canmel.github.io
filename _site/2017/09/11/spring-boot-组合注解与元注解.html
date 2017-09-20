@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Spring boot 组合注解与元注解</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>Spring boot 组合注解与元注解 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>11 September 2017</span>
+    </div>
+    <div class="content">
+      <blockquote>
+  <p>　可以使用自定义的注解，使用多个注解组合成一个组合注解，这样我们只需要一个注解就可以表示两个注解</p>
+</blockquote>
+
+<h2 id="代码">代码</h2>
+
+<h3 id="组合注解">组合注解</h3>
+
+<pre><code class="language-java">@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Configuration
+@ComponentScan
+public @interface WiselyConfigration {
+
+	String[] value() default {};
+}
+</code></pre>
+
+<h3 id="使用组合注解">使用组合注解</h3>
+
+<pre><code class="language-java">@WiselyConfigration("com.meedesidy.test_spring4.annotation")
+public class DemoConfig {
+
+}
+</code></pre>
+
+<h3 id="运行">运行</h3>
+
+<blockquote>
+  <p>使用新的注解依然可以在容器中加入bean</p>
+</blockquote>
+
+<pre><code class="language-java">public static void main( String[] args ) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
+        DemoService demoService = context.getBean(DemoService.class);
+        demoService.outputResult();
+        context.close();
+}
+</code></pre>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>14</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-ref">Spring <span>10</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>6</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/09/11/spring-boot-%E6%9D%A1%E4%BB%B6%E6%B3%A8%E8%A7%A3" title="Spring boot 条件注解">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2017/09/11/spring-boot-%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1" title="Spring boot 计划任务">Next &rarr;</a></li>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
