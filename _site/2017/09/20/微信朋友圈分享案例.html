@@ -96,7 +96,7 @@
   <p>微信朋友圈分享或者分享给其他好友,如果需要自定义的<code>title</code>, <code>desc</code>, <code>image</code>等</p>
 </blockquote>
 
-<p>##　1. 前提</p>
+<h2 id="1-前提">1. 前提</h2>
 
 <ul>
   <li>微信公众平台<code>公众号设置</code>中按提示设置<code>JS接口安全域名</code></li>
@@ -134,6 +134,27 @@
             bindSlide();
         });
     });
+    
+//    分享的配置（回调函数）
+    function wxshare() {
+        var shareData = {
+            imgUrl:'http://www...........png',
+            link:window.location.href.split('#')[0],
+            title:'xxxxxxxxtitle?',
+            desc:'xxxxxxxxdesc',
+            success:function (res) {
+                alert('已分享')
+            },
+            fail:function (res) {
+                alert(JSON.stringify(res));
+            }
+        };
+//        设置分享的类型
+        wx.onMenuShareAppMessage(shareData);
+        wx.onMenuShareTimeline(shareData);
+    }
+    
+    
 &lt;/script&gt;
 </code></pre>
 
@@ -210,7 +231,7 @@
 
 </code></pre>
 
-<h4 id="java部分">JAVA部分</h4>
+<h4 id="java">JAVA</h4>
 
 <pre><code class="language-java">    public Map&lt;String,String&gt; getSignature(HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String url = request.getParameter("url");
@@ -324,7 +345,7 @@
      
     	<li><a href="/tags.html#Html-ref">Html <span>2</span></a></li>
      
-    	<li><a href="/tags.html#Java-ref">Java <span>15</span></a></li>
+    	<li><a href="/tags.html#Java-ref">Java <span>16</span></a></li>
      
     	<li><a href="/tags.html#Ruby-ref">Ruby <span>5</span></a></li>
     
@@ -343,7 +364,7 @@
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next disabled"><a>Next &rarr;</a>
+        <li class="next"><a href="/2017/10/10/Spring%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BD%93%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8" title="Spring使用实体接收参数异常">Next &rarr;</a></li>
       
     </ul>
     <hr>
