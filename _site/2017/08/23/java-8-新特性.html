@@ -94,7 +94,8 @@
     <div class="content">
       
 <h3 id="1-default方法defender方法">1. default方法（defender方法）</h3>
-<pre><code class="language-java">public interface BaseInterface {
+
+<pre><code>public interface BaseInterface {
   public void doSomeWork();
 }
 
@@ -110,6 +111,7 @@ class SimpleInterfaceImpl implements BaseInterface{
   }
 }
 </code></pre>
+
 <p>如果要向上面的接口添加新方法</p>
 
 <pre><code class="language-java">public interface BaseInterface {
@@ -155,7 +157,7 @@ default void sort(Comparator&lt;? super E&gt; c) {
 
   
      
-    	<li><a href="/tags.html#Java-ref">Java <span>15</span></a></li>
+    	<li><a href="/tags.html#Java-ref">Java <span>16</span></a></li>
     
   
 

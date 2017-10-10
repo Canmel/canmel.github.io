@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Spring使用实体接收参数异常</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>Spring使用实体接收参数异常 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>10 October 2017</span>
+    </div>
+    <div class="content">
+      <h3 id="在spring中设置路由">在spring中设置路由</h3>
+
+<pre><code>    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String index(Model model, Menu menu) throws JsonProcessingException {
+        menu.setStatus(Status.active);
+        return super.index(model, menu);
+    }
+</code></pre>
+
+<h3 id="发出以下异常">发出以下异常：</h3>
+
+<pre><code>org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.meedesidy.jeedey.entity.Menu]: No default constructor found; nested exception is java.lang.NoSuchMethodException: com.meedesidy.jeedey.entity.Menu.&lt;init&gt;()
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:105) ~[spring-beans-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:141) ~[spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:81) ~[spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:101) ~[spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121) ~[spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:158) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:128) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) [spring-webmvc-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:799) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1455) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_144]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_144]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.16.jar:8.5.16]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_144]
+Caused by: java.lang.NoSuchMethodException: com.meedesidy.jeedey.entity.Menu.&lt;init&gt;()
+	at java.lang.Class.getConstructor0(Class.java:3082) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredConstructor(Class.java:2178) ~[na:1.8.0_144]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:102) ~[spring-beans-4.3.10.RELEASE.jar:4.3.10.RELEASE]
+	... 54 common frames omitted
+
+2017-10-10 23:06:42.591 DEBUG 5280 --- [nio-9090-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolving exception from handler [public java.lang.String com.meedesidy.jeedey.controllers.MenusController.index(org.springframework.ui.Model,com.meedesidy.jeedey.entity.Menu) throws com.fasterxml.jackson.core.JsonProcessingException]: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.meedesidy.jeedey.entity.Menu]: No default constructor found; nested exception is java.lang.NoSuchMethodException: com.meedesidy.jeedey.entity.Menu.&lt;init&gt;()
+2017-10-10 23:06:42.591 DEBUG 5280 --- [nio-9090-exec-9] .w.s.m.a.ResponseStatusExceptionResolver : Resolving exception from handler [public java.lang.String com.meedesidy.jeedey.controllers.MenusController.index(org.springframework.ui.Model,com.meedesidy.jeedey.entity.Menu) throws com.fasterxml.jackson.core.JsonProcessingException]: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.meedesidy.jeedey.entity.Menu]: No default constructor found; nested exception is java.lang.NoSuchMethodException: com.meedesidy.jeedey.entity.Menu.&lt;init&gt;()
+2017-10-10 23:06:42.591 DEBUG 5280 --- [nio-9090-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolving exception from handler [public java.lang.String com.meedesidy.jeedey.controllers.MenusController.index(org.springframework.ui.Model,com.meedesidy.jeedey.entity.Menu) throws com.fasterxml.jackson.core.JsonProcessingException]: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.meedesidy.jeedey.entity.Menu]: No default constructor found; nested exception is java.lang.NoSuchMethodException: com.meedesidy.jeedey.entity.Menu.&lt;init&gt;()
+2017-10-10 23:06:42.593 DEBUG 5280 --- [nio-9090-exec-9] o.s.web.servlet.DispatcherServlet        : Could not complete request
+
+
+</code></pre>
+
+<h3 id="原因">原因</h3>
+
+<ul>
+  <li>要在spring中使用实体来接收参数，必须至少有一个默认的构造器</li>
+</ul>
+
+<blockquote>
+  <p>一个类中如果不设置不写任何带参数的构造器,java 默认其带一个无参构造器
+如果一个java类中已经有一个或一个以上的带参构造器,jvm不会给这个类添加默认的无参构造器</p>
+</blockquote>
+
+<ul>
+  <li>所以我是因为在Menu.java中没有默认的构造器,造成一个实例化异常<code>BeanInstantiationException</code>,</li>
+</ul>
+
+<blockquote>
+  <p>No default constructor found</p>
+</blockquote>
+
+<h3 id="解决思路">解决思路</h3>
+
+<ol>
+  <li>使用jvm默认提供的构造器,删除目标类(Menu.java)中所有带参构造</li>
+  <li>保留自己定义的构造器,增加一个无参构造器</li>
+</ol>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Exception-ref">Exception <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>16</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-ref">Spring <span>11</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/09/20/%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B%E5%9C%88%E5%88%86%E4%BA%AB%E6%A1%88%E4%BE%8B" title="微信朋友圈分享案例">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
