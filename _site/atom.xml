@@ -4,13 +4,649 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-10-11T09:14:31+08:00</updated>
+ <updated>2017-10-12T17:40:00+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
    <email>892379244@qq.com</email>
  </author>
 
+ 
+ <entry>
+   <title>JAVA问答</title>
+   <link href="http://canmel.github.io/2017/10/12/java%E9%97%AE%E7%AD%94"/>
+   <updated>2017-10-12T00:00:00+08:00</updated>
+   <id>http://canmel.github.io/2017/10/12/java问答</id>
+   <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h1 id=&quot;java基础&quot;&gt;JAVA基础&lt;/h1&gt;
+&lt;h2 id=&quot;--实例方法和静态方法有什么不一样&quot;&gt;- 实例方法和静态方法有什么不一样&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;从调用上来看，实例方法需要使用对象来调用, 静态方法则是由类直接调用的&lt;/li&gt;
+    &lt;li&gt;在同一个类中，实例方法内部可以直接使用静态方法，但是静态方法中则无法直接调用这个实例方法&lt;/li&gt;
+    &lt;li&gt;介于实例方法和静态方法的修饰符有差异，这也算是一种不一样吧。另外，实例方法属于对应类的实例的行为，而静态方法是属于类的行为&lt;/li&gt;
+    &lt;li&gt;静态方法多用作工具类的方法。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;--java中的异常有哪几类分别怎么使用&quot;&gt;- Java中的异常有哪几类？分别怎么使用&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Throwable 类是Java语言中所有错误或异常的超类, Throwable包含了错误(Error)和异常(Excetion两类)&lt;/li&gt;
+    &lt;li&gt;Exception又包含了运行时异常(RuntimeException, 又叫非检查异常)和非运行时异常(又叫检查异常)&lt;/li&gt;
+    &lt;li&gt;Error是程序无法处理了, 如果OutOfMemoryError、OutOfMemoryError等等, 这些异常发生时, java虚拟机一般会终止线程 .&lt;/li&gt;
+    &lt;li&gt;运行时异常都是RuntimeException类及其子类,如 NullPointerException、IndexOutOfBoundsException等, 这些异常是不检查的异常, 是在程序运行的时候可能会发生的, 所以程序可以捕捉, 也可以不捕捉. 这些错误一般是由程序的逻辑错误引起的, 程序应该从逻辑角度去尽量避免&lt;/li&gt;
+    &lt;li&gt;检查异常是运行时异常以外的异常, 也是Exception及其子类, 这些异常从程序的角度来说是必须经过捕捉检查处理的, 否则不能通过编译. 如IOException、SQLException等&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;--常用的集合类有哪些特点&quot;&gt;- 常用的集合类有哪些？特点？&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Java集合如Map、Set、List等所有集合只能存放引用类型数据，它们都是存放引用类型数据的容器，不能存放如int、long、float、double等基础类型的数据。泛型设置基本类型不能通过编译，不设置泛型在加入元素的时候会自动装箱成包装类&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;结构&lt;/strong&gt;
+Collection
+|Set            无序，不允许重复
+||————HashSet：哈希表｜无序｜元素必须实现HashCode()｜
+||————TreeSet：二差树｜自动排升序 
+|List           有序，可以有重复元素。
+||————ArrayList：动态数组｜　查询↑　
+||————LinkedList：链表｜插入和删除↑
+Map　都可以用来存放java对象
+|————HashMap　异步　不是线程安全的　效率↑　允许空键值｜数组结合链表
+|————Hashtable 同步　线程安全　效率↓&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Set和List对比&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;Set：检索元素效率低下，删除和插入效率高，插入和删除不会引起元素位置改变。
+List：和数组类似，List可以动态增长，查找元素效率高，插入删除元素效率低，因为会引起其他元素位置改变。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ArrayList和LinkedList&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;code&gt;ArrayList&lt;/code&gt;,是数组结构：少用与中间的增删。多用于查询，修改。每次增删元素顺序都会操作每个元素。
+&lt;code&gt;LinkedList&lt;/code&gt;,是链表结构：多用于中间，开头增删。少用查询，修改。查询时会遍历大量元素。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;--集合排序&quot;&gt;- 集合排序&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;java集合的工具类&lt;strong&gt;Collections&lt;/strong&gt;中提供了两种排序的方法,分别是:
+    &lt;ol&gt;
+      &lt;li&gt;&lt;code&gt;Collections.sort(List list)&lt;/code&gt;｜自然排序&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;Collections.sort(List list,Comparator c)&lt;/code&gt;｜定制排序｜需要new一个&lt;code&gt;Comparator&lt;/code&gt;接口的比较器对象&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Map&lt;/strong&gt;排序
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;table&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;&lt;code&gt;Collections.sort(List list,Comparator)&lt;/code&gt;&lt;/td&gt;
+              &lt;td&gt;&lt;code&gt;list&lt;/code&gt;为&lt;code&gt;Map&lt;/code&gt;的键或值的集合&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/li&gt;
+      &lt;li&gt;使用&lt;code&gt;TreeMap(Comparator comparator)&lt;/code&gt;,创建自定义比较器的&lt;code&gt;TreeMap,putAll(map)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;遍历排序&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--内存溢出是怎么回事&quot;&gt;- 内存溢出是怎么回事?&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;对象有被指向的引用，但是再也用不到它就是内存溢出了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--和equals的区别&quot;&gt;- ==和equals的区别？&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code&gt;==&lt;/code&gt;判断对象物理地址.&lt;code&gt;equals&lt;/code&gt;判断对象&lt;code&gt;Value&lt;/code&gt;是否相等。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;// java.lang.Object
+
+public boolean equals(Object obj) {
+    return (this == obj);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--hashcode方法的作用&quot;&gt;- hashCode方法的作用？&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;在hashMap中使用，把一个对象变成一个整型。hashCode规范，如果两个对象的equals返回true，那他们的hashCode必须相等，但是hashCode相等，不一定equals不一定相等。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--object类中有哪些方法列举3个以上&quot;&gt;- Object类中有哪些方法？列举3个以上。&lt;/h2&gt;
+&lt;p&gt;构造方法，&lt;code&gt;toString()&lt;/code&gt;，&lt;code&gt;equals&lt;/code&gt;，&lt;code&gt;hashCode&lt;/code&gt;，&lt;code&gt;getClass&lt;/code&gt;,&lt;code&gt;finalize&lt;/code&gt;,&lt;code&gt;clone&lt;/code&gt;,三个&lt;code&gt;wait()&lt;/code&gt;,&lt;code&gt;notify&lt;/code&gt;,&lt;code&gt;notifyAll&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--nio是什么适用于何种场景&quot;&gt;- NIO是什么？适用于何种场景？&lt;/h2&gt;
+&lt;p&gt;NIO是newIO,接口都是异步的，非阻塞的。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--如何实现线程安全的hashmap&quot;&gt;- 如何实现线程安全的HashMap？&lt;/h2&gt;
+
+&lt;p&gt;线程安全：ConcurrentHashMap(系统自带的线程安全的HashMap),Map&amp;lt;Object, Object&amp;gt; synchronizedMap = Collections.synchronizedMap(new HashMap&amp;lt;&amp;gt;()); synchronizedMap 为线程安全的Map.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--java一个字符占多少个字节int-long-double占多少字节&quot;&gt;- Java一个字符占多少个字节，int, long, double占多少字节&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;一个字符两个字节，int 4 , long double 8&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--创建一个类的实例都有哪些办法&quot;&gt;- 创建一个类的实例都有哪些办法？&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;code&gt;new Constructor()&lt;/code&gt; 最常见的&lt;/li&gt;
+    &lt;li&gt;Class类的&lt;code&gt;newInstance&lt;/code&gt;方法:&lt;code&gt;Student stu = Student.class.newInstance();&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;java.lang.reflect.Constructor 的newInstance&lt;/li&gt;
+    &lt;li&gt;调用一个对象的clone方法，JVM就会创建一个新的对象&lt;/li&gt;
+    &lt;li&gt;使用反序列化,需要让我们的类实现Serializable接口&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--finalfinallyfinalize的区别&quot;&gt;- final/finally/finalize的区别？&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;final是类，变量，方法的修饰。类被修饰后不能再被继承。变量和方法被修饰不能再被修改&lt;/li&gt;
+  &lt;li&gt;finally是try…catch后执行的finally，&lt;/li&gt;
+  &lt;li&gt;finalize,在Object中的方法名，在此对象被回收前会执行这个方法。（当使用文件流时，如果对象被回收，没有关闭流，在底层就会实现内存泄露）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;--sessioncookie的区别&quot;&gt;- Session/Cookie的区别？&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;cookie数据存放在客户的浏览器上，session数据放在服务器上。&lt;/li&gt;
+  &lt;li&gt;cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗&lt;/li&gt;
+  &lt;li&gt;session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能
+ 考虑到减轻服务器性能方面，应当使用COOKIE。&lt;/li&gt;
+  &lt;li&gt;单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie&lt;/li&gt;
+  &lt;li&gt;将登陆信息等重要信息存放为SESSION,其他信息如果需要保留，可以放在COOKIE中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--servlet的生命周期&quot;&gt;- Servlet的生命周期？&lt;/h2&gt;
+&lt;p&gt;初始化，服务处理（接收请求，处理请求，返回结果），销毁&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;框架使用&quot;&gt;框架使用&lt;/h1&gt;
+&lt;h2 id=&quot;--spring中bean的生命周期&quot;&gt;- Spring中Bean的生命周期&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;实例化一个Bean－－也就是我们常说的new；&lt;/li&gt;
+    &lt;li&gt;按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；&lt;/li&gt;
+    &lt;li&gt;如果这个Bean已经实现了&lt;code&gt;BeanNameAware&lt;/code&gt;接口，会调用它实现的&lt;code&gt;setBeanName(String)&lt;/code&gt;方法&lt;/li&gt;
+    &lt;li&gt;如果这个Bean已经实现了&lt;code&gt;BeanFactoryAware&lt;/code&gt;接口，会调用它实现的&lt;code&gt;setBeanFactory(setBeanFactory(BeanFactory)&lt;/code&gt;传递的是Spring工厂自身&lt;/li&gt;
+    &lt;li&gt;如果这个Bean已经实现了&lt;code&gt;ApplicationContextAware&lt;/code&gt;接口，会调用&lt;code&gt;setApplicationContext(ApplicationContext)&lt;/code&gt;方法，传入Spring上下文&lt;/li&gt;
+    &lt;li&gt;如果这个Bean关联了&lt;code&gt;BeanPostProcessor&lt;/code&gt;接口，将会调用&lt;code&gt;postProcessBeforeInitialization(Object obj, String s)&lt;/code&gt;方法，&lt;code&gt;BeanPostProcessor&lt;/code&gt;经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术&lt;/li&gt;
+    &lt;li&gt;如果Bean在Spring配置文件中配置了&lt;code&gt;init-method&lt;/code&gt;属性会自动调用其配置的初始化方法&lt;/li&gt;
+    &lt;li&gt;如果这个Bean关联了&lt;code&gt;BeanPostProcessor&lt;/code&gt;接口，将会调用&lt;code&gt;postProcessAfterInitialization(Object obj, String s)&lt;/code&gt;方法&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;现在已经可以使用这个bean了, 使用完就可以准备清理了&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;当Bean不再需要时，会经过清理阶段，如果Bean实现了&lt;code&gt;DisposableBean&lt;/code&gt;这个接口，会调用那个其实现的&lt;code&gt;destroy()&lt;/code&gt;方法&lt;/li&gt;
+    &lt;li&gt;最后，如果这个Bean的Spring配置中配置了&lt;code&gt;destroy-method&lt;/code&gt;属性，会自动调用其配置的销毁方法。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;--spring中有哪三种依赖注入的方式&quot;&gt;- Spring中有哪三种依赖注入的方式？&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;根据属性注入也叫set方法注入&lt;/li&gt;
+  &lt;li&gt;根据构造方法注入&lt;/li&gt;
+  &lt;li&gt;根据注解进行注入（推荐）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--spring事务的传播属性是怎么回事&quot;&gt;- Spring事务的传播属性是怎么回事&lt;/h2&gt;
+&lt;h3 id=&quot;事务传播属性&quot;&gt;&lt;strong&gt;事务传播属性&lt;/strong&gt;　&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;PROPAGATION_REQUIRED–支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。&lt;/li&gt;
+  &lt;li&gt;PROPAGATION_SUPPORTS–支持当前事务，如果当前没有事务，就以非事务方式执行&lt;/li&gt;
+  &lt;li&gt;PROPAGATION_MANDATORY – 支持当前事务，如果当前没有事务，就抛出异常。&lt;/li&gt;
+  &lt;li&gt;PROPAGATION_REQUIRES_NEW – 新建事务，如果当前存在事务，把当前事务挂起。&lt;/li&gt;
+  &lt;li&gt;PROPAGATION_NOT_SUPPORTED–以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。&lt;/li&gt;
+  &lt;li&gt;PROPAGATION_NEVER – 以非事务方式执行，如果当前存在事务，则抛出异常。&lt;/li&gt;
+  &lt;li&gt;PROPAGATION_NESTED–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务,则进行与PROPAGATION_REQUIRED类似的操作&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;事务隔离级别&quot;&gt;&lt;strong&gt;事务隔离级别&lt;/strong&gt;&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;DEFAULT&lt;/li&gt;
+  &lt;li&gt;UNCOMMITTED  这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。&lt;/li&gt;
+  &lt;li&gt;COMMITTED 保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。&lt;/li&gt;
+  &lt;li&gt;READ  这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)&lt;/li&gt;
+  &lt;li&gt;SERIALIZABLE 这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--spring主要组件&quot;&gt;- Spring主要组件&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;前端控制器组件（DispatcherServlet）&lt;/li&gt;
+  &lt;li&gt;处理器组件（Controller）&lt;/li&gt;
+  &lt;li&gt;处理器映射器组件（HandlerMapping）&lt;/li&gt;
+  &lt;li&gt;处理器适配器组件（HandlerAdapter）&lt;/li&gt;
+  &lt;li&gt;拦截器组件（HandlerInterceptor）&lt;/li&gt;
+  &lt;li&gt;视图解析器组件（ViewResolver）&lt;/li&gt;
+  &lt;li&gt;视图组件（View）&lt;/li&gt;
+  &lt;li&gt;数据转换组件（DataBinder）&lt;/li&gt;
+  &lt;li&gt;消息转换器组件（HttpMessageConverter）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--spring中beanfactory和factorybean有什么区别&quot;&gt;- Spring中BeanFactory和FactoryBean有什么区别？&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;BeanFactory，以Factory结尾，表示它是一个工厂类(接口)，用于管理Bean的一个工厂。在Spring中，BeanFactory是IOC容器的核心接口，它的职责包括：实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。&lt;/li&gt;
+  &lt;li&gt;以Bean结尾，表示它是一个Bean，不同于普通Bean的是：它是实现了FactoryBean&lt;T&gt;接口的Bean，根据该Bean的ID从BeanFactory中获取的实际上是FactoryBean的getObject()返回的对象，而不是FactoryBean本身，如果要获取FactoryBean对象，请在id前面加一个&amp;amp;符号来获取。&lt;/T&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--spring框架中ioc的原理是什么&quot;&gt;- Spring框架中IOC的原理是什么&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;IoC是&lt;code&gt;Inversion of Control&lt;/code&gt;的缩写&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;获得依赖对象的过程被反转了&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;其原理是基于面向对象(OO)设计原则&lt;/li&gt;
+  &lt;li&gt;所有的组件都是被动的，所有的组件初始化和调用都由容器负责&lt;/li&gt;
+  &lt;li&gt;组件处在一个容器当中，由容器负责管理&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;简单的来讲，就是由容器控制程序之间的关系，而非传统实现中，由程序代码直接操控，即在一个类中调用另外一个类。这也就是所谓“控制反转”的概念所在：控制权由应用代码中转到了外部容器，控制权的转移，即所谓反转。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;--spring-如何实现数据库事务&quot;&gt;- Spring 如何实现数据库事务&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;编程式事务管理：需要手动编写代码，在实际开发中很少使用&lt;/li&gt;
+  &lt;li&gt;声明式事务管理：
+    &lt;ul&gt;
+      &lt;li&gt;基于&lt;code&gt;TransactionProxyFactoryBean&lt;/code&gt;的方式，需要为每个进行事务管理的类做相应配置&lt;/li&gt;
+      &lt;li&gt;基于AspectJ的XML方式，不需要改动类，在XML文件中配置好即可&lt;/li&gt;
+      &lt;li&gt;基于注解的方式，配置简单，需要在业务层类中添加注解&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--mybatis编程步骤是什么样的&quot;&gt;- MyBatis编程步骤是什么样的&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;创建&lt;code&gt;SqlSessionFactory&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;通过&lt;code&gt;SqlSessionFactory&lt;/code&gt;创建&lt;code&gt;SqlSession&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;通过&lt;code&gt;sqlsession&lt;/code&gt;执行数据库操作&lt;/li&gt;
+  &lt;li&gt;调用&lt;code&gt;session.commit()&lt;/code&gt;提交事务&lt;/li&gt;
+  &lt;li&gt;调用&lt;code&gt;session.close()&lt;/code&gt;关闭会话&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;--使用mybatis的mapper接口调用时有哪些要求&quot;&gt;- 使用MyBatis的mapper接口调用时有哪些要求&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Mapper接口方法名和&lt;code&gt;mapper.xml&lt;/code&gt;中定义的每个sql的id相同&lt;/li&gt;
+  &lt;li&gt;Mapper接口方法的输入参数类型和&lt;code&gt;mapper.xml&lt;/code&gt;中定义的每个sql 的&lt;code&gt;parameterType&lt;/code&gt;的类型相同&lt;/li&gt;
+  &lt;li&gt;Mapper接口方法的输出参数类型和&lt;code&gt;mapper.xml&lt;/code&gt;中定义的每个sql的&lt;code&gt;resultType&lt;/code&gt;的类型相同&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;Mapper.xml&lt;/code&gt;文件中的&lt;code&gt;namespace&lt;/code&gt;即是mapper接口的类路径&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;--springmvc工作流程&quot;&gt;- SpringMVC工作流程&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;用户发送请求至前端控制器&lt;code&gt;DispatcherServlet&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;收到请求调用&lt;code&gt;HandlerMapping&lt;/code&gt;处理器映射器&lt;/li&gt;
+  &lt;li&gt;处理器映射器找到具体的处理器，生成处理器对象及处理器拦截器(如果有则生成)一并返回给&lt;code&gt;DispatcherServlet&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;调用&lt;code&gt;HandlerAdapter&lt;/code&gt;处理器适配器&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;HandlerAdapter&lt;/code&gt;经过适配调用具体的处理器(Controller，也叫后端控制器)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;Controller&lt;/code&gt;执行完成返回&lt;code&gt;ModelAndView&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;HandlerAdapter&lt;/code&gt;将&lt;code&gt;controller&lt;/code&gt;执行结果&lt;code&gt;ModelAndView&lt;/code&gt;返回给&lt;code&gt;DispatcherServlet&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;将&lt;code&gt;ModelAndView&lt;/code&gt;传给&lt;code&gt;ViewReslover&lt;/code&gt;视图解析器&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;ViewReslover&lt;/code&gt;解析后返回具体&lt;code&gt;View&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;根据View进行渲染视图（即将模型数据填充至视图中）&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;响应用户&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--mybatis-和的区别是什么&quot;&gt;- MyBatis #{}和${}的区别是什么？&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;${}是变量占位符，它可以用于标签属性值和sql内部，属于静态文本替换，比如${driver}会被静态替换为com.mysql.jdbc.Driver。#{}是sql的参数占位符，Mybatis会将sql中的#{}替换为?号，在sql执行前会使用PreparedStatement的参数设置方法，按序给sql的?号占位符设置参数值&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--xml映射文件中除了常见的selectinsertupdaedelete标签之外还有哪些标签&quot;&gt;- Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;还有很多其他的标签，&lt;code&gt;&amp;lt;resultMap&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;parameterMap&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;sql&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;include&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;selectKey&amp;gt;&lt;/code&gt;，加上动态sql的9个标签，&lt;code&gt;trim&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;where&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;set&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;foreach&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;if&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;choose&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;when&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;otherwise&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;bind&lt;/code&gt;等，其中&lt;sql&gt;为sql片段标签，通过`&lt;include&gt;`标签引入sql片段，`&lt;selectKey&gt;`为不支持自增的主键生成策略标签。&lt;/selectKey&gt;&lt;/include&gt;&lt;/sql&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;--mybatis-分页原理&quot;&gt;- MyBatis 分页原理&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Mybatis使用RowBounds对象进行分页，它是针对ResultSet结果集执行的内存分页，而非物理分页，可以在sql内直接书写带有物理分页的参数来完成物理分页功能，也可以使用分页插件来完成物理分页。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;--mybatis-分页插件的原理是什么&quot;&gt;- MyBatis 分页插件的原理是什么？&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;分页插件的基本原理是使用Mybatis提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的sql，然后重写sql，根据dialect方言，添加对应的物理分页语句和物理分页参数。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;数据库相关&quot;&gt;数据库相关&lt;/h1&gt;
+
+&lt;h2 id=&quot;--乐观锁和悲观锁的区别&quot;&gt;- 乐观锁和悲观锁的区别？&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;悲观锁(Pessimistic Lock), 顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;乐观锁(Optimistic Lock), 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果经常产生冲突，上层应用会不断的进行retry，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--索引数据结构&quot;&gt;- 索引数据结构&lt;/h2&gt;
+&lt;p&gt;MySQL官方对索引的定义为：&lt;strong&gt;索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;二叉树？？&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--如何优化数据库性能&quot;&gt;- 如何优化数据库性能&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;表的设计合理化(符合3NF)&lt;/li&gt;
+  &lt;li&gt;添加适当索引(index) [四种: 普通索引、主键索引、唯一索引unique、全文索引]&lt;/li&gt;
+  &lt;li&gt;分表技术(水平分割、垂直分割)&lt;/li&gt;
+  &lt;li&gt;读写[写: update/delete/add]分离&lt;/li&gt;
+  &lt;li&gt;存储过程 [模块化编程，可以提高速度]&lt;/li&gt;
+  &lt;li&gt;对mysql配置优化 [配置最大并发数my.ini, 调整缓存大小 ]&lt;/li&gt;
+  &lt;li&gt;mysql服务器硬件升级&lt;/li&gt;
+  &lt;li&gt;定时的去清除不需要的数据,定时进行碎片整理(MyISAM)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;--数据库索引&quot;&gt;- 数据库索引&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;适合建立索引的列&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构&lt;/li&gt;
+  &lt;li&gt;在经常用在连接的列上，这些列主要是一些外键，可以加快连接的速度&lt;/li&gt;
+  &lt;li&gt;在经常需要根据范围进行搜索的列上创建索引，因为索引已经排序，其指定的范围是连续的&lt;/li&gt;
+  &lt;li&gt;在经常需要排序的列上创建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间&lt;/li&gt;
+  &lt;li&gt;在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;不适合建立索引的列&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对于那些在查询中很少使用或者参考的列不应该创建索引&lt;/li&gt;
+  &lt;li&gt;对于那些只有很少数据值的列也不应该增加索引&lt;/li&gt;
+  &lt;li&gt;对于那些定义为text, image和bit数据类型的列不应该增加索引&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性&lt;/li&gt;
+  &lt;li&gt;可以大大加快数据的检索速度，这也是创建索引的最主要的原因&lt;/li&gt;
+  &lt;li&gt;可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义&lt;/li&gt;
+  &lt;li&gt;在使用分组和排序子句进行数据检索时，同样可以显著减少查询中分组和排序的时间- 表字段的类型选择要恰当&lt;/li&gt;
+  &lt;li&gt;通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加&lt;/li&gt;
+  &lt;li&gt;索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大&lt;/li&gt;
+  &lt;li&gt;当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--sql中索引不会被用到的几种情况&quot;&gt;- sql中索引不会被用到的几种情况&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;查询谓词没有使用索引的主要边界,换句话说就是select *，可能会导致不走索引。&lt;/li&gt;
+  &lt;li&gt;单键值的b树索引列上存在null值，导致COUNT(*)不能走索引。&lt;/li&gt;
+  &lt;li&gt;索引列上有函数运算，导致不走索引&lt;/li&gt;
+  &lt;li&gt;隐式转换导致不走索引。&lt;/li&gt;
+  &lt;li&gt;表的数据库小或者需要选择大部分数据，不走索引&lt;/li&gt;
+  &lt;li&gt;cbo优化器下统计信息不准确，导致不走索引&lt;/li&gt;
+  &lt;li&gt;！=或者&amp;lt;&amp;gt;(不等于），可能导致不走索引，也可能走 INDEX FAST FULL SCAN&lt;/li&gt;
+  &lt;li&gt;表字段的属性导致不走索引，字符型的索引列会导致优化器认为需要扫描索引大部分数据且聚簇因子很大，最终导致弃用索引扫描而改用全表扫描方式，&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;--mybatis批量插入返回主键&quot;&gt;- Mybatis批量插入返回主键&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;insert id=&quot;insertAuthor&quot; useGeneratedKeys=&quot;true&quot;
+    keyProperty=&quot;id&quot;&amp;gt;
+  insert into Author (username,password,email,bio)
+  values (#{username},#{password},#{email},#{bio})
+&amp;lt;/insert&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;--mybatis中dao工作原理&quot;&gt;- MyBatis中Dao工作原理&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Dao接口，就是人们常说的Mapper接口，接口的全限名，就是映射文件中的namespace的值，接口的方法名，就是映射文件中MappedStatement的id值，接口方法内的参数，就是传递给sql的参数。Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为key值，可唯一定位一个MappedStatement，在Mybatis中，每一个&lt;select&gt;、&lt;insert&gt;、&lt;update&gt;、&lt;delete&gt;标签，都会被解析为一个MappedStatement对象。&lt;/delete&gt;&lt;/update&gt;&lt;/insert&gt;&lt;/select&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Dao接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Dao接口的工作原理是JDK动态代理，Mybatis运行时会使用JDK动态代理为Dao接口生成代理proxy对象，代理对象proxy会拦截接口方法，转而执行MappedStatement所代表的sql，然后将sql执行结果返回。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--mybatis对象关系&quot;&gt;- MyBatis对象关系&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;association  一对一关联查询&lt;/li&gt;
+  &lt;li&gt;collection  一对多关联查询&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;网络协议和网络编程&quot;&gt;网络协议和网络编程&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;redis等缓存系统中间件nosql一致性hash等&quot;&gt;Redis等缓存系统/中间件/NoSQL/一致性Hash等&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;设计模式与重构&quot;&gt;设计模式与重构&lt;/h1&gt;
+&lt;h2 id=&quot;--单例模式&quot;&gt;- 单例模式？&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;懒汉模式  …&lt;/li&gt;
+  &lt;li&gt;饿汉模式  …&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--工厂模式&quot;&gt;- 工厂模式&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--代理模式&quot;&gt;- 代理模式&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;静态代理&lt;/li&gt;
+  &lt;li&gt;动态代理&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;数据结构与算法基础&quot;&gt;数据结构与算法基础&lt;/h1&gt;
+
+&lt;h2 id=&quot;--集合&quot;&gt;- 集合&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;结构&lt;/strong&gt;
+Collection
+|Set            无序，不允许重复
+||————HashSet：哈希表｜无序｜元素必须实现HashCode()｜
+||————TreeSet：二差树｜自动排升序 
+|List           有序，可以有重复元素。
+||————ArrayList：动态数组｜　查询↑　
+||————LinkedList：链表｜插入和删除↑
+Map　都可以用来存放java对象
+|————HashMap　异步　不是线程安全的　效率↑　允许空键值｜数组结合链表
+|————Hashtable 同步　线程安全　效率↓&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Set和List对比&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;Set：检索元素效率低下，删除和插入效率高，插入和删除不会引起元素位置改变。
+List：和数组类似，List可以动态增长，查找元素效率高，插入删除元素效率低，因为会引起其他元素位置改变。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ArrayList和LinkedList&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;code&gt;ArrayList&lt;/code&gt;,是数组结构：少用与中间的增删。多用于查询，修改。每次增删元素顺序都会操作每个元素。
+&lt;code&gt;LinkedList&lt;/code&gt;,是链表结构：多用于中间，开头增删。少用查询，修改。查询时会遍历大量元素。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;--hashmap&quot;&gt;- HashMap&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;特点
+    &lt;blockquote&gt;
+      &lt;ol&gt;
+        &lt;li&gt;HashMap可以接受null键值和值，而Hashtable则不能&lt;/li&gt;
+        &lt;li&gt;HashMap非synchronized&lt;/li&gt;
+        &lt;li&gt;使用put()存储, 使用get(key)获取,put()方法在&lt;code&gt;AbstractHashedMap.class&lt;/code&gt;中实现,先获取hash,通过hashcode在entry中查找,&lt;code&gt;if (entry.hashCode == hashCode &amp;amp;&amp;amp; isEqualKey(key, entry.key))&lt;/code&gt;查找是否存在,没找到就插入一条&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;为什么string-interger这样的wrapper类适合作为键&quot;&gt;为什么String, Interger这样的wrapper类适合作为键？&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;String, Interger这样的wrapper类作为HashMap的键是再适合不过了，而且String最为常用。因为String是不可变的，都是final的，而且已经重写了equals()和hashCode()方法了&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;--arraylist&quot;&gt;- ArrayList&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;排序&lt;/strong&gt;　
+    &lt;ul&gt;
+      &lt;li&gt;Collections.sort()&lt;/li&gt;
+      &lt;li&gt;Collections.sort(list,comparator)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;--treeset&quot;&gt;- TreeSet&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;排序&lt;/strong&gt;　
+    &lt;ul&gt;
+      &lt;li&gt;Collections.sort()&lt;/li&gt;
+      &lt;li&gt;Collections.sort(list,comparator)&lt;/li&gt;
+      &lt;li&gt;自带排序&lt;/li&gt;
+      &lt;li&gt;构造器定制&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;--hashset&quot;&gt;- HashSet&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于HashSet而言，它是基于HashMap实现的，HashSet底层使用HashMap来保存所有元素，更确切的说，HashSet中的元素，只是存放在了底层HashMap的key上， 而value使用一个static final的Object对象标识。因此HashSet 的实现比较简单，相关HashSet的操作，基本上都是直接调用底层HashMap的相关方法来完成&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;jvm&quot;&gt;JVM&lt;/h1&gt;
+&lt;h2 id=&quot;--jvm内存结构&quot;&gt;- JVM内存结构&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Java堆（Heap）:
+    &lt;ul&gt;
+      &lt;li&gt;Java堆（Java Heap）是Java虚拟机所管理的内存中最大的一块,几乎所有的对象实例都在这里分配内存&lt;/li&gt;
+      &lt;li&gt;Java堆中还可以细分为：新生代和老年代；再细致一点的有Eden空间、From Survivor空间、To Survivor空间等。&lt;/li&gt;
+      &lt;li&gt;如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;方法区（Method Area）
+    &lt;ul&gt;
+      &lt;li&gt;各个线程共享的内存区域,&lt;strong&gt;它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据&lt;/strong&gt;,别名&lt;strong&gt;Non-Heap（非堆）(永久代)&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;程序计数器（Program Counter Register）
+    &lt;ul&gt;
+      &lt;li&gt;一块较小的内存空间&lt;/li&gt;
+      &lt;li&gt;它的作用可以看做是当前线程所执行的字节码的行号指示器&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;JVM栈（JVM Stacks）
+    &lt;ul&gt;
+      &lt;li&gt;线程私有&lt;/li&gt;
+      &lt;li&gt;它的生命周期与线程相同&lt;/li&gt;
+      &lt;li&gt;每个方法被执行的时候都会同时创建一个栈帧（Stack Frame）用于存储局部变量表、操作栈、动态链接、方法出口等信息。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。&lt;/li&gt;
+      &lt;li&gt;当扩展时无法申请到足够的内存时会抛出OutOfMemoryError异常。&lt;/li&gt;
+      &lt;li&gt;如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;本地方法栈（Native Method Stacks）
+    &lt;ul&gt;
+      &lt;li&gt;与虚拟机栈所发挥的作用是非常相似的&lt;/li&gt;
+      &lt;li&gt;虚拟机栈为虚拟机执行Java方法（也就是字节码）服务，而本地方法栈则是为虚拟机使用到的Native方法服务&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;开放性问题&quot;&gt;开放性问题&lt;/h1&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Spring使用实体接收参数异常</title>
