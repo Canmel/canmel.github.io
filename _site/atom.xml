@@ -4,7 +4,7 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-10-12T17:40:00+08:00</updated>
+ <updated>2017-10-13T17:20:48+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
@@ -49,17 +49,29 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;结构&lt;/strong&gt;
-Collection
-|Set            无序，不允许重复
-||————HashSet：哈希表｜无序｜元素必须实现HashCode()｜
-||————TreeSet：二差树｜自动排升序 
-|List           有序，可以有重复元素。
-||————ArrayList：动态数组｜　查询↑　
-||————LinkedList：链表｜插入和删除↑
-Map　都可以用来存放java对象
-|————HashMap　异步　不是线程安全的　效率↑　允许空键值｜数组结合链表
-|————Hashtable 同步　线程安全　效率↓&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;结构&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Collection
+    &lt;ul&gt;
+      &lt;li&gt;Set            无序，不允许重复
+        &lt;ul&gt;
+          &lt;li&gt;HashSet：哈希表｜无序｜元素必须实现HashCode()｜&lt;/li&gt;
+          &lt;li&gt;TreeSet：二差树｜自动排升序&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;List           有序，可以有重复元素。
+        &lt;ul&gt;
+          &lt;li&gt;ArrayList：动态数组｜　查询↑　&lt;/li&gt;
+          &lt;li&gt;LinkedList：链表｜插入和删除↑&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Map　都可以用来存放java对象
+    &lt;ul&gt;
+      &lt;li&gt;HashMap　异步　不是线程安全的　效率↑　允许空键值｜数组结合链表&lt;/li&gt;
+      &lt;li&gt;Hashtable 同步　线程安全　效率↓&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Set和List对比&lt;/strong&gt;
     &lt;blockquote&gt;
@@ -193,6 +205,78 @@ public boolean equals(Object obj) {
 &lt;hr /&gt;
 
 &lt;h1 id=&quot;框架使用&quot;&gt;框架使用&lt;/h1&gt;
+&lt;h2 id=&quot;--你是怎么理解ioc的&quot;&gt;- 你是怎么理解IOC的&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;许多应用都是通过彼此间的相互合作来实现业务逻辑的，如类A要调用类B的方法，以前我们都是在类A中，通过自身new一个类B，然后在调用类B的方法，现在我们把new类B的事情交给spring来做，在我们调用的时候，容器会为我们实例化。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;--你是怎么理解aop的&quot;&gt;- 你是怎么理解AOP的&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;用途:　日志记录，性能统计，安全控制，权限管理，事务处理，异常处理，资源池管理。&lt;/li&gt;
+    &lt;li&gt;面向切面编程，在我们的应用中，经常需要做一些事情，但是这些事情与核心业务无关，比如，要记录所有update*方法的执行时间时间，操作人等等信息，记录到日志，&lt;/li&gt;
+    &lt;li&gt;通过spring的AOP技术，就可以在不修改update*的代码的情况下完成该需求。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下面代码使用AOP设置事物&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;context:property-placeholder location=&quot;classpath:jdbc.properties&quot; /&amp;gt;
+    &amp;lt;!-- 使用注解的包，包括子集 --&amp;gt;
+    &amp;lt;context:component-scan base-package=&quot;com.eam&quot; /&amp;gt;
+    &amp;lt;mvc:annotation-driven /&amp;gt;
+ 
+    &amp;lt;!-- JNDI方式配置数据源 --&amp;gt;
+    &amp;lt;!-- &amp;lt;bean id=&quot;dataSource&quot; class=&quot;org.springframework.jndi.JndiObjectFactoryBean&quot;&amp;gt; 
+        &amp;lt;property name=&quot;jndiName&quot; value=&quot;${jndiName}&quot;&amp;gt;&amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; --&amp;gt;
+ 
+    &amp;lt;!-- 这里Id与SessionContext要同步 --&amp;gt;
+    &amp;lt;bean id=&quot;dataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot;
+        destroy-method=&quot;close&quot;&amp;gt;
+        &amp;lt;property name=&quot;driverClassName&quot; value=&quot;${driver}&quot; /&amp;gt;
+        &amp;lt;property name=&quot;url&quot; value=&quot;${url}&quot; /&amp;gt;
+        &amp;lt;property name=&quot;username&quot; value=&quot;${username}&quot; /&amp;gt;
+        &amp;lt;property name=&quot;password&quot; value=&quot;${password}&quot; /&amp;gt;
+        &amp;lt;property name=&quot;maxActive&quot; value=&quot;10&quot; /&amp;gt;
+    &amp;lt;/bean&amp;gt;
+ 
+    &amp;lt;!-- 配置事务管理器 --&amp;gt;
+    &amp;lt;bean name=&quot;transactionManager&quot;
+        class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&amp;gt;
+        &amp;lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&amp;gt;
+    &amp;lt;/bean&amp;gt;
+ 
+    &amp;lt;!-- 拦截器方式配置事物 --&amp;gt;
+    &amp;lt;tx:advice id=&quot;transactionAdvice&quot; transaction-manager=&quot;transactionManager&quot;&amp;gt;
+        &amp;lt;tx:attributes&amp;gt;
+            &amp;lt;tx:method name=&quot;add*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;save*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;update*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;modify*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;edit*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;insert*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;delete*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;remove*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;repair&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot; /&amp;gt;
+ 
+            &amp;lt;tx:method name=&quot;get*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;true&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;load*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;true&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;find*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;true&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;select*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;true&quot; /&amp;gt;
+            &amp;lt;tx:method name=&quot;search*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;true&quot; /&amp;gt;
+        &amp;lt;/tx:attributes&amp;gt;
+    &amp;lt;/tx:advice&amp;gt;
+    &amp;lt;aop:config&amp;gt;
+        &amp;lt;aop:pointcut id=&quot;transactionPointcut&quot;
+            expression=&quot;execution(* com.eam.service..*Impl.*(..))&quot; /&amp;gt;
+        &amp;lt;aop:advisor pointcut-ref=&quot;transactionPointcut&quot;
+            advice-ref=&quot;transactionAdvice&quot; /&amp;gt;
+    &amp;lt;/aop:config&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
 &lt;h2 id=&quot;--spring中bean的生命周期&quot;&gt;- Spring中Bean的生命周期&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;ol&gt;
