@@ -5,10 +5,189 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-10-28T17:38:06+08:00</lastBuildDate>
-        <pubDate>2017-10-28T17:38:06+08:00</pubDate>
+        <lastBuildDate>2017-11-08T16:12:50+08:00</lastBuildDate>
+        <pubDate>2017-11-08T16:12:50+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>HttpClient各版本发送请求</title>
+                <description>&lt;h2 id=&quot;httpclient大致分为三个版本&quot;&gt;HttpClient大致分为三个版本：&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;HttpClient 3.x&lt;/li&gt;
+  &lt;li&gt;HttpClient 4.x – HttpClient 4.3&lt;/li&gt;
+  &lt;li&gt;HttpClient 4.3 及以上&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;httpclient-3x&quot;&gt;HttpClient 3.x&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;HttpClient client = new HttpClient();  
+HttpMethodmethod = new GetMethod(&quot;http://java.sun.com&quot;);  
+// 使用POST方法  
+// HttpMethod method = new PostMethod(&quot;http://java.sun.com&quot;);  
+client.executeMethod(method);  
+// 打印服务器返回的状态  
+System.out.println(method.getStatusLine());  
+// 打印返回的信息  
+System.out.println(method.getResponseBodyAsString());  
+// 释放连接  
+method.releaseConnection();  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;httpclient-4x--httpclient-43&quot;&gt;HttpClient 4.x – HttpClient 4.3&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public void getUrl(String url, String encoding) throws ClientProtocolException, IOException {  
+    HttpClient client = new DefaultHttpClient();  
+    HttpGet get = new HttpGet(url);  
+    //设置超时时间  
+    HttpParams params = client.getParams();  
+    HttpConnectionParams.setConnectionTimeout(params, (int) 10 * 1000);  
+    HttpConnectionParams.setSoTimeout(params, 10 * 1000);  
+    HttpResponse response = client.execute(get);  
+    HttpEntity entity = response.getEntity();  
+    if (entity != null) {  
+        InputStream instream = entity.getContent();  
+        try {  
+            BufferedReader reader = new BufferedReader(new InputStreamReader(instream, encoding));  
+                System.out.println(reader.readLine());  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            } finally {  
+                instream.close();  
+            }  
+        }  
+        // 关闭连接.  
+        client.getConnectionManager().shutdown();  
+    }  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;httpclient-43-及以上&quot;&gt;HttpClient 4.3 及以上&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import org.apache.http.HttpEntity;  
+import org.apache.http.HttpResponse;  
+import org.apache.http.client.methods.HttpGet;  
+import org.apache.http.impl.client.CloseableHttpClient;  
+import org.apache.http.impl.client.HttpClients;  
+import org.apache.http.util.EntityUtils;  
+  
+  
+public static String getResult(String urlStr) {  
+    CloseableHttpClient httpClient = HttpClients.createDefault();  
+    // HTTP Get请求  
+    HttpGet httpGet = new HttpGet(urlStr);  
+    // 设置请求和传输超时时间  
+    // RequestConfig requestConfig =  
+    // RequestConfig.custom().setSocketTimeout(TIME_OUT).setConnectTimeout(TIME_OUT).build();  
+    // httpGet.setConfig(requestConfig);  
+    String res = &quot;&quot;;  
+    try {  
+        // 执行请求  
+        HttpResponse getAddrResp = httpClient.execute(httpGet);  
+        HttpEntity entity = getAddrResp.getEntity();  
+        if (entity != null) {  
+            res = EntityUtils.toString(entity);  
+        }  
+            log.info(&quot;响应&quot; + getAddrResp.getStatusLine());  
+        } catch (Exception e) {  
+            log.error(e.getMessage(), e);  
+            return res;  
+        } finally {  
+            try {  
+                httpClient.close();  
+            } catch (IOException e) {  
+                log.error(e.getMessage(), e);  
+                return res;  
+            }  
+        }  
+        return res;  
+    }  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;各版本注意事项&quot;&gt;各版本注意事项&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;无论是哪个版本，那种请求方式类（HttpPost, HttpGet, PostMethod, GetMethod）,在传递参数的时候一定要注意加上参数编码&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JAVA&quot;&gt;PostMethod postMethod = new PostMethod();
+...
+List&amp;lt;NameValuePair&amp;gt; nvps = new ArrayList&amp;lt;NameValuePair&amp;gt;();
+...
+httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;40---43-示例&quot;&gt;4.0 - 4.3 示例&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class HttpClientT {
+	
+	private static String error_result = &quot;Request Error&quot;;
+
+	public static String doPostStr(String url, String params, String charset) {
+		String result = &quot;&quot;;
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpUriRequest httpPost = null;
+		try {
+			httpPost = new HttpPost(url);
+			((HttpPost)httpPost).setEntity(new StringEntity(params, charset));
+			setHeaderParams(httpPost, charset);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity resultEntity = response.getEntity();
+				result = EntityUtils.toString(resultEntity);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = error_result;
+		}
+		return result;
+	}
+	
+	public static String doPost(String url, Map&amp;lt;String, String&amp;gt; params, String charset) {
+		HttpClient httpClient = new DefaultHttpClient();
+		String result = &quot;&quot;;
+		
+		HttpPost httpPost = null;
+		List&amp;lt;NameValuePair&amp;gt; nvps = new ArrayList&amp;lt;NameValuePair&amp;gt;();
+
+		if (null != params) {
+			for (Map.Entry&amp;lt;String, String&amp;gt; item : params.entrySet()) {
+				nvps.add(new BasicNameValuePair((String) item.getKey(), (String) item.getValue()));
+			}
+		}
+		try {
+			httpPost = new HttpPost(url);
+			httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
+			setHeaderParams(httpPost, charset);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity resultEntity = response.getEntity();
+				result = EntityUtils.toString(resultEntity);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = error_result;
+		}
+		return result;
+	}
+	
+	public static void setHeaderParams(HttpUriRequest req, String charset) {
+		req.setHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded; charset=&quot; + charset);
+		req.setHeader(&quot;Accept-Language&quot;, &quot;zh-cn&quot;);
+		req.setHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
+		req.setHeader(&quot;Connection&quot;, &quot;Close&quot;);
+	}
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/11/07/HttpClient%E5%90%84%E7%89%88%E6%9C%AC%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82</link>
+                <guid>http://canmel.github.io/2017/11/07/HttpClient各版本发送请求</guid>
+                <pubDate>2017-11-07T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>JAVA问答</title>

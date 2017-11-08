@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97871655-b626-4e2a-8f8d-688362b365d8" name="Default" comment="">
+    <list default="true" id="97871655-b626-4e2a-8f8d-688362b365d8" name="Default" comment="spring 使用实体接收参数异常">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2017-11-07-HttpClient各版本发送请求.md" afterPath="$PROJECT_DIR$/_posts/2017-11-07-HttpClient各版本发送请求.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" afterPath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" afterPath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" afterPath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" afterPath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" afterPath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/25/spring-cloud-resttemplate.html" afterPath="$PROJECT_DIR$/_site/2017/08/25/spring-cloud-resttemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/30/spring-cloud-config-分布式配置.html" afterPath="$PROJECT_DIR$/_site/2017/08/30/spring-cloud-config-分布式配置.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/03/spring-cloud-stream-消息驱动微服务.html" afterPath="$PROJECT_DIR$/_site/2017/09/03/spring-cloud-stream-消息驱动微服务.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-事件.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-事件.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-多线程.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-多线程.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-常用配置.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-常用配置.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" afterPath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" afterPath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" afterPath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/archive.html" afterPath="$PROJECT_DIR$/_site/archive.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/atom.xml" afterPath="$PROJECT_DIR$/_site/atom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/index.html" afterPath="$PROJECT_DIR$/_site/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/rss.xml" afterPath="$PROJECT_DIR$/_site/rss.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/sitemap.txt" afterPath="$PROJECT_DIR$/_site/sitemap.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/tags.html" afterPath="$PROJECT_DIR$/_site/tags.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2017-10-10-Spring使用实体接收参数异常.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-1210">
+              <first_editor relative-caret-position="150">
                 <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
                 <folding />
               </first_editor>
@@ -58,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2017-10-12-java问答.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="218">
+              <first_editor relative-caret-position="240">
                 <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
                 <folding>
                   <marker date="1509182853000" expanded="true" signature="4018:4172" ph="..." />
@@ -107,8 +130,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2017-11-07-HttpClient各版本发送请求.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="105">
-                <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <first_editor relative-caret-position="260">
+                <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -397,7 +420,9 @@
       <workItem from="1507884263139" duration="1326000" />
       <workItem from="1509183412803" duration="564000" />
       <workItem from="1509332324074" duration="132000" />
-      <workItem from="1510038000487" duration="139000" />
+      <workItem from="1510038000487" duration="200000" />
+      <workItem from="1510061283741" duration="1050000" />
+      <workItem from="1510128696974" duration="74000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1502091200498</created>
@@ -613,13 +638,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91450000" />
+    <option name="totallyTimeSpent" value="92635000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23462088" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24034335" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1052,7 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1060,7 +1084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,7 +1091,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1124,7 +1146,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-10-12-java问答.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="218">
+          <first_editor relative-caret-position="240">
             <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
             <folding>
               <marker date="1509182853000" expanded="true" signature="4018:4172" ph="..." />
@@ -1167,7 +1189,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-10-10-Spring使用实体接收参数异常.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1210">
+          <first_editor relative-caret-position="150">
             <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
             <folding />
           </first_editor>
@@ -1178,8 +1200,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-11-07-HttpClient各版本发送请求.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="105">
-            <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <first_editor relative-caret-position="260">
+            <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
