@@ -114,6 +114,13 @@ httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
 ```
 
 
+- 导包，添加maven依赖的时候要注意，其中3.X版本的是`org.apache.commons.httpclient.HttpClient`, maven仓库上最高版本`3.1`，(截止`Aug, 2007`已经不再维护)
+
+- `org.apache.http.client.HttpClient`继续在之前的版本维护，第一个版本为`4.0xx`，4.0以后的版本支持SSL
+
+
+---
+
 
 ## 4.0 - 4.3 示例
 

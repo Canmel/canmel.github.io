@@ -4,7 +4,7 @@
  <title>Meedesidy Blog</title>
  <link href="http://canmel.github.io/" rel="self"/>
  <link href="http://canmel.github.io"/>
- <updated>2017-11-08T16:12:50+08:00</updated>
+ <updated>2017-11-08T16:43:04+08:00</updated>
  <id>http://canmel.github.io</id>
  <author>
    <name>Meedesidy</name>
@@ -120,6 +120,17 @@ List&amp;lt;NameValuePair&amp;gt; nvps = new ArrayList&amp;lt;NameValuePair&amp;
 ...
 httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;导包，添加maven依赖的时候要注意，其中3.X版本的是&lt;code&gt;org.apache.commons.httpclient.HttpClient&lt;/code&gt;, maven仓库上最高版本&lt;code&gt;3.1&lt;/code&gt;，(截止&lt;code&gt;Aug, 2007&lt;/code&gt;已经不再维护)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;org.apache.http.client.HttpClient&lt;/code&gt;继续在之前的版本维护，第一个版本为&lt;code&gt;4.0xx&lt;/code&gt;，4.0以后的版本支持SSL&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
 
 &lt;h2 id=&quot;40---43-示例&quot;&gt;4.0 - 4.3 示例&lt;/h2&gt;
 

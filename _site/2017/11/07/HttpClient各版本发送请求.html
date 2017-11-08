@@ -196,6 +196,17 @@ List&lt;NameValuePair&gt; nvps = new ArrayList&lt;NameValuePair&gt;();
 httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
 </code></pre>
 
+<ul>
+  <li>
+    <p>导包，添加maven依赖的时候要注意，其中3.X版本的是<code>org.apache.commons.httpclient.HttpClient</code>, maven仓库上最高版本<code>3.1</code>，(截止<code>Aug, 2007</code>已经不再维护)</p>
+  </li>
+  <li>
+    <p><code>org.apache.http.client.HttpClient</code>继续在之前的版本维护，第一个版本为<code>4.0xx</code>，4.0以后的版本支持SSL</p>
+  </li>
+</ul>
+
+<hr />
+
 <h2 id="40---43-示例">4.0 - 4.3 示例</h2>
 
 <pre><code class="language-java">public class HttpClientT {
