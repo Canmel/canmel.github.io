@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>HttpClient各版本发送请求</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>HttpClient各版本发送请求 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>07 November 2017</span>
+    </div>
+    <div class="content">
+      <h2 id="httpclient大致分为三个版本">HttpClient大致分为三个版本：</h2>
+<ul>
+  <li>HttpClient 3.x</li>
+  <li>HttpClient 4.x – HttpClient 4.3</li>
+  <li>HttpClient 4.3 及以上</li>
+</ul>
+
+<h3 id="httpclient-3x">HttpClient 3.x</h3>
+
+<pre><code class="language-java">HttpClient client = new HttpClient();  
+HttpMethodmethod = new GetMethod("http://java.sun.com");  
+// 使用POST方法  
+// HttpMethod method = new PostMethod("http://java.sun.com");  
+client.executeMethod(method);  
+// 打印服务器返回的状态  
+System.out.println(method.getStatusLine());  
+// 打印返回的信息  
+System.out.println(method.getResponseBodyAsString());  
+// 释放连接  
+method.releaseConnection();  
+</code></pre>
+
+<h3 id="httpclient-4x--httpclient-43">HttpClient 4.x – HttpClient 4.3</h3>
+
+<pre><code class="language-java">public void getUrl(String url, String encoding) throws ClientProtocolException, IOException {  
+    HttpClient client = new DefaultHttpClient();  
+    HttpGet get = new HttpGet(url);  
+    //设置超时时间  
+    HttpParams params = client.getParams();  
+    HttpConnectionParams.setConnectionTimeout(params, (int) 10 * 1000);  
+    HttpConnectionParams.setSoTimeout(params, 10 * 1000);  
+    HttpResponse response = client.execute(get);  
+    HttpEntity entity = response.getEntity();  
+    if (entity != null) {  
+        InputStream instream = entity.getContent();  
+        try {  
+            BufferedReader reader = new BufferedReader(new InputStreamReader(instream, encoding));  
+                System.out.println(reader.readLine());  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            } finally {  
+                instream.close();  
+            }  
+        }  
+        // 关闭连接.  
+        client.getConnectionManager().shutdown();  
+    }  
+</code></pre>
+
+<h3 id="httpclient-43-及以上">HttpClient 4.3 及以上</h3>
+
+<pre><code class="language-java">import org.apache.http.HttpEntity;  
+import org.apache.http.HttpResponse;  
+import org.apache.http.client.methods.HttpGet;  
+import org.apache.http.impl.client.CloseableHttpClient;  
+import org.apache.http.impl.client.HttpClients;  
+import org.apache.http.util.EntityUtils;  
+  
+  
+public static String getResult(String urlStr) {  
+    CloseableHttpClient httpClient = HttpClients.createDefault();  
+    // HTTP Get请求  
+    HttpGet httpGet = new HttpGet(urlStr);  
+    // 设置请求和传输超时时间  
+    // RequestConfig requestConfig =  
+    // RequestConfig.custom().setSocketTimeout(TIME_OUT).setConnectTimeout(TIME_OUT).build();  
+    // httpGet.setConfig(requestConfig);  
+    String res = "";  
+    try {  
+        // 执行请求  
+        HttpResponse getAddrResp = httpClient.execute(httpGet);  
+        HttpEntity entity = getAddrResp.getEntity();  
+        if (entity != null) {  
+            res = EntityUtils.toString(entity);  
+        }  
+            log.info("响应" + getAddrResp.getStatusLine());  
+        } catch (Exception e) {  
+            log.error(e.getMessage(), e);  
+            return res;  
+        } finally {  
+            try {  
+                httpClient.close();  
+            } catch (IOException e) {  
+                log.error(e.getMessage(), e);  
+                return res;  
+            }  
+        }  
+        return res;  
+    }  
+</code></pre>
+
+<h2 id="各版本注意事项">各版本注意事项</h2>
+
+<ul>
+  <li>无论是哪个版本，那种请求方式类（HttpPost, HttpGet, PostMethod, GetMethod）,在传递参数的时候一定要注意加上参数编码</li>
+</ul>
+
+<pre><code class="language-JAVA">PostMethod postMethod = new PostMethod();
+...
+List&lt;NameValuePair&gt; nvps = new ArrayList&lt;NameValuePair&gt;();
+...
+httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
+</code></pre>
+
+<ul>
+  <li>
+    <p>导包，添加maven依赖的时候要注意，其中3.X版本的是<code>org.apache.commons.httpclient.HttpClient</code>, maven仓库上最高版本<code>3.1</code>，(截止<code>Aug, 2007</code>已经不再维护)</p>
+  </li>
+  <li>
+    <p><code>org.apache.http.client.HttpClient</code>继续在之前的版本维护，第一个版本为<code>4.0xx</code>，4.0以后的版本支持SSL</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="40---43-示例">4.0 - 4.3 示例</h2>
+
+<pre><code class="language-java">public class HttpClientT {
+	
+	private static String error_result = "Request Error";
+
+	public static String doPostStr(String url, String params, String charset) {
+		String result = "";
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpUriRequest httpPost = null;
+		try {
+			httpPost = new HttpPost(url);
+			((HttpPost)httpPost).setEntity(new StringEntity(params, charset));
+			setHeaderParams(httpPost, charset);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity resultEntity = response.getEntity();
+				result = EntityUtils.toString(resultEntity);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = error_result;
+		}
+		return result;
+	}
+	
+	public static String doPost(String url, Map&lt;String, String&gt; params, String charset) {
+		HttpClient httpClient = new DefaultHttpClient();
+		String result = "";
+		
+		HttpPost httpPost = null;
+		List&lt;NameValuePair&gt; nvps = new ArrayList&lt;NameValuePair&gt;();
+
+		if (null != params) {
+			for (Map.Entry&lt;String, String&gt; item : params.entrySet()) {
+				nvps.add(new BasicNameValuePair((String) item.getKey(), (String) item.getValue()));
+			}
+		}
+		try {
+			httpPost = new HttpPost(url);
+			httpPost.setEntity(new UrlEncodedFormEntity(nvps, charset));
+			setHeaderParams(httpPost, charset);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity resultEntity = response.getEntity();
+				result = EntityUtils.toString(resultEntity);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = error_result;
+		}
+		return result;
+	}
+	
+	public static void setHeaderParams(HttpUriRequest req, String charset) {
+		req.setHeader("Content-type", "application/x-www-form-urlencoded; charset=" + charset);
+		req.setHeader("Accept-Language", "zh-cn");
+		req.setHeader("Cache-Control", "no-cache");
+		req.setHeader("Connection", "Close");
+	}
+}
+
+
+</code></pre>
+
+<hr />
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>19</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/10/12/java%E9%97%AE%E7%AD%94" title="JAVA问答">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
