@@ -3,7 +3,7 @@ layout: post
 title: "centos安装部署gitlab服务器"
 description: ""
 category: 
-tags: []
+tags: [Linux]
 ---
 
 
