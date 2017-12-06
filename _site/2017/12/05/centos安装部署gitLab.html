@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>ubuntu安装java开发环境</title>
+    <title>centos安装部署gitlab服务器</title>
     <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,76 +83,93 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>ubuntu安装java开发环境 </h1>
+  <h1>centos安装部署gitlab服务器 </h1>
 </div>
 
 <div class="row post-full">
   <div class="col-md-12">
     <div class="date">
-      <span>21 August 2017</span>
+      <span>05 December 2017</span>
     </div>
     <div class="content">
-      
-<h3 id="添加ppa更新">添加ppa,更新</h3>
-
+      <h2 id="1-安装依赖软件">1. 安装依赖软件</h2>
 <blockquote>
-  <p>~ sudo add-apt-repository ppa:webupd8team/java</p>
+  <p>yum -y install policycoreutils openssh-server openssh-clients postfix</p>
 </blockquote>
 
+<h2 id="2设置postfix开机自启并启动postfix支持gitlab发信功能">2.设置postfix开机自启，并启动，postfix支持gitlab发信功能</h2>
 <blockquote>
-  <p>~ sudo apt-get update</p>
+  <p>systemctl enable postfix &amp;&amp; systemctl start postfix</p>
 </blockquote>
 
-<p>###　安装oracle-java-installer</p>
+<h2 id="3下载gitlab安装包然后安装">3.下载gitlab安装包，然后安装</h2>
 
 <ul>
-  <li>jdk7
+  <li><strong>查看系统版本</strong>
     <blockquote>
-      <p>~ sudo apt-get install oracle-java7-installer</p>
+      <p>cat /etc/os-release</p>
     </blockquote>
   </li>
-  <li>jdk8
+  <li><strong>centos 6系统的下载地址:</strong>
     <blockquote>
-      <p>~ sudo apt-get install oracle-java8-installer</p>
+      <p>https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6</p>
+    </blockquote>
+  </li>
+  <li><strong>centos 7系统的下载地址:</strong>
+    <blockquote>
+      <p>https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7</p>
+    </blockquote>
+  </li>
+  <li><strong>安装</strong>
+    <blockquote>
+      <p>rpm -i gitlab-ce-x.x.x-ce.x.x.x.x86_64.rpm</p>
     </blockquote>
   </li>
 </ul>
 
-<pre><code>安装器会提示你同意 oracle 的服务条款,选择 ok,然后选择yes 即可
+<h2 id="4修改gitlab配置文件指定服务器ip和自定义端口">4.修改gitlab配置文件指定服务器ip和自定义端口</h2>
+<blockquote>
+  <p>vim  /etc/gitlab/gitlab.rb</p>
+</blockquote>
+
+<pre><code>## 设置访问路径，http://127.0.0.1 
+## 注意这里设置的端口不能被占用，默认是8080又好像就是80端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口
+external_url 'http://127.0.0.1'
 </code></pre>
-<h3 id="设置系统默认jdk">设置系统默认jdk</h3>
+
+<h2 id="5重置并启动gitlab">5.重置并启动GitLab</h2>
+
 <ul>
-  <li>JDk7
+  <li>重新使用新配置
     <blockquote>
-      <p>~ sudo update-java-alternatives -s java-7-oracle</p>
+      <p>gitlab-ctl reconfigure</p>
     </blockquote>
   </li>
-  <li>JDk8
+  <li>重启
     <blockquote>
-      <p>~ sudo update-java-alternatives -s java-8-oracle</p>
+      <p>gitlab-ctl restart</p>
     </blockquote>
   </li>
 </ul>
 
-<h3 id="切换jdk版本">切换jdk版本</h3>
+<h2 id="6访问-gitlab页面">6.访问 GitLab页面</h2>
+
 <ul>
-  <li>jdk8 切换到jdk7
-    <blockquote>
-      <p>~ sudo update-java-alternatives -s java-7-oracle</p>
-    </blockquote>
-  </li>
-  <li>jdk7 切换到jdk8
-    <blockquote>
-      <p>~ sudo update-java-alternatives -s java-8-oracle</p>
-    </blockquote>
-  </li>
+  <li>如果没有域名，直接输入服务器ip和指定端口进行访问</li>
+  <li><strong>初始账户: root 密码: 5iveL!fe</strong></li>
+  <li>第一次登录修改密码,第一次访问直接让你修改密码</li>
 </ul>
 
-<h3 id="测试jdk-是是否安装成功">测试jdk 是是否安装成功</h3>
+<h2 id="7局域网hostname访问">7.局域网hostname访问</h2>
 <blockquote>
-  <p>~ java -version
-~ javac -version</p>
+  <p>vi /etc/hosts</p>
 </blockquote>
+
+<p><code>apple js
+192.168.xxx.xxx code.xxx.xxx
+</code></p>
+
+<p><strong>访问 code.xxx.xxx</strong></p>
 
 
     </div>
@@ -169,8 +186,6 @@
   
      
     	<li><a href="/tags.html#Linux-ref">Linux <span>3</span></a></li>
-     
-    	<li><a href="/tags.html#Java-ref">Java <span>19</span></a></li>
     
   
 
@@ -183,11 +198,11 @@
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/08/20/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8docker%E5%8F%91%E5%B8%83web%E9%A1%B9%E7%9B%AE" title="在阿里云服务器使用docker部署web项目">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/11/07/HttpClient%E5%90%84%E7%89%88%E6%9C%AC%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82" title="HttpClient各版本发送请求">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/08/22/spring-cloud-applicationproperties" title="Spring cloud application.properties">Next &rarr;</a></li>
+        <li class="next"><a href="/2017/12/05/mysql-operation-not-permitted" title="mysql Operation not permitted">Next &rarr;</a></li>
       
     </ul>
     <hr>

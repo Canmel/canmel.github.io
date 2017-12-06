@@ -30,9 +30,9 @@ tags: [Linux]
 ## 4.修改gitlab配置文件指定服务器ip和自定义端口
 > vim  /etc/gitlab/gitlab.rb
 
-```apple js
+```
 ## 设置访问路径，http://127.0.0.1 
-## 注意这里设置的端口不能被占用，默认是8080端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口
+## 注意这里设置的端口不能被占用，默认是8080又好像就是80端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口
 external_url 'http://127.0.0.1'
 ```
 
@@ -52,9 +52,11 @@ external_url 'http://127.0.0.1'
 
 ## 7.局域网hostname访问
 > vi /etc/hosts
+
 ```apple js
 192.168.xxx.xxx code.xxx.xxx
 ```
+
 **访问 code.xxx.xxx**
 
 

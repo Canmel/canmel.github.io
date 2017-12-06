@@ -24,7 +24,7 @@ tags: [Mysql]
 
 ## 解决
 
-》 sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin
+> sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin
 
 
 {% include JB/setup %}
