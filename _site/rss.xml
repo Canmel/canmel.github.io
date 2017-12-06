@@ -5,10 +5,129 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-11-08T16:43:04+08:00</lastBuildDate>
-        <pubDate>2017-11-08T16:43:04+08:00</pubDate>
+        <lastBuildDate>2017-12-06T17:58:49+08:00</lastBuildDate>
+        <pubDate>2017-12-06T17:58:49+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>mysql Operation not permitted</title>
+                <description>&lt;h2 id=&quot;场景&quot;&gt;场景&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;安装完&lt;code&gt;mysql&lt;/code&gt;,发现命令行中没有&lt;code&gt;mysql&lt;/code&gt;的命令，再找到&lt;code&gt;mysql&lt;/code&gt;命令在&lt;code&gt;/usr/local/mysql/bin/&lt;/code&gt;下。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;计划&quot;&gt;计划&lt;/h2&gt;
+&lt;p&gt;本来想把&lt;code&gt;mysql/bin&lt;/code&gt;下的&lt;code&gt;mysql&lt;/code&gt;命令在&lt;code&gt;/usr/bin&lt;/code&gt;下创建一个软链接。但是需要权限。&lt;/p&gt;
+
+&lt;p&gt;当我再次sudo执行，还是抛出&lt;code&gt;mysql Operation not permitted&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;原因&quot;&gt;原因&lt;/h2&gt;
+
+&lt;p&gt;这是因为苹果在OS X 10.11中引入的SIP特性使得即使加了&lt;code&gt;sudo&lt;/code&gt;（也就是具有root权限）也无法修改系统级的目录，其中就包括了/usr/bin。要解决这个问题有两种做法：&lt;/p&gt;
+
+&lt;p&gt;一种是比较不安全的就是关闭&lt;code&gt;SIP&lt;/code&gt;，也就是&lt;code&gt;rootless&lt;/code&gt;特性；&lt;/p&gt;
+
+&lt;p&gt;另一种是将本要链接到&lt;code&gt;/usr/bin&lt;/code&gt;下的改链接到&lt;code&gt;/usr/local/bin&lt;/code&gt;下就好了。&lt;/p&gt;
+
+&lt;h2 id=&quot;解决&quot;&gt;解决&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/12/05/mysql-operation-not-permitted</link>
+                <guid>http://canmel.github.io/2017/12/05/mysql-operation-not-permitted</guid>
+                <pubDate>2017-12-05T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>centos安装部署gitlab服务器</title>
+                <description>&lt;h2 id=&quot;1-安装依赖软件&quot;&gt;1. 安装依赖软件&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;yum -y install policycoreutils openssh-server openssh-clients postfix&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;2设置postfix开机自启并启动postfix支持gitlab发信功能&quot;&gt;2.设置postfix开机自启，并启动，postfix支持gitlab发信功能&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;systemctl enable postfix &amp;amp;&amp;amp; systemctl start postfix&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;3下载gitlab安装包然后安装&quot;&gt;3.下载gitlab安装包，然后安装&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;查看系统版本&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;cat /etc/os-release&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;centos 6系统的下载地址:&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;centos 7系统的下载地址:&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;安装&lt;/strong&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;rpm -i gitlab-ce-x.x.x-ce.x.x.x.x86_64.rpm&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4修改gitlab配置文件指定服务器ip和自定义端口&quot;&gt;4.修改gitlab配置文件指定服务器ip和自定义端口&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;vim  /etc/gitlab/gitlab.rb&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;## 设置访问路径，http://127.0.0.1 
+## 注意这里设置的端口不能被占用，默认是8080又好像就是80端口，如果8080已经使用，请自定义其它端口，并在防火墙设置开放相对应得端口
+external_url 'http://127.0.0.1'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;5重置并启动gitlab&quot;&gt;5.重置并启动GitLab&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;重新使用新配置
+    &lt;blockquote&gt;
+      &lt;p&gt;gitlab-ctl reconfigure&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;重启
+    &lt;blockquote&gt;
+      &lt;p&gt;gitlab-ctl restart&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6访问-gitlab页面&quot;&gt;6.访问 GitLab页面&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果没有域名，直接输入服务器ip和指定端口进行访问&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;初始账户: root 密码: 5iveL!fe&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;第一次登录修改密码,第一次访问直接让你修改密码&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;7局域网hostname访问&quot;&gt;7.局域网hostname访问&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;vi /etc/hosts&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;apple js
+192.168.xxx.xxx code.xxx.xxx
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;访问 code.xxx.xxx&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/12/05/centos%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2gitLab</link>
+                <guid>http://canmel.github.io/2017/12/05/centos安装部署gitLab</guid>
+                <pubDate>2017-12-05T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>HttpClient各版本发送请求</title>

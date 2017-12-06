@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Ubuntu 基本配置</title>
+    <title>mysql Operation not permitted</title>
     <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,40 +83,38 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>Ubuntu 基本配置 </h1>
+  <h1>mysql Operation not permitted </h1>
 </div>
 
 <div class="row post-full">
   <div class="col-md-12">
     <div class="date">
-      <span>18 September 2017</span>
+      <span>05 December 2017</span>
     </div>
     <div class="content">
-      <p>安装完ubuntu后的15件事
-https://www.sysgeek.cn/15-things-to-do-after-installing-ubuntu-16-04-lts/</p>
-
-<p>rubymine破解 http://idea.qinxi1992.cn/</p>
-
-<p>安装docker
-https://docs.docker.com/engine/installation/linux/ubuntulinux/
-安装docker compose
-https://docs.docker.com/compose/install/#alternative-install-options</p>
-
-<p>安装Redis
-http://blog.fens.me/linux-redis-install/</p>
-
-<p>sogo输入法:
-http://pinyin.sogou.com/linux/,
-注意坑:http://blog.csdn.net/tao_627/article/details/24119037</p>
-
-<p>wps安装</p>
+      <h2 id="场景">场景</h2>
 <ul>
-  <li>下载 http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb</li>
-  <li>安装字体库
-<code>sudo apt-get install ttf-mscorefonts-installer</code></li>
-  <li>双击deb文件安装或者
-<code>sudo  dpkg  -i  wps-office_10.1.0.5672~a21_amd64.deb</code></li>
+  <li>安装完<code>mysql</code>,发现命令行中没有<code>mysql</code>的命令，再找到<code>mysql</code>命令在<code>/usr/local/mysql/bin/</code>下。</li>
 </ul>
+
+<h2 id="计划">计划</h2>
+<p>本来想把<code>mysql/bin</code>下的<code>mysql</code>命令在<code>/usr/bin</code>下创建一个软链接。但是需要权限。</p>
+
+<p>当我再次sudo执行，还是抛出<code>mysql Operation not permitted</code></p>
+
+<h2 id="原因">原因</h2>
+
+<p>这是因为苹果在OS X 10.11中引入的SIP特性使得即使加了<code>sudo</code>（也就是具有root权限）也无法修改系统级的目录，其中就包括了/usr/bin。要解决这个问题有两种做法：</p>
+
+<p>一种是比较不安全的就是关闭<code>SIP</code>，也就是<code>rootless</code>特性；</p>
+
+<p>另一种是将本要链接到<code>/usr/bin</code>下的改链接到<code>/usr/local/bin</code>下就好了。</p>
+
+<h2 id="解决">解决</h2>
+
+<blockquote>
+  <p>sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin</p>
+</blockquote>
 
 
     </div>
@@ -132,7 +130,7 @@ http://pinyin.sogou.com/linux/,
 
   
      
-    	<li><a href="/tags.html#Linux-ref">Linux <span>3</span></a></li>
+    	<li><a href="/tags.html#Mysql-ref">Mysql <span>1</span></a></li>
     
   
 
@@ -145,11 +143,11 @@ http://pinyin.sogou.com/linux/,
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/09/11/spring-boot-%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1" title="Spring boot 计划任务">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/12/05/centos%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2gitLab" title="centos安装部署gitlab服务器">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/09/19/HTML%E4%B8%ADplaceholder%E6%8F%90%E7%A4%BA%E6%8D%A2%E8%A1%8C" title="HTML 中 placeholder提示换行">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
     </ul>
     <hr>
