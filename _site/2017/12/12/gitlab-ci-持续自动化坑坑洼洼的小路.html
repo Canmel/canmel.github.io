@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>mysql Operation not permitted</title>
+    <title>GitLab ci 持续自动化坑坑洼洼的小路</title>
     <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,38 +83,57 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>mysql Operation not permitted </h1>
+  <h1>GitLab ci 持续自动化坑坑洼洼的小路 </h1>
 </div>
 
 <div class="row post-full">
   <div class="col-md-12">
     <div class="date">
-      <span>05 December 2017</span>
+      <span>12 December 2017</span>
     </div>
     <div class="content">
-      <h2 id="场景">场景</h2>
+      <h2 id="centos上使用gitlab-ci持续集成">CentOs上使用gitLab-ci持续集成</h2>
+
+<h3 id="安装gitlab-runner">安装GitLab-Runner</h3>
+
+<pre><code>$ curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash
+$ yum install gitlab-ci-multi-runner
+
+</code></pre>
+
+<h3 id="将单独的gitlab-runner注册到gitlab上">将单独的GitLab-Runner注册到GitLab上</h3>
+<pre><code>
+$ gitlab-ci-multi-runner register
+#引导会让你输入gitlab的url，输入自己的url，例如http://gitlab.example.com/
+#引导会让你输入token，去相应的项目下找到token，例如ase12c235qazd32
+#引导会让你输入tag，一个项目可能有多个runner，是根据tag来区别runner的，输入若干个就好了，比如web,hook,deploy
+#引导会让你输入executor，这个是要用什么方式来执行脚本，图方便输入shell就好了。
+
+</code></pre>
+<p><strong>url 和 token 在每个项目的setting/(CI/DI)/Runners settings 中</strong></p>
+
+<h3 id="编写gitlab-ciyml">编写.gitlab-ci.yml,</h3>
 <ul>
-  <li>安装完<code>mysql</code>,发现命令行中没有<code>mysql</code>的命令，再找到<code>mysql</code>命令在<code>/usr/local/mysql/bin/</code>下。</li>
+  <li>
+    <p>位置: 项目根目录</p>
+  </li>
+  <li>
+    <p>push: gitlab-ci就会自动识别来解析</p>
+  </li>
 </ul>
 
-<h2 id="计划">计划</h2>
-<p>本来想把<code>mysql/bin</code>下的<code>mysql</code>命令在<code>/usr/bin</code>下创建一个软链接。但是需要权限。</p>
+<pre><code class="language-yaml">
+## 最简单的ci文件
+build:
+    script: "pwd"
 
-<p>当我再次sudo执行，还是抛出<code>mysql Operation not permitted</code></p>
+</code></pre>
 
-<h2 id="原因">原因</h2>
+<h3 id="坑坑洼洼的路">坑坑洼洼的路</h3>
 
-<p>这是因为苹果在OS X 10.11中引入的SIP特性使得即使加了<code>sudo</code>（也就是具有root权限）也无法修改系统级的目录，其中就包括了/usr/bin。要解决这个问题有两种做法：</p>
-
-<p>一种是比较不安全的就是关闭<code>SIP</code>，也就是<code>rootless</code>特性；</p>
-
-<p>另一种是将本要链接到<code>/usr/bin</code>下的改链接到<code>/usr/local/bin</code>下就好了。</p>
-
-<h2 id="解决">解决</h2>
-
-<blockquote>
-  <p>sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin</p>
-</blockquote>
+<ol>
+  <li>runner使用Docker，ci开始时候回clone代码至Docker容器，走的是<code>/etc/gitlab/gitlab.rb</code>中定义的<code>external_url</code>，so, 我之前给的<code>127.0.0.1</code>或者<code>localhost</code>就开始万马奔腾了</li>
+</ol>
 
 
     </div>
@@ -130,7 +149,7 @@
 
   
      
-    	<li><a href="/tags.html#Mysql-ref">Mysql <span>1</span></a></li>
+    	<li><a href="/tags.html#Linux-ref">Linux <span>4</span></a></li>
     
   
 
@@ -143,11 +162,11 @@
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/12/05/centos%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2gitLab" title="centos安装部署gitlab服务器">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/12/05/mysql-operation-not-permitted" title="mysql Operation not permitted">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/12/12/gitlab-ci-%E6%8C%81%E7%BB%AD%E8%87%AA%E5%8A%A8%E5%8C%96%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF" title="GitLab ci 持续自动化坑坑洼洼的小路">Next &rarr;</a></li>
+        <li class="next disabled"><a>Next &rarr;</a>
       
     </ul>
     <hr>
