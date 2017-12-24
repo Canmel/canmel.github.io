@@ -5,8 +5,8 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-12-12T14:49:52+08:00</lastBuildDate>
-        <pubDate>2017-12-12T14:49:52+08:00</pubDate>
+        <lastBuildDate>2017-12-12T15:21:48+08:00</lastBuildDate>
+        <pubDate>2017-12-12T15:21:48+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -46,6 +46,24 @@ $ gitlab-ci-multi-runner register
 ## 最简单的ci文件
 build:
     script: &quot;pwd&quot;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;## 步骤列表
+stages:   
+    ## 每一个stages都会在GitLab的Pipeline中以job的形式先后顺序执行    
+  - build 
+  - deploy
+build:
+    stage: build
+    ## 需要执行的动作
+    script: 
+      - pwd &amp;amp;&amp;amp; echo &quot;可以执行测试命令&quot; &amp;amp;&amp;amp; echo $DEPLOY_PATH
+deploy:
+    stage: deploy
+    script: 
+      - echo &quot;我是好人&quot;
+
 
 &lt;/code&gt;&lt;/pre&gt;
 

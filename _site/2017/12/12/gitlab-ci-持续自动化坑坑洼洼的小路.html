@@ -129,6 +129,24 @@ build:
 
 </code></pre>
 
+<pre><code class="language-yaml">## 步骤列表
+stages:   
+    ## 每一个stages都会在GitLab的Pipeline中以job的形式先后顺序执行    
+  - build 
+  - deploy
+build:
+    stage: build
+    ## 需要执行的动作
+    script: 
+      - pwd &amp;&amp; echo "可以执行测试命令" &amp;&amp; echo $DEPLOY_PATH
+deploy:
+    stage: deploy
+    script: 
+      - echo "我是好人"
+
+
+</code></pre>
+
 <h3 id="坑坑洼洼的路">坑坑洼洼的路</h3>
 
 <ol>
