@@ -2,36 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97871655-b626-4e2a-8f8d-688362b365d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_site/2017/12/31/spring-boot-坑坑洼洼的小路.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2017-12-12-gitlab-ci-持续自动化坑坑洼洼的小路.md" afterPath="$PROJECT_DIR$/_posts/2017-12-12-gitlab-ci-持续自动化坑坑洼洼的小路.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" afterPath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" afterPath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" afterPath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" afterPath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" afterPath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/25/spring-cloud-resttemplate.html" afterPath="$PROJECT_DIR$/_site/2017/08/25/spring-cloud-resttemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/30/spring-cloud-config-分布式配置.html" afterPath="$PROJECT_DIR$/_site/2017/08/30/spring-cloud-config-分布式配置.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/03/spring-cloud-stream-消息驱动微服务.html" afterPath="$PROJECT_DIR$/_site/2017/09/03/spring-cloud-stream-消息驱动微服务.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-事件.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-事件.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-多线程.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-多线程.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-常用配置.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-常用配置.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" afterPath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" afterPath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" afterPath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/11/07/HttpClient各版本发送请求.html" afterPath="$PROJECT_DIR$/_site/2017/11/07/HttpClient各版本发送请求.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/12/gitlab-ci-持续自动化坑坑洼洼的小路.html" afterPath="$PROJECT_DIR$/_site/2017/12/12/gitlab-ci-持续自动化坑坑洼洼的小路.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/archive.html" afterPath="$PROJECT_DIR$/_site/archive.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/atom.xml" afterPath="$PROJECT_DIR$/_site/atom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/index.html" afterPath="$PROJECT_DIR$/_site/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/rss.xml" afterPath="$PROJECT_DIR$/_site/rss.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/sitemap.txt" afterPath="$PROJECT_DIR$/_site/sitemap.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/tags.html" afterPath="$PROJECT_DIR$/_site/tags.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,12 +69,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017-12-31-spring-boot 坑坑洼洼的小路.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2017-12-31-spring-boot 坑坑洼洼的小路.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="382">
-                <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <first_editor relative-caret-position="373">
+                <caret line="104" column="37" lean-forward="false" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2017-12-31-bash、sh、source .md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="172">
+                <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -144,16 +131,6 @@
                 </folding>
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="debug.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_plugins/debug.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -225,12 +202,12 @@
     </option>
     <push-targets>
       <push-target-info target-remote="origin" target-branch="temp" repo="$PROJECT_DIR$" source="master" />
+      <push-target-info target-remote="origin" target-branch="temp" repo="$PROJECT_DIR$" source="temp" />
     </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_posts/core-samples/2017-07-17-Rails中的ActiveSupport.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-05-04-Mybatis(缓存).md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-AngularJs的使用（一）.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-AngularJs的使用（二）.md" />
@@ -281,6 +258,7 @@
         <option value="$PROJECT_DIR$/_posts/2017-12-05-centos安装部署gitLab.md" />
         <option value="$PROJECT_DIR$/_posts/2017-12-12-gitlab-ci-持续自动化坑坑洼洼的小路.md" />
         <option value="$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md" />
+        <option value="$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md" />
       </list>
     </option>
   </component>
@@ -734,11 +712,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512554467940</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="坑坑洼洼的java">
+      <created>1514729033698</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1514729033698</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100896000" />
+    <option name="totallyTimeSpent" value="101388000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -829,23 +814,14 @@
     <MESSAGE value="spring-boot" />
     <MESSAGE value="spring 使用实体接收参数异常" />
     <MESSAGE value="重设Ubuntu标签" />
-    <option name="LAST_COMMIT_MESSAGE" value="重设Ubuntu标签" />
+    <MESSAGE value="坑坑洼洼的java" />
+    <option name="LAST_COMMIT_MESSAGE" value="坑坑洼洼的java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/2017-09-11-spring-boot-组合注解与元注解.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="75">
-            <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-05-06-面试准备.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1284,8 +1260,19 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="382">
-            <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <first_editor relative-caret-position="373">
+            <caret line="104" column="37" lean-forward="false" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="172">
+            <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
             <folding />
           </first_editor>
           <second_editor />
