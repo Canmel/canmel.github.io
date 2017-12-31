@@ -5,10 +5,129 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-12-12T15:21:48+08:00</lastBuildDate>
-        <pubDate>2017-12-12T15:21:48+08:00</pubDate>
+        <lastBuildDate>2017-12-31T22:03:41+08:00</lastBuildDate>
+        <pubDate>2017-12-31T22:03:41+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>spring-boot 坑坑洼洼的小路</title>
+                <description>&lt;p&gt;服务器打jar包部署问题解决&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;问题描述&quot;&gt;问题描述：&lt;/h2&gt;
+&lt;h3 id=&quot;最近在看spring-boot的东西pomxml基本的内容包括&quot;&gt;最近在看spring-boot的东西，POM.xml基本的内容包括：&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;	&amp;lt;parent&amp;gt;
+		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+		&amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt;
+		&amp;lt;version&amp;gt;1.5.6.RELEASE&amp;lt;/version&amp;gt;
+		&amp;lt;relativePath /&amp;gt; &amp;lt;!-- lookup parent from repository --&amp;gt;
+	&amp;lt;/parent&amp;gt;
+	
+		&amp;lt;properties&amp;gt;
+		&amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt;
+		&amp;lt;project.reporting.outputEncoding&amp;gt;UTF-8&amp;lt;/project.reporting.outputEncoding&amp;gt;
+		&amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+	&amp;lt;/properties&amp;gt;
+	
+	&amp;lt;dependencies&amp;gt;
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-boot-starter-thymeleaf&amp;lt;/artifactId&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-boot-starter-test&amp;lt;/artifactId&amp;gt;
+			&amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-boot-starter-aop&amp;lt;/artifactId&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+    &amp;lt;dependencies&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;出现的问题&quot;&gt;出现的问题：&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;本地eclipse上 &lt;code&gt;Run As Application&lt;/code&gt;正常访问，正常使用&lt;/li&gt;
+  &lt;li&gt;本地使用 &lt;code&gt;mvn spring-boot:run &lt;/code&gt;，正常启动，正常使用&lt;/li&gt;
+  &lt;li&gt;服务器使用&lt;code&gt;jar&lt;/code&gt;包启动，&lt;code&gt;java -jar xxxxxx.jar&lt;/code&gt;, 访问的各页面找不到，404&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;x.x.x.x ERROR template might not exist or might not be accessible by any of the configured Template Resolvers
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;可用的解决方法&quot;&gt;可用的解决方法&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;可能是静态资源没有打进&lt;code&gt;jar&lt;/code&gt;包，在&lt;code&gt;mapper&lt;/code&gt;中加入&lt;code&gt;&amp;lt;build&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; &amp;lt;build&amp;gt;
+ &amp;lt;resources&amp;gt;
+ 		&amp;lt;resource&amp;gt;
+ 			&amp;lt;directory&amp;gt;src/main/resources&amp;lt;/directory&amp;gt;
+ 			&amp;lt;includes&amp;gt;
+ 				&amp;lt;include&amp;gt;**/*.*&amp;lt;/include&amp;gt;
+ 			&amp;lt;/includes&amp;gt;
+ 			&amp;lt;filtering&amp;gt;false&amp;lt;/filtering&amp;gt;
+ 		&amp;lt;/resource&amp;gt;
+ 		&amp;lt;resource&amp;gt;
+ 			&amp;lt;directory&amp;gt;src/main/java&amp;lt;/directory&amp;gt;
+ 			&amp;lt;includes&amp;gt;
+ 				&amp;lt;include&amp;gt;**/*.*&amp;lt;/include&amp;gt;
+ 			&amp;lt;/includes&amp;gt;
+ 			&amp;lt;excludes&amp;gt;
+ 				&amp;lt;exclude&amp;gt;**/*.java&amp;lt;/exclude&amp;gt;
+ 			&amp;lt;/excludes&amp;gt;
+ 			&amp;lt;filtering&amp;gt;false&amp;lt;/filtering&amp;gt;
+ 		&amp;lt;/resource&amp;gt;
+ 	&amp;lt;/resources&amp;gt;
+ &amp;lt;/build&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;theamleaf&lt;/code&gt;支持强格式的H5语法，可以严格将&lt;code&gt;html&lt;/code&gt;标签全部对应结束标签，或者让其支持不严格的&lt;code&gt;html&lt;/code&gt;标签&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; &amp;lt;dependency&amp;gt;
+ 	&amp;lt;groupId&amp;gt;net.sourceforge.nekohtml&amp;lt;/groupId&amp;gt;
+ 	&amp;lt;artifactId&amp;gt;nekohtml&amp;lt;/artifactId&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;然后在品配置文件中加入:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; spring:
+   aop:
+     auto: true
+   thymeleaf:
+     suffix: .html
+     prefix: classpath:/templates/
+     encoding: UTF-8
+     mode: LEGACYHTML5   ## 支持不严格的Html格式
+     content-type: text/html
+     cache: false
+    
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;可能是启用了&lt;code&gt;theamleaf&lt;/code&gt;的默认配置,&lt;code&gt;theamleaf&lt;/code&gt;默认前缀&lt;code&gt;/templates/&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;（我的错误就是这个造成的）在&lt;code&gt;controller&lt;/code&gt;中&lt;code&gt;return&lt;/code&gt;了的&lt;code&gt;viewName&lt;/code&gt;前面有&lt;code&gt;/&lt;/code&gt;,造成在&lt;code&gt;jar&lt;/code&gt;包里面没有走相对的路径，删除返回页面的前置的斜杠&lt;code&gt;/&lt;/code&gt;即可。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/12/31/spring-boot-%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF</link>
+                <guid>http://canmel.github.io/2017/12/31/spring-boot 坑坑洼洼的小路</guid>
+                <pubDate>2017-12-31T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>GitLab ci 持续自动化坑坑洼洼的小路</title>
