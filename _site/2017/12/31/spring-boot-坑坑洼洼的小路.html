@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>spring-boot 坑坑洼洼的小路</title>
+    <meta name="description" content="">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>spring-boot 坑坑洼洼的小路 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>31 December 2017</span>
+    </div>
+    <div class="content">
+      <p>服务器打jar包部署问题解决</p>
+
+<hr />
+
+<h2 id="问题描述">问题描述：</h2>
+<h3 id="最近在看spring-boot的东西pomxml基本的内容包括">最近在看spring-boot的东西，POM.xml基本的内容包括：</h3>
+
+<pre><code>	&lt;parent&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+		&lt;version&gt;1.5.6.RELEASE&lt;/version&gt;
+		&lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
+	&lt;/parent&gt;
+	
+		&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+		&lt;java.version&gt;1.8&lt;/java.version&gt;
+	&lt;/properties&gt;
+	
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+    &lt;dependencies&gt;
+
+</code></pre>
+
+<h3 id="出现的问题">出现的问题：</h3>
+<ul>
+  <li>本地eclipse上 <code>Run As Application</code>正常访问，正常使用</li>
+  <li>本地使用 <code>mvn spring-boot:run </code>，正常启动，正常使用</li>
+  <li>服务器使用<code>jar</code>包启动，<code>java -jar xxxxxx.jar</code>, 访问的各页面找不到，404</li>
+</ul>
+
+<pre><code>x.x.x.x ERROR template might not exist or might not be accessible by any of the configured Template Resolvers
+</code></pre>
+
+<h2 id="可用的解决方法">可用的解决方法</h2>
+
+<ol>
+  <li>
+    <p>可能是静态资源没有打进<code>jar</code>包，在<code>mapper</code>中加入<code>&lt;build&gt;</code></p>
+
+    <pre><code> &lt;build&gt;
+ &lt;resources&gt;
+ 		&lt;resource&gt;
+ 			&lt;directory&gt;src/main/resources&lt;/directory&gt;
+ 			&lt;includes&gt;
+ 				&lt;include&gt;**/*.*&lt;/include&gt;
+ 			&lt;/includes&gt;
+ 			&lt;filtering&gt;false&lt;/filtering&gt;
+ 		&lt;/resource&gt;
+ 		&lt;resource&gt;
+ 			&lt;directory&gt;src/main/java&lt;/directory&gt;
+ 			&lt;includes&gt;
+ 				&lt;include&gt;**/*.*&lt;/include&gt;
+ 			&lt;/includes&gt;
+ 			&lt;excludes&gt;
+ 				&lt;exclude&gt;**/*.java&lt;/exclude&gt;
+ 			&lt;/excludes&gt;
+ 			&lt;filtering&gt;false&lt;/filtering&gt;
+ 		&lt;/resource&gt;
+ 	&lt;/resources&gt;
+ &lt;/build&gt;
+</code></pre>
+  </li>
+  <li>
+    <p><code>theamleaf</code>支持强格式的H5语法，可以严格将<code>html</code>标签全部对应结束标签，或者让其支持不严格的<code>html</code>标签</p>
+
+    <pre><code> &lt;dependency&gt;
+ 	&lt;groupId&gt;net.sourceforge.nekohtml&lt;/groupId&gt;
+ 	&lt;artifactId&gt;nekohtml&lt;/artifactId&gt;
+ &lt;/dependency&gt;
+</code></pre>
+
+    <p>然后在品配置文件中加入:</p>
+
+    <pre><code> spring:
+   aop:
+     auto: true
+   thymeleaf:
+     suffix: .html
+     prefix: classpath:/templates/
+     encoding: UTF-8
+     mode: LEGACYHTML5   ## 支持不严格的Html格式
+     content-type: text/html
+     cache: false
+    
+</code></pre>
+  </li>
+  <li>
+    <p>可能是启用了<code>theamleaf</code>的默认配置,<code>theamleaf</code>默认前缀<code>/templates/</code></p>
+  </li>
+  <li>
+    <p>（我的错误就是这个造成的）在<code>controller</code>中<code>return</code>了的<code>viewName</code>前面有<code>/</code>,造成在<code>jar</code>包里面没有走相对的路径，删除返回页面的前置的斜杠<code>/</code>即可。</p>
+  </li>
+</ol>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Java-ref">Java <span>20</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-boot-ref">Spring-boot <span>7</span></a></li>
+     
+    	<li><a href="/tags.html#Exp-ref">Exp <span>2</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/12/12/gitlab-ci-%E6%8C%81%E7%BB%AD%E8%87%AA%E5%8A%A8%E5%8C%96%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF" title="GitLab ci 持续自动化坑坑洼洼的小路">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2017 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
