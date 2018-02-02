@@ -5,10 +5,102 @@
         <description>Meedesidy Blog - Meedesidy</description>
         <link>http://canmel.github.io</link>
         <link>http://canmel.github.io</link>
-        <lastBuildDate>2017-12-31T22:03:41+08:00</lastBuildDate>
-        <pubDate>2017-12-31T22:03:41+08:00</pubDate>
+        <lastBuildDate>2018-02-03T02:11:50+08:00</lastBuildDate>
+        <pubDate>2018-02-03T02:11:50+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>angular 5父子组件通信</title>
+                <description>&lt;h2 id=&quot;定义父子组件&quot;&gt;定义：父子组件&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;父子组件并非在两个组件之间有class上的父子关系或这说继承关系&lt;/li&gt;
+    &lt;li&gt;父子组件指的是子组件在父组件中，父组件包含子组件
+如下：&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+...
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;parent-component&amp;gt;
+    ...
+    &amp;lt;child-component&amp;gt;&amp;lt;/child-component&amp;gt;
+    ...
+&amp;lt;/parent-component&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;资料&quot;&gt;资料&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;这是网上摘录：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;@Input : 
+将父作用域中的值“输入”到子作用域中，之后子作用域进行相关处理
+导入&lt;code&gt;Input&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;子组件：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;// child-component.ts
+import { OnInit, Component, Input } from '@angular/core';
+
+@Component({
+    selector: 'child-component',
+    ...
+})
+
+export class ChildComponent implements OnInit {
+    @Input
+    count: number = 0;
+
+    ngOnInit() {
+        console.log(this.count);    // 父组件内传入的值或者我们自己设置的初始值0
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;父组件&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;// father-component.ts
+import { Component } from '@angular/core';
+import { ChildComponent } from '../child-component/child-component';
+
+@Component({
+    template: `
+        &amp;lt;-- 父子组件通信的重要方式 !--&amp;gt;
+        &amp;lt;child-component [count]='initialCount'&amp;gt;&amp;lt;/child-component&amp;gt;
+    `,
+    ...
+})
+export class FatherComponent {
+    initialCount: number = 5;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;问题&quot;&gt;问题&lt;/h2&gt;
+&lt;p&gt;上面的资料一般说的都是angular4 或者2的，我现在开始使用的5，也许是版本的问题，&lt;code&gt;需要在@Input后面添加我的属性名称&lt;/code&gt;，不然会报错，&lt;code&gt;Can't bind to 'xxx' since it isn't a known property of 'childxxxx'&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Input('count') count: number;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;真可怕我楞是找资料2个小时最后去翻的官方文档&quot;&gt;真可怕，我楞是找资料2个小时，最后去翻的官方文档&lt;/h3&gt;
+
+</description>
+                <link>http://canmel.github.io/2018/02/03/angular-5%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1</link>
+                <guid>http://canmel.github.io/2018/02/03/angular 5父子组件通信</guid>
+                <pubDate>2018-02-03T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>spring-boot 坑坑洼洼的小路</title>
@@ -126,6 +218,40 @@
 </description>
                 <link>http://canmel.github.io/2017/12/31/spring-boot-%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF</link>
                 <guid>http://canmel.github.io/2017/12/31/spring-boot 坑坑洼洼的小路</guid>
+                <pubDate>2017-12-31T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>ubuntu中bash、sh、source </title>
+                <description>&lt;h2 id=&quot;在ubuntu-当中-执行脚本默认的使用的是dash而非bash执行能力较弱&quot;&gt;在Ubuntu 当中 执行脚本默认的使用的是dash，而非bash，执行能力较弱&lt;/h2&gt;
+
+&lt;h3 id=&quot;例如1sh&quot;&gt;例如1.sh&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;!/bin/sh
+source /etc/profile&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;输出：&lt;code&gt;source: not found&lt;/code&gt;
+所以不能使用在&lt;code&gt;sh&lt;/code&gt;中使用source&lt;/p&gt;
+
+&lt;h3 id=&quot;2sh&quot;&gt;2.sh&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;!/bin/bash
+source /etc/profile&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;正常执行
+所以可以在&lt;code&gt;bash&lt;/code&gt;中使用source&lt;/p&gt;
+
+&lt;h3 id=&quot;3source等价于-&quot;&gt;3.source等价于 .&lt;/h3&gt;
+
+&lt;p&gt;所以使用&lt;code&gt;. /etc/profile&lt;/code&gt;都会执行正常 （注意点号后面空格）&lt;/p&gt;
+
+</description>
+                <link>http://canmel.github.io/2017/12/31/bash-sh-source</link>
+                <guid>http://canmel.github.io/2017/12/31/bash、sh、source </guid>
                 <pubDate>2017-12-31T00:00:00+08:00</pubDate>
         </item>
 

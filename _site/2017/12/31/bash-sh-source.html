@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
 
-    <title>在阿里云服务器使用docker部署web项目</title>
-    
+    <title>ubuntu中bash、sh、source </title>
+    <meta name="description" content="">
     <meta name="author" content="Meedesidy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -83,69 +83,57 @@
     <div class="container">
       
 <div class="page-header">
-  <h1>在阿里云服务器使用docker部署web项目 </h1>
+  <h1>ubuntu中bash、sh、source  </h1>
 </div>
 
 <div class="row post-full">
   <div class="col-md-12">
     <div class="date">
-      <span>20 August 2017</span>
+      <span>31 December 2017</span>
     </div>
     <div class="content">
-      <h2 id="在阿里云服务器使用docker部署web项目">在阿里云服务器使用docker部署web项目</h2>
-<h3 id="准备">准备</h3>
+      <h2 id="在ubuntu-当中-执行脚本默认的使用的是dash而非bash执行能力较弱">在Ubuntu 当中 执行脚本默认的使用的是dash，而非bash，执行能力较弱</h2>
 
-<ul>
-  <li>github 帐号，创建新的<code>repository</code>,并将代码push到这个<code>repository</code></li>
-  <li>阿里云服务器</li>
-  <li>注册<code>daocloud</code></li>
-</ul>
+<h3 id="例如1sh">例如1.sh</h3>
 
-<h3 id="ssh登录远程服务器">ssh登录远程服务器</h3>
+<blockquote>
+  <p>!/bin/sh
+source /etc/profile</p>
+</blockquote>
 
-<ul>
-  <li><code>~ ssh root@99.99.99.99 </code></li>
-</ul>
+<p>输出：<code>source: not found</code>
+所以不能使用在<code>sh</code>中使用source</p>
 
-<h3 id="安装docker">安装docker</h3>
+<h3 id="2sh">2.sh</h3>
 
-<ul>
-  <li>可以借鉴 <a href="http://blog.csdn.net/mickjoust/article/details/51578629">Ubuntu 16.04安装使用Docker </a></li>
-</ul>
+<blockquote>
+  <p>!/bin/bash
+source /etc/profile</p>
+</blockquote>
 
-<p>###</p>
+<p>正常执行
+所以可以在<code>bash</code>中使用source</p>
+
+<h3 id="3source等价于-">3.source等价于 .</h3>
+
+<p>所以使用<code>. /etc/profile</code>都会执行正常 （注意点号后面空格）</p>
+
 
     </div>
 
     
 
-    
-      <ul class="tag_box inline">
-        <li><i class="icon-tags"></i></li>
-        
-        
-
-
-  
-     
-    	<li><a href="/tags.html#Docker-ref">Docker <span>1</span></a></li>
-    
-  
-
-
-
-      </ul>
     
 
     <hr>
     
     <ul class="pagination">
       
-        <li class="prev"><a href="/2017/07/17/Rails%E4%B8%AD%E7%9A%84ActiveSupport" title="Rails中的ActiveSupport">&larr; Previous</a></li>
+        <li class="prev"><a href="/2017/12/12/gitlab-ci-%E6%8C%81%E7%BB%AD%E8%87%AA%E5%8A%A8%E5%8C%96%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF" title="GitLab ci 持续自动化坑坑洼洼的小路">&larr; Previous</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2017/08/21/ubuntu%E5%AE%89%E8%A3%85jdk" title="ubuntu安装java开发环境">Next &rarr;</a></li>
+        <li class="next"><a href="/2017/12/31/spring-boot-%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF" title="spring-boot 坑坑洼洼的小路">Next &rarr;</a></li>
       
     </ul>
     <hr>
