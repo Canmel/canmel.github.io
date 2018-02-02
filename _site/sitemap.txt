@@ -6,7 +6,9 @@ http://canmel.github.io/rss.xml
 http://canmel.github.io/sitemap.txt
 http://canmel.github.io/tags
 
+http://canmel.github.io/2018/02/03/angular-5%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1
 http://canmel.github.io/2017/12/31/spring-boot-%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF
+http://canmel.github.io/2017/12/31/bash-sh-source
 http://canmel.github.io/2017/12/12/gitlab-ci-%E6%8C%81%E7%BB%AD%E8%87%AA%E5%8A%A8%E5%8C%96%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF
 http://canmel.github.io/2017/12/05/mysql-operation-not-permitted
 http://canmel.github.io/2017/12/05/centos%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2gitLab

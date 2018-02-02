@@ -2,10 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97871655-b626-4e2a-8f8d-688362b365d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" afterPath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/rubymine激活.html" afterPath="$PROJECT_DIR$/_site/2016/05/21/rubymine激活.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/高并发的控制.html" afterPath="$PROJECT_DIR$/_site/2016/05/21/高并发的控制.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-一.html" afterPath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-一.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-二.html" afterPath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-二.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" afterPath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/Rails中Excel的数据导入.html" afterPath="$PROJECT_DIR$/_site/2017/04/11/Rails中Excel的数据导入.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/05/06/面试准备.html" afterPath="$PROJECT_DIR$/_site/2017/05/06/面试准备.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/07/13/ruby中String和symbol的区别.html" afterPath="$PROJECT_DIR$/_site/2017/07/13/ruby中String和symbol的区别.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/07/17/Rails中什么地方需要require.html" afterPath="$PROJECT_DIR$/_site/2017/07/17/Rails中什么地方需要require.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/07/17/Rails中的ActiveSupport.html" afterPath="$PROJECT_DIR$/_site/2017/07/17/Rails中的ActiveSupport.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/20/阿里云服务器使用docker发布web项目.html" afterPath="$PROJECT_DIR$/_site/2017/08/20/阿里云服务器使用docker发布web项目.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" afterPath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" afterPath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" afterPath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/25/spring-cloud-resttemplate.html" afterPath="$PROJECT_DIR$/_site/2017/08/25/spring-cloud-resttemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/30/spring-cloud-config-分布式配置.html" afterPath="$PROJECT_DIR$/_site/2017/08/30/spring-cloud-config-分布式配置.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/03/spring-cloud-stream-消息驱动微服务.html" afterPath="$PROJECT_DIR$/_site/2017/09/03/spring-cloud-stream-消息驱动微服务.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-事件.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-事件.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-多线程.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-多线程.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-常用配置.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-常用配置.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/18/ubuntu-基本配置.html" afterPath="$PROJECT_DIR$/_site/2017/09/18/ubuntu-基本配置.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/19/HTML中placeholder提示换行.html" afterPath="$PROJECT_DIR$/_site/2017/09/19/HTML中placeholder提示换行.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" afterPath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" afterPath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" afterPath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/11/07/HttpClient各版本发送请求.html" afterPath="$PROJECT_DIR$/_site/2017/11/07/HttpClient各版本发送请求.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/05/centos安装部署gitLab.html" afterPath="$PROJECT_DIR$/_site/2017/12/05/centos安装部署gitLab.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/05/mysql-operation-not-permitted.html" afterPath="$PROJECT_DIR$/_site/2017/12/05/mysql-operation-not-permitted.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/12/gitlab-ci-持续自动化坑坑洼洼的小路.html" afterPath="$PROJECT_DIR$/_site/2017/12/12/gitlab-ci-持续自动化坑坑洼洼的小路.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/31/spring-boot-坑坑洼洼的小路.html" afterPath="$PROJECT_DIR$/_site/2017/12/31/spring-boot-坑坑洼洼的小路.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/archive.html" afterPath="$PROJECT_DIR$/_site/archive.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/atom.xml" afterPath="$PROJECT_DIR$/_site/atom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/index.html" afterPath="$PROJECT_DIR$/_site/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/lessons/2011/12/29/jekyll-introduction.html" afterPath="$PROJECT_DIR$/_site/lessons/2011/12/29/jekyll-introduction.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/rss.xml" afterPath="$PROJECT_DIR$/_site/rss.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/sitemap.txt" afterPath="$PROJECT_DIR$/_site/sitemap.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/tags.html" afterPath="$PROJECT_DIR$/_site/tags.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,7 +101,7 @@
       <file leaf-file-name="Rakefile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Rakefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-264">
+            <state relative-caret-position="300">
               <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding />
             </state>
@@ -73,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="373">
+              <first_editor relative-caret-position="1560">
                 <caret line="104" column="37" lean-forward="false" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
                 <folding />
               </first_editor>
@@ -82,13 +121,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017-12-31-bash、sh、source .md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2017-12-31-bash、sh、source .md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="172">
+              <first_editor relative-caret-position="360">
                 <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
                 <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2018-02-03-angular 5父子组件通信.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="324">
+                <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+                <folding>
+                  <marker date="1517595088385" expanded="true" signature="204:341" ph="..." />
+                  <marker date="1517595088385" expanded="true" signature="211:223" ph="..." />
+                  <marker date="1517595088385" expanded="true" signature="230:333" ph="..." />
+                  <marker date="1517595088385" expanded="true" signature="249:325" ph="..." />
+                </folding>
               </first_editor>
               <second_editor />
             </state>
@@ -129,19 +186,6 @@
                   <marker date="1514728923745" expanded="true" signature="1019:1047" ph="script: &lt;1 item&gt;" />
                   <marker date="1514728923745" expanded="true" signature="1036:1047" ph="echo &quot;我是好人&quot;" />
                 </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2011-12-29-jekyll-introduction.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_posts/core-samples/2011-12-29-jekyll-introduction.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                <folding />
               </first_editor>
               <second_editor />
             </state>
@@ -208,7 +252,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_posts/core-samples/2017-05-04-Mybatis(缓存).md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-AngularJs的使用（一）.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-AngularJs的使用（二）.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-rubymine激活.md" />
@@ -259,6 +302,7 @@
         <option value="$PROJECT_DIR$/_posts/2017-12-12-gitlab-ci-持续自动化坑坑洼洼的小路.md" />
         <option value="$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md" />
         <option value="$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md" />
+        <option value="$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md" />
       </list>
     </option>
   </component>
@@ -275,7 +319,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="820" />
@@ -295,8 +339,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -307,112 +349,14 @@
             <path>
               <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_drafts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_includes" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_includes" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="core-samples" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_site" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_site" type="462c0819:PsiDirectoryNode" />
-              <item name="lessons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_site" type="462c0819:PsiDirectoryNode" />
-              <item name="lessons" type="462c0819:PsiDirectoryNode" />
-              <item name="2011" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_site" type="462c0819:PsiDirectoryNode" />
-              <item name="lessons" type="462c0819:PsiDirectoryNode" />
-              <item name="2011" type="462c0819:PsiDirectoryNode" />
-              <item name="12" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_site" type="462c0819:PsiDirectoryNode" />
-              <item name="lessons" type="462c0819:PsiDirectoryNode" />
-              <item name="2011" type="462c0819:PsiDirectoryNode" />
-              <item name="12" type="462c0819:PsiDirectoryNode" />
-              <item name="29" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canmel.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canmel.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="respond" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,6 +431,8 @@
       <workItem from="1512551769754" duration="971000" />
       <workItem from="1513060058829" duration="1331000" />
       <workItem from="1513241737244" duration="22000" />
+      <workItem from="1515637303895" duration="403000" />
+      <workItem from="1517594886781" duration="224000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1502091200498</created>
@@ -719,11 +665,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514729033698</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="坑坑洼洼的java">
+      <created>1514729516851</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1514729516852</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101388000" />
+    <option name="totallyTimeSpent" value="102146000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -736,34 +689,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="820" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26895565" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26895565" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34880635" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34615386" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34880635" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34615386" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26180258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -822,16 +766,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-05-06-面试准备.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="75">
-            <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-05-04-Mybatis(缓存).md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1153,7 +1087,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1226,7 +1159,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Rakefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
+        <state relative-caret-position="300">
           <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding />
         </state>
@@ -1260,7 +1193,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="373">
+          <first_editor relative-caret-position="1560">
             <caret line="104" column="37" lean-forward="false" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
             <folding />
           </first_editor>
@@ -1271,9 +1204,25 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="172">
+          <first_editor relative-caret-position="360">
             <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
             <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="324">
+            <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+            <folding>
+              <marker date="1517595088385" expanded="true" signature="204:341" ph="..." />
+              <marker date="1517595088385" expanded="true" signature="211:223" ph="..." />
+              <marker date="1517595088385" expanded="true" signature="230:333" ph="..." />
+              <marker date="1517595088385" expanded="true" signature="249:325" ph="..." />
+            </folding>
           </first_editor>
           <second_editor />
         </state>

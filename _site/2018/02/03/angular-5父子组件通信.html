@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>angular 5父子组件通信</title>
+    <meta name="description" content="angular 5父子组件通信">
+    <meta name="author" content="Meedesidy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/themes//resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon"href="/factive.ico">
+    <!--[if lt IE 9]>
+      <script src="/assets/themes//resources/respond/Respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Meedesidy Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive">文档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">标签</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      
+<div class="page-header">
+  <h1>angular 5父子组件通信 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-md-12">
+    <div class="date">
+      <span>03 February 2018</span>
+    </div>
+    <div class="content">
+      <h2 id="定义父子组件">定义：父子组件</h2>
+<blockquote>
+  <ol>
+    <li>父子组件并非在两个组件之间有class上的父子关系或这说继承关系</li>
+    <li>父子组件指的是子组件在父组件中，父组件包含子组件
+如下：</li>
+  </ol>
+</blockquote>
+
+<pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+...
+&lt;/head&gt;
+&lt;body&gt;
+&lt;parent-component&gt;
+    ...
+    &lt;child-component&gt;&lt;/child-component&gt;
+    ...
+&lt;/parent-component&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h2 id="资料">资料</h2>
+<ul>
+  <li>这是网上摘录：</li>
+</ul>
+
+<blockquote>
+  <p>@Input : 
+将父作用域中的值“输入”到子作用域中，之后子作用域进行相关处理
+导入<code>Input</code></p>
+</blockquote>
+
+<blockquote>
+  <p>子组件：</p>
+</blockquote>
+
+<pre><code>// child-component.ts
+import { OnInit, Component, Input } from '@angular/core';
+
+@Component({
+    selector: 'child-component',
+    ...
+})
+
+export class ChildComponent implements OnInit {
+    @Input
+    count: number = 0;
+
+    ngOnInit() {
+        console.log(this.count);    // 父组件内传入的值或者我们自己设置的初始值0
+    }
+}
+</code></pre>
+
+<blockquote>
+  <p>父组件</p>
+</blockquote>
+
+<pre><code>// father-component.ts
+import { Component } from '@angular/core';
+import { ChildComponent } from '../child-component/child-component';
+
+@Component({
+    template: `
+        &lt;-- 父子组件通信的重要方式 !--&gt;
+        &lt;child-component [count]='initialCount'&gt;&lt;/child-component&gt;
+    `,
+    ...
+})
+export class FatherComponent {
+    initialCount: number = 5;
+}
+</code></pre>
+
+<h2 id="问题">问题</h2>
+<p>上面的资料一般说的都是angular4 或者2的，我现在开始使用的5，也许是版本的问题，<code>需要在@Input后面添加我的属性名称</code>，不然会报错，<code>Can't bind to 'xxx' since it isn't a known property of 'childxxxx'</code></p>
+
+<pre><code>@Input('count') count: number;
+</code></pre>
+
+<h3 id="真可怕我楞是找资料2个小时最后去翻的官方文档">真可怕，我楞是找资料2个小时，最后去翻的官方文档</h3>
+
+
+    </div>
+
+    
+
+    
+      <ul class="tag_box inline">
+        <li><i class="icon-tags"></i></li>
+        
+        
+
+
+  
+     
+    	<li><a href="/tags.html#Angular-ref">Angular <span>3</span></a></li>
+    
+  
+
+
+
+      </ul>
+    
+
+    <hr>
+    
+    <ul class="pagination">
+      
+        <li class="prev"><a href="/2017/12/31/spring-boot-%E5%9D%91%E5%9D%91%E6%B4%BC%E6%B4%BC%E7%9A%84%E5%B0%8F%E8%B7%AF" title="spring-boot 坑坑洼洼的小路">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+    </ul>
+    <hr>
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <p>
+          &copy; 2018 Meedesidy
+        </p>
+      </footer>
+    </div>
+
+    
+
+    <script src="/assets/themes//resources/jquery/jquery.min.js"></script>
+    <script src="/assets/themes//resources/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
