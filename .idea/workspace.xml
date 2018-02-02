@@ -3,18 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="97871655-b626-4e2a-8f8d-688362b365d8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md" afterPath="$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" afterPath="$PROJECT_DIR$/_site/2016/05/21/Mybatis(缓存).html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/rubymine激活.html" afterPath="$PROJECT_DIR$/_site/2016/05/21/rubymine激活.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2016/05/21/高并发的控制.html" afterPath="$PROJECT_DIR$/_site/2016/05/21/高并发的控制.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-一.html" afterPath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-一.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-二.html" afterPath="$PROJECT_DIR$/_site/2017/04/11/AngularJs的使用-二.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" afterPath="$PROJECT_DIR$/_site/2017/04/11/Mybatis(初识).html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/04/11/Rails中Excel的数据导入.html" afterPath="$PROJECT_DIR$/_site/2017/04/11/Rails中Excel的数据导入.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/05/06/面试准备.html" afterPath="$PROJECT_DIR$/_site/2017/05/06/面试准备.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/07/13/ruby中String和symbol的区别.html" afterPath="$PROJECT_DIR$/_site/2017/07/13/ruby中String和symbol的区别.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/07/17/Rails中什么地方需要require.html" afterPath="$PROJECT_DIR$/_site/2017/07/17/Rails中什么地方需要require.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/07/17/Rails中的ActiveSupport.html" afterPath="$PROJECT_DIR$/_site/2017/07/17/Rails中的ActiveSupport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/20/阿里云服务器使用docker发布web项目.html" afterPath="$PROJECT_DIR$/_site/2017/08/20/阿里云服务器使用docker发布web项目.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" afterPath="$PROJECT_DIR$/_site/2017/08/21/ubuntu安装jdk.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" afterPath="$PROJECT_DIR$/_site/2017/08/22/spring-cloud-applicationproperties.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" afterPath="$PROJECT_DIR$/_site/2017/08/23/java-8-新特性.html" />
@@ -28,20 +21,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-条件注解.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-组合注解与元注解.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" afterPath="$PROJECT_DIR$/_site/2017/09/11/spring-boot-计划任务.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/18/ubuntu-基本配置.html" afterPath="$PROJECT_DIR$/_site/2017/09/18/ubuntu-基本配置.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/19/HTML中placeholder提示换行.html" afterPath="$PROJECT_DIR$/_site/2017/09/19/HTML中placeholder提示换行.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" afterPath="$PROJECT_DIR$/_site/2017/09/20/微信朋友圈分享案例.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" afterPath="$PROJECT_DIR$/_site/2017/10/10/Spring使用实体接收参数异常.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" afterPath="$PROJECT_DIR$/_site/2017/10/12/java问答.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/11/07/HttpClient各版本发送请求.html" afterPath="$PROJECT_DIR$/_site/2017/11/07/HttpClient各版本发送请求.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/05/centos安装部署gitLab.html" afterPath="$PROJECT_DIR$/_site/2017/12/05/centos安装部署gitLab.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/05/mysql-operation-not-permitted.html" afterPath="$PROJECT_DIR$/_site/2017/12/05/mysql-operation-not-permitted.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/12/gitlab-ci-持续自动化坑坑洼洼的小路.html" afterPath="$PROJECT_DIR$/_site/2017/12/12/gitlab-ci-持续自动化坑坑洼洼的小路.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2017/12/31/spring-boot-坑坑洼洼的小路.html" afterPath="$PROJECT_DIR$/_site/2017/12/31/spring-boot-坑坑洼洼的小路.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/2018/02/03/angular-5父子组件通信.html" afterPath="$PROJECT_DIR$/_site/2018/02/03/angular-5父子组件通信.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/archive.html" afterPath="$PROJECT_DIR$/_site/archive.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/atom.xml" afterPath="$PROJECT_DIR$/_site/atom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/index.html" afterPath="$PROJECT_DIR$/_site/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/lessons/2011/12/29/jekyll-introduction.html" afterPath="$PROJECT_DIR$/_site/lessons/2011/12/29/jekyll-introduction.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/rss.xml" afterPath="$PROJECT_DIR$/_site/rss.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/sitemap.txt" afterPath="$PROJECT_DIR$/_site/sitemap.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/tags.html" afterPath="$PROJECT_DIR$/_site/tags.html" />
@@ -55,16 +44,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="jekyll-introduction.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_site/lessons/2011/12/29/jekyll-introduction.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="archive.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/archive.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,17 +113,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018-02-03-angular 5父子组件通信.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2018-02-03-angular 5父子组件通信.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="324">
-                <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+              <first_editor relative-caret-position="75">
+                <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
                 <folding>
-                  <marker date="1517595088385" expanded="true" signature="204:341" ph="..." />
-                  <marker date="1517595088385" expanded="true" signature="211:223" ph="..." />
-                  <marker date="1517595088385" expanded="true" signature="230:333" ph="..." />
-                  <marker date="1517595088385" expanded="true" signature="249:325" ph="..." />
+                  <marker date="1517595474144" expanded="true" signature="208:345" ph="..." />
+                  <marker date="1517595474144" expanded="true" signature="215:227" ph="..." />
+                  <marker date="1517595474144" expanded="true" signature="234:337" ph="..." />
+                  <marker date="1517595474144" expanded="true" signature="253:329" ph="..." />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2018-02-03-ES6基本知识.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-ES6基本知识.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="172">
+                <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+                <folding>
+                  <marker date="1517595719969" expanded="true" signature="177:243" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="296:363" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="979:1006" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="1096:1139" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="1273:1328" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="1408:1468" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="1421:1465" ph="{&quot;name&quot;: name...}" />
+                  <marker date="1517595719969" expanded="true" signature="1503:1552" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="1516:1549" ph="{&quot;name&quot;: name...}" />
+                  <marker date="1517595719969" expanded="true" signature="1601:1684" ph="{&quot;name&quot;: 'lux'...}" />
+                  <marker date="1517595719969" expanded="true" signature="1644:1682" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="1686:1730" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="1746:1840" ph="{&quot;name&quot;: 'lux'...}" />
+                  <marker date="1517595719969" expanded="true" signature="1788:1834" ph="{...}" />
+                  <marker date="1517595719969" expanded="false" signature="1870:1967" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="2067:2099" ph="{&quot;name&quot;: 'lux'...}" />
+                  <marker date="1517595719969" expanded="true" signature="2183:2194" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="2210:2242" ph="{&quot;name&quot;: 'lux'...}" />
+                  <marker date="1517595719969" expanded="true" signature="2590:2624" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="2921:2939" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="2957:3058" ph="{&quot;username&quot;: 'lux'...}" />
+                  <marker date="1517595719969" expanded="true" signature="3227:3260" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="3276:3298" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="3491:3542" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="5254:5510" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="5256:5291" ph="//..." />
+                  <marker date="1517595719969" expanded="true" signature="5391:5488" ph="{...}" />
+                  <marker date="1517595719969" expanded="true" signature="5433:5486" ph="{...}" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -196,7 +217,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>James' Docker-Driven Blog</find>
       <find>navbar-toggle</find>
       <find>navbar-brand</find>
       <find>Docker-Driven</find>
@@ -226,6 +246,7 @@
       <find>shortcut icon</find>
       <find>factive.ico</find>
       <find>`</find>
+      <find>对象</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -252,7 +273,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-AngularJs的使用（一）.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-AngularJs的使用（二）.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-04-11-rubymine激活.md" />
         <option value="$PROJECT_DIR$/CNAME" />
@@ -303,6 +323,7 @@
         <option value="$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md" />
         <option value="$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md" />
         <option value="$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md" />
+        <option value="$PROJECT_DIR$/_posts/2018-02-03-ES6基本知识.md" />
       </list>
     </option>
   </component>
@@ -432,7 +453,7 @@
       <workItem from="1513060058829" duration="1331000" />
       <workItem from="1513241737244" duration="22000" />
       <workItem from="1515637303895" duration="403000" />
-      <workItem from="1517594886781" duration="224000" />
+      <workItem from="1517594886781" duration="846000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1502091200498</created>
@@ -676,7 +697,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102146000" />
+    <option name="totallyTimeSpent" value="102768000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -766,16 +787,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-05-04-Mybatis(缓存).md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="90">
-            <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-07-17-Rails中什么地方需要require.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1215,13 +1226,53 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="324">
-            <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+          <first_editor relative-caret-position="75">
+            <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
             <folding>
-              <marker date="1517595088385" expanded="true" signature="204:341" ph="..." />
-              <marker date="1517595088385" expanded="true" signature="211:223" ph="..." />
-              <marker date="1517595088385" expanded="true" signature="230:333" ph="..." />
-              <marker date="1517595088385" expanded="true" signature="249:325" ph="..." />
+              <marker date="1517595474144" expanded="true" signature="208:345" ph="..." />
+              <marker date="1517595474144" expanded="true" signature="215:227" ph="..." />
+              <marker date="1517595474144" expanded="true" signature="234:337" ph="..." />
+              <marker date="1517595474144" expanded="true" signature="253:329" ph="..." />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-ES6基本知识.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="172">
+            <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+            <folding>
+              <marker date="1517595719969" expanded="true" signature="177:243" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="296:363" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="979:1006" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="1096:1139" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="1273:1328" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="1408:1468" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="1421:1465" ph="{&quot;name&quot;: name...}" />
+              <marker date="1517595719969" expanded="true" signature="1503:1552" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="1516:1549" ph="{&quot;name&quot;: name...}" />
+              <marker date="1517595719969" expanded="true" signature="1601:1684" ph="{&quot;name&quot;: 'lux'...}" />
+              <marker date="1517595719969" expanded="true" signature="1644:1682" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="1686:1730" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="1746:1840" ph="{&quot;name&quot;: 'lux'...}" />
+              <marker date="1517595719969" expanded="true" signature="1788:1834" ph="{...}" />
+              <marker date="1517595719969" expanded="false" signature="1870:1967" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="2067:2099" ph="{&quot;name&quot;: 'lux'...}" />
+              <marker date="1517595719969" expanded="true" signature="2183:2194" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="2210:2242" ph="{&quot;name&quot;: 'lux'...}" />
+              <marker date="1517595719969" expanded="true" signature="2590:2624" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="2921:2939" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="2957:3058" ph="{&quot;username&quot;: 'lux'...}" />
+              <marker date="1517595719969" expanded="true" signature="3227:3260" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="3276:3298" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="3491:3542" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="5254:5510" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="5256:5291" ph="//..." />
+              <marker date="1517595719969" expanded="true" signature="5391:5488" ph="{...}" />
+              <marker date="1517595719969" expanded="true" signature="5433:5486" ph="{...}" />
             </folding>
           </first_editor>
           <second_editor />
