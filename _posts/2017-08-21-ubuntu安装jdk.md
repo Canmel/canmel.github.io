@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ubuntu安装java开发环境"
+title: "Ubuntu安装java开发环境"
 description: ""
 category: 
 tags: [Linux, Java]
