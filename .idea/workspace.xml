@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="97871655-b626-4e2a-8f8d-688362b365d8" name="Default" comment="Hadoop">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2017-08-21-ubuntu安装jdk.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2017-08-21-ubuntu安装jdk.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-09-03-Centos启动级别.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-09-03-CentOS启动级别.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-09-03-hadoop准备工作.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-09-03-Hadoop准备工作.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-09-03-hadoop安装及其配置.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-09-03-Hadoop安装及其配置.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-09-03-new-post.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-09-03-Hadoop集群的安装模式.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,39 +10,47 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-440235020">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="Rakefile" value="1" />
+          <entry key="md" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="md" value="506" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Markdown" value="506" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS修改网络.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-634">
-                <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS环境变量.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="95">
-                <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2017-08-21-ubuntu安装jdk.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="19">
-                <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -57,9 +60,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop准备工作.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="38">
-                <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -69,20 +70,37 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS启动级别.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="273">
-                <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop集群的安装模式.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="95">
-                <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rakefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="42" column="7" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2019-09-12-a-tour-plan-of-xiamen.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="400">
+                <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
               </first_editor>
               <second_editor />
             </state>
@@ -93,9 +111,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Centos修改主机名称.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="95">
-                <caret line="5" column="20" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="20" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -115,9 +131,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2017-08-30-spring-cloud-config-分布式配置.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-2185">
-                <caret line="2" column="9" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="9" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -127,9 +141,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop安装及其配置.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="38">
-                <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-              </first_editor>
+              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -191,7 +203,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_site/atom.xml" />
         <option value="$PROJECT_DIR$/_site/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/_posts/core-samples/2017-08-20-阿里云服务器使用docker发布web项目.md" />
@@ -242,9 +253,12 @@
         <option value="$PROJECT_DIR$/_posts/2019-09-03-Centos启动级别.md" />
         <option value="$PROJECT_DIR$/_posts/2019-09-03-CentOS启动级别.md" />
         <option value="$PROJECT_DIR$/_posts/2019-09-03-Hadoop集群的安装模式.md" />
+        <option value="$PROJECT_DIR$/_posts/2019-09-12-a-tour-plan-of-xiamen.md" />
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>false</service-enabled>
     <exe-path />
@@ -252,16 +266,21 @@
     <other-services-enabled>false</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="820" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,7 +313,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -371,6 +389,8 @@
       <workItem from="1517594886781" duration="846000" />
       <workItem from="1567502511812" duration="1042000" />
       <workItem from="1567503706183" duration="7322000" />
+      <workItem from="1568187787464" duration="2780000" />
+      <workItem from="1568257854311" duration="2404000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1502091200498</created>
@@ -635,7 +655,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111132000" />
+    <option name="totallyTimeSpent" value="116316000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -647,10 +667,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19863014" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19802678" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -663,7 +683,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.34880635" />
       <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2570499" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.25608194" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -704,6 +724,9 @@
       </list>
     </option>
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="换一个主题" />
@@ -720,72 +743,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="Hadoop" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_site/2017/09/11/Spring-基础.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-09-03-spring-cloud-stream-消息驱动微服务.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="135">
-            <caret line="9" selection-start-line="9" selection-end-line="9" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-10-12-java问答.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="240">
-            <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-10-10-Spring使用实体接收参数异常.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="150">
-            <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-11-07-HttpClient各版本发送请求.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1605">
-            <caret line="107" selection-start-line="107" selection-end-line="107" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2017-09-03-spring-cloud-stream-消息驱动微服务.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-10-12-java问答.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-10-10-Spring使用实体接收参数异常.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-11-07-HttpClient各版本发送请求.md" />
     <entry file="file://$PROJECT_DIR$/_posts/2017-12-05-centosgitlab.md" />
-    <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-08-20-阿里云服务器使用docker发布web项目.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-09-18-ubuntu-基本配置.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="75">
-            <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/core-samples/2017-08-20-阿里云服务器使用docker发布web项目.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-09-18-ubuntu-基本配置.md" />
     <entry file="file://$PROJECT_DIR$/_includes/JB/tags_list">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -798,85 +762,22 @@
     <entry file="file://$PROJECT_DIR$/_includes/themes/bootstrap/settings.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/_drafts/jekyll-introduction-draft.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_drafts/jekyll-introduction-draft.md" />
     <entry file="file://$PROJECT_DIR$/_site/lessons/2011/12/29/jekyll-introduction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-12-05-mysql-operation-not-permitted.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="390">
-            <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2017-12-05-mysql-operation-not-permitted.md" />
     <entry file="file://$PROJECT_DIR$/archive.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/atom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/changelog.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1976">
-            <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="456">
-            <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-12-05-centos安装部署gitLab.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="285">
-            <caret line="15" selection-start-line="15" selection-end-line="15" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/changelog.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-spring-boot 坑坑洼洼的小路.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-12-31-bash、sh、source .md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-12-05-centos安装部署gitLab.md" />
+    <entry file="file://$PROJECT_DIR$/index.md" />
     <entry file="file://$PROJECT_DIR$/_site/2018/02/03/ES6基本知识.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2223" />
@@ -916,141 +817,70 @@
     <entry file="file://$PROJECT_DIR$/_includes/JB/setup">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-ES6基本知识.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="114">
-            <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-ES6基本知识.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-12-12-gitlab-ci-持续自动化坑坑洼洼的小路.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-09-20-微信朋友圈分享案例.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/core-samples/2011-12-29-jekyll-introduction.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2017-09-11-spring-boot-计划任务.md" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/CNAME">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-12-12-gitlab-ci-持续自动化坑坑洼洼的小路.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-19">
-            <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-09-20-微信朋友圈分享案例.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="596">
-            <caret line="245" selection-start-line="245" selection-end-line="245" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/core-samples/2011-12-29-jekyll-introduction.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1653" />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-09-11-spring-boot-计划任务.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="836">
-            <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/_posts/2017-08-23-java-8-新特性.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md" />
+    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS修改网络.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CNAME">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="42" column="7" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2017-08-23-java-8-新特性.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="209">
-            <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2018-02-03-angular 5父子组件通信.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="19">
-            <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Centos修改主机名称.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="5" column="20" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS修改网络.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-634">
-            <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop准备工作.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="38">
-            <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS环境变量.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2017-08-21-ubuntu安装jdk.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="19">
-            <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop准备工作.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS启动级别.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Centos修改主机名称.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2017-08-22-spring-cloud-applicationproperties.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -1059,42 +889,51 @@
           <second_editor />
         </state>
       </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2017-08-30-spring-cloud-config-分布式配置.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-2185">
-            <caret line="2" column="9" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="9" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-CentOS启动级别.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="273">
-            <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop安装及其配置.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="38">
-            <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-09-03-Hadoop集群的安装模式.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="42" column="7" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-09-12-a-tour-plan-of-xiamen.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="400">
+            <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
           </first_editor>
           <second_editor />
         </state>
